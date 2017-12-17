@@ -1,5 +1,6 @@
 
-# Puppet-Minebox
+# Puppet-Minebox [![Build Status](https://travis-ci.org/CultClassik/puppet-minebox.svg?branch=master)](https://travis-ci.org/CultClassik/puppet-minebox)
+[Image on Docker Hub](https://hub.docker.com/r/cultclassik/puppet-minebox/)
 
 #### Table of Contents
 
