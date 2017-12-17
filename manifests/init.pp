@@ -9,19 +9,19 @@
 
 class minebox(
   Boolean $use_docker = true,
-  String $cpu_minig = true,
+  String $cpu_mining = true,
   String $nvdocker_pkg_name = 'nvidia-docker2',
   String $facts_path = '/etc/facter/facts.d',
   String $storage_path = '/sw',
   String $base_path = '/minebox',
-  String $miner_user = 'chris',
+  String $miner_user = 'miner',
   String $miner_group = 'miners',
   String $miner_user_pwd,
   String $miner_user_ssh_key,
   Array $miner_user_groups = [
     'adm',
+    'sudo',
     'video',
-    'docker'
     ],
   String $nvidia_driver = 'nvidia-384',
   String $amd_driver = 'amdgpu-pro-17.40-483984',
@@ -71,7 +71,7 @@ class minebox(
       }
     },
   ) {
-  
+
   # require stdlib, reboot, cron
   require apt
   

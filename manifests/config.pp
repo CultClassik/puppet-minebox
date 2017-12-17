@@ -31,4 +31,12 @@ class minebox::config {
     apply => finished,
   }
 
+  if $minebox::use_docker == true {
+    group { 'docker' :
+      members => [
+        $minebox::miner_user,
+        ],
+    }
+  }
+
 }

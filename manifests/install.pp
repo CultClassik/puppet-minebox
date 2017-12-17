@@ -31,7 +31,7 @@ class cryptomine::install {
   }
 
   # Create the required folders
-  file { $minebox::base_path : 
+  file { $minebox::base_path :
     ensure => directory,
     group  => $minebox::miner_group,
     owner  => $minebox::miner_user,
@@ -45,7 +45,7 @@ class cryptomine::install {
     }
   }
 
-  ->Class['minebox::miners::archives']
+  -> Class['minebox::miners::archives']
 
   if $gpu_type == 'nvidia' {
     notify {'NVIDIA GPU based system!':}
@@ -55,6 +55,12 @@ class cryptomine::install {
   if $gpu_type == 'amd' {
     notify {'AMD GPU based system!':}
     include minebox::amd
+  }
+
+  class { 'python' :
+    version    => 'system',
+    pip        => 'latest',
+    dev        => 'absent',
   }
 
 }
