@@ -9,6 +9,8 @@
 # @exam
 #   include minebox::amd::driver
 class minebox::amd::driver {
+  $amd_driver_url = "https://www2.ati.com/drivers/linux/beta/ubuntu/{$minebox::amd_driver}.tar.xz"
+
   $driver_file = "${minebox::amd_driver}.tar.xz"
   $driver_path = "${minebox::base_path}/drivers"
 
@@ -21,7 +23,7 @@ class minebox::amd::driver {
     cleanup         => true,
     extract         => true,
     extract_path    => "${driver_path}",
-    source          => "${minebox::storage_path}/${driver_file}",
+    source          => $amd_driver_url,
   }
 
   exec { 'Install AMD PRO GPU Blockchain Driver' :

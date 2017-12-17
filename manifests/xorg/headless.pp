@@ -6,9 +6,7 @@
 #
 # @exam
 #   include minebox::xorg::headless
-class minebox::xorg::headless (
-  $miner_user = 'chris',
-) {
+class minebox::xorg::headless {
 
   file { '/etc/X11/xdm/Xsetup' :
     ensure => file,
@@ -34,7 +32,7 @@ class minebox::xorg::headless (
   }
 
   file_line { 'xinit_stuff' :
-    path => "/home/${user_name}/.xinitrc",
+    path => "/home/${minebox::user_name}/.xinitrc",
     line => 'DISPLAY=:0 && xterm -geometry +1+1 -n login',
   }
 

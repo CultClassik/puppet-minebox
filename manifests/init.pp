@@ -69,11 +69,9 @@ class minebox(
       'source'  => 'https://github.com/ethereum-mining/ethminer/releases/download/v0.12.0/ethminer-0.12.0-Linux.tar.gz',
       'file'    => 'ethminer.tar.gz',
       }
-    }
-)
-{
-  # trying to avoid running x - amd doesn't need it and nvidia should be able to use nvidia-persistenced instead
-  #contain minebox::xorg::headless
+    },
+  ) {
+  
   # require stdlib, reboot, cron
   require apt
   
