@@ -1,5 +1,5 @@
 
-# cryptomine
+# Puppet-Minebox
 
 #### Table of Contents
 

@@ -1,10 +1,10 @@
 {
-  "name": "cultclassik-cryptomine",
+  "name": "puppet-minebox",
   "version": "0.1.0",
   "author": "Chris Diehl",
   "summary": "Configure a Linux system for mining crypto currency like Ethereum.",
   "license": "Apache-2.0",
-  "source": "http://gogs.diehlabs.lan/CultClassik/pe-control.git",
+  "source": "https://github.com/CultClassik/puppet-minebox",
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",
@@ -43,7 +43,7 @@
       "version_requirement": ">= 4.7.0 < 6.0.0"
     }
   ],
-  "pdk-version": "1.0.1",
+  "pdk-version": "1.0.2",
   "template-url": "file://C:/Program Files/Puppet Labs/DevelopmentKit/share/cache/pdk-module-template.git",
   "template-ref": "heads/master-0-g5db7961"
 }

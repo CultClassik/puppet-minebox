@@ -6,12 +6,10 @@
 #
 # @example
 #   include cryptomine::nvidia::install
-class cryptomine::nvidia::install (
-  Array $packages_xorg = lookup('minebox::packages::xorg'),
-) {
-  
+class cryptomine::nvidia::install {
+
   ensure_packages(
-    $packages_xorg,
+    $minebox::packages_xorg,
     {
       ensure => present,
     }

@@ -23,6 +23,7 @@ class cryptomine::install {
 
   Class['::minebox::users::base']
   -> Class['::minebox::miners']
+
   # Create the miner users local group
   -> group { $minebox::miner_group :
     ensure  => present,
@@ -55,11 +56,5 @@ class cryptomine::install {
     notify {'AMD GPU based system!':}
     include minebox::amd
   }
-  #class { 'minebox::miners::archives' :
-  #  base_path    => '/minebox',
-  #  storage_path => '/sw',
-  #  user_name    => 'chris',
-  #  group_name   => 'miners',
-  #}
 
 }

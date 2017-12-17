@@ -1,13 +1,12 @@
-class minebox::users::base (
-  String $minebox::miner_user,
-) {
+class minebox::users::base {
 
   # If the user is managed in a linux server base profile, we'll need to amend the user resource attributes with a collector:
   ## https://puppet.com/docs/puppet/4.10/lang_resources_advanced.html#adding-or-modifying-attributes
 
   # Create the mining user
-  user { $miner_user :
-    groups => $groups_req,
+  user { $minebox::miner_user :
+    ensure => present,
+    groups => $minebox::miner_user_groups,
     uid    => '1050',
   }
 

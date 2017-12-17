@@ -9,6 +9,7 @@
 
 class minebox(
   Boolean $use_docker = true,
+  String $cpu_minig = true,
   String $nvdocker_pkg_name = 'nvidia-docker2',
   String $facts_path = '/etc/facter/facts.d',
   String $storage_path = '/sw',
@@ -17,8 +18,11 @@ class minebox(
   String $miner_group = 'miners',
   String $miner_user_pwd,
   String $miner_user_ssh_key,
-  # Docker group prob should be located elswhere
-  Array $miner_user_groups = [ 'adm', 'video', 'docker' ],
+  Array $miner_user_groups = [
+    'adm',
+    'video',
+    'docker'
+    ],
   String $nvidia_driver = 'nvidia-384',
   String $amd_driver = 'amdgpu-pro-17.40-483984',
   Boolean $use_rocm = true,
@@ -28,19 +32,44 @@ class minebox(
     'scripts',
     'files',
     ],
-  Array $packages_req = lookup('minebox::packages::base'),
+  Array $packages_base = [
+    "linux-headers-%{lookup('kernelrelease')}",
+    'libcurl3',
+    'build-essential',
+    'dkms',
+    'git',
+    'screen',
+    'vim',
+    'nmap',
+    'ncdu',
+    'busybox',
+    'inxi',
+    'links',
+    'unzip',
+    'openssh-server',
+    'htop',
+    ],
+  Array $packages_xorg = [
+    'xserver-xorg',
+    'xserver-xorg-core',
+    'xserver-xorg-input-evdev',
+    'xserver-xorg-video-dummy',
+    'x11-xserver-utils',
+    'xdm',
+    'gtk2.0',
+    ],
   Hash $miner_bins = {
     'claymore' => {
       'version' => '10.2',
       'source'  => 'https://onedrive.live.com/download?cid=0439AD70307A0AB4&resid=439AD70307A0AB4%2115937&authkey=AEndRVqUqVLFlYM',
       'file'    => 'claymore.tar.gz'
-    },
+      },
     'ethminer' => {
       'version' => '0.12.0',
       'source'  => 'https://github.com/ethereum-mining/ethminer/releases/download/v0.12.0/ethminer-0.12.0-Linux.tar.gz',
       'file'    => 'ethminer.tar.gz',
+      }
     }
-  }
 )
 {
   # trying to avoid running x - amd doesn't need it and nvidia should be able to use nvidia-persistenced instead
