@@ -1,0 +1,12 @@
+#!/bin/bash
+# Chris Diehl
+
+export GPU_MAX_ALLOC_PERCENT=100
+export GPU_SINGLE_ALLOC_PERCENT=100
+
+<%= $fan_control_script %>
+
+<%= $path %>/ethdcrminer64 -epool us1.ethermine.org:4444 \
+-ewal 0x96ae82e89ff22b3eff481e2499948c562354cb23.$HOSTNAME -epsw x \
+-dcoin lbc -dpool lbry.suprnova.cc:6256 -dwal cultclassik.$HOSTNAME -dpsw x -dcri 14 \
+-etha 2
