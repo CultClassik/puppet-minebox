@@ -1,4 +1,4 @@
-# ethminer_nv
+# minebox::docker::containers::ethminer
 #
 # Configures ethminer Docker image.
 #
@@ -25,19 +25,15 @@ class minebox::docker::containers::ethminer_nv
       ensure                   => present,
       image                    => "${docker_image}:${image_tag}",
       hostname                 => "${facts['hostname']}-${gpu['id']}",
-      #volumes                  => [ "nvidia_driver_${nv_drv}:/usr/local/nvidia:ro"],
-      env                      => ["WORKER=${worker}",
-                                   "ETHACCT=${wallet}",
-                                   "NVIDIA_DRIVER_CAPABILITIES=compute,utility",
-                                   "NVIDIA_VISIBLE_DEVICES=${gpu['id']}",
-                                  ],
+      env                      => [
+        "WORKER=${worker}",
+        "ETHACCT=${wallet}",
+        'NVIDIA_DRIVER_CAPABILITIES=compute,utility',
+        "NVIDIA_VISIBLE_DEVICES=${gpu['id']}",
+      ],
+
       dns                      => ['8.8.8.8', '8.8.4.4'],
       expose                   => ['3333'],
-      #extra_parameters         => [ '--volume-driver=nvidia-docker',
-      #                        '--device=/dev/nvidiactl',
-      #                        '--device=/dev/nvidia-uvm',
-      #                        '--device=/dev/nvidia-uvm-tools',
-      #                        "--device=/dev/nvidia${gpu['id']}",
       extra_parameters         => [
         '--runtime=nvidia',
       ],

@@ -9,7 +9,7 @@
 class minebox::amd::rocm {
 
   # Add the amd deb repo -- deb [arch=amd64] http://repo.radeon.com/rocm/apt/debian/ xenial main
-   apt::source { 'rocm' :
+  apt::source { 'rocm' :
     location     => 'http://repo.radeon.com/rocm/apt/debian/',
     architecture => 'amd64',
     release      => 'xenial',

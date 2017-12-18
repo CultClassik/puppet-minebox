@@ -14,7 +14,7 @@ class minebox::docker::containers::xmr_cpu(
 )
 {
   require profile::linux::docker::base
-  
+
   # Deploy image with specific tag based on CPU type
   $image_tag = $facts['processor0'] ? {
     /(Pentium|Celeron)/ => 'latest',
