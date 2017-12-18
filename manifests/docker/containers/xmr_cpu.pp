@@ -9,11 +9,10 @@
 
 class minebox::docker::containers::xmr_cpu(
   $docker_image = 'servethehome/monero_moneropool',
-  $monero_wallet = '447vxA7StEu5Ht9p8MiWNmhLo48dYnfwPGUYtxUAArxKD6DkSthnQiVL843NKEC1oGTS6Gmu3XaoK3uBcQ118zXaFPjLdxz',
   $cpu_shares = '800',
 )
 {
-  require profile::linux::docker::base
+  require docker
 
   # Deploy image with specific tag based on CPU type
   $image_tag = $facts['processor0'] ? {
@@ -39,7 +38,7 @@ class minebox::docker::containers::xmr_cpu(
     docker::run { "xmr-cpu-${index}" :
       ensure                   => present,
       image                    => "${docker_image}:${image_tag}",
-      env                      => [ "username=${monero_wallet}" ],
+      env                      => [ "username=${minebox::accounts['xmr']}" ],
       dns                      => ['8.8.8.8', '8.8.4.4'],
       extra_parameters         => [ '--restart=always',
                                     "--cpuset-cpus=${index}",

@@ -9,17 +9,14 @@
 
 class minebox::docker::containers::ethminer_nv
 (
-  Array $gpus, # = lookup('minebox::docker::containers::ethminer_nv::gpus'),
-  #String $nv_drv = '384.69',
   String $docker_image = 'cultclassik/ethminer-nv',
   String $image_tag = 'latest',
-  String $wallet = '0x96ae82e89ff22b3eff481e2499948c562354cb23',
 )
 {
-  require profile::linux::docker::base
+  require docker
   require minebox::docker::images::ethminer_nv
 
-  $gpus.each |$gpu| {
+  $minebox::nv_gpus.each |$gpu| {
     $worker = "${trusted['hostname']}-${gpu['id']}"
     docker::run { "eth-nv${gpu['id']}" :
       ensure                   => present,
@@ -27,7 +24,7 @@ class minebox::docker::containers::ethminer_nv
       hostname                 => "${facts['hostname']}-${gpu['id']}",
       env                      => [
         "WORKER=${worker}",
-        "ETHACCT=${wallet}",
+        "ETHACCT=${minebox::accounts['eth']}",
         'NVIDIA_DRIVER_CAPABILITIES=compute,utility',
         "NVIDIA_VISIBLE_DEVICES=${gpu['id']}",
       ],
