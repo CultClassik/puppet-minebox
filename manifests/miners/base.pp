@@ -13,4 +13,9 @@ class minebox::miners::base {
     files_path => $files_path,
   }
 
+  # set up claymore start script for amd, includes fan control
+  if $gpu_type == 'amd' {
+    include minebox::miners::claymore
+  }
+
 }

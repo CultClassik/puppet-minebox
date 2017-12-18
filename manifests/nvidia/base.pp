@@ -8,8 +8,8 @@
 #   include minebox::nvidia::base
 class minebox::nvidia::base {
 
-  contain minebox::nvidiainstall
-  contain minebox::nvidiaconfig
+  include minebox::nvidiainstall
+  include minebox::nvidiaconfig
 
   Class['::minebox::nvidiainstall']
   -> Class['::minebox::nvidiaconfig']
