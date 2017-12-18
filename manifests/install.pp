@@ -8,7 +8,7 @@
 #   include minebox::install
 class minebox::install {
 
-  contain minebox::users::base
+  contain minebox::users
   contain minebox::miners
 
   # Install required packages
@@ -19,7 +19,7 @@ class minebox::install {
     }
   )
 
-  Class['::minebox::users::base']
+  Class['::minebox::users']
   -> Class['::minebox::miners']
 
   # Create the miner users local group
