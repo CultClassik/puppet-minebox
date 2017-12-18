@@ -9,7 +9,7 @@
 class minebox::miners::base {
   $files_path = "${minebox::base_path}/files"
 
-  class { 'minebox::miners::base::install' :
+  class { 'minebox::miners::install' :
     files_path => $files_path,
   }
 
