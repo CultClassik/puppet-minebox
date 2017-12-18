@@ -1,14 +1,12 @@
-# minebox::miners::config
+# minebox::miners::claymore
 #
 # A description of what this class does
 #
 # @summary A short summary of the purpose of this class
 #
 # @example
-#   include minebox::miners::config
-class minebox::miners::config (
-
-) {
+#   include minebox::miners::claymore
+class minebox::miners::claymore {
   file { "${minebox::base_path}/claymore.sh" :
     ensure  => present,
     owner   => $minebox::miner_user,

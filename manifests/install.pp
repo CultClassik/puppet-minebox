@@ -23,14 +23,14 @@ class minebox::install {
 
   # Create the miner users local group
   -> group { $minebox::miner_group :
-    ensure  => present,
-    members => [
-      $minebox::miner_user,
-      ],
+      ensure  => present,
+      #members => [
+      #  $minebox::miner_user,
+      #  ],
   }
 
   # Create the required folders
-  file { $minebox::base_path :
+  -> file { $minebox::base_path :
     ensure => directory,
     group  => $minebox::miner_group,
     owner  => $minebox::miner_user,
@@ -38,9 +38,10 @@ class minebox::install {
 
   $minebox::folders.each |String $folder| {
     file { "${minebox::base_path}/${folder}" :
-      ensure => directory,
-      owner  => $minebox::miner_user,
-      group  => $minebox::miner_group,
+      ensure    => directory,
+      owner     => $minebox::miner_user,
+      group     => $minebox::miner_group,
+      subscribe => File[$minebox::base_path],
     }
   }
 
