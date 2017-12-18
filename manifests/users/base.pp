@@ -11,4 +11,14 @@ class minebox::users::base {
   include minebox::users::install
   include minebox::users::links
 
+  # Create the miner users local group
+  group { $minebox::miner_group :
+      ensure  => present,
+      #members => [
+      #  $minebox::miner_user,
+      #  ],
+  }
+
+  -> Class['::minebox::users::install']
+  -> Class['::minebox::users::links']
 }

@@ -21,14 +21,6 @@ class minebox::install {
 
   Class['::minebox::users::base']
 
-  # Create the miner users local group
-  -> group { $minebox::miner_group :
-      ensure  => present,
-      #members => [
-      #  $minebox::miner_user,
-      #  ],
-  }
-
   # Create the required folders
   -> file { $minebox::base_path :
     ensure => directory,

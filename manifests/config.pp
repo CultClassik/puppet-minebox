@@ -14,10 +14,10 @@ class minebox::config {
     file { $brc :
       ensure => file,
     }
-    ->file_line { $brc :
-      path   => $brc,
-      line   => 'export DISPLAY=:0',
-      notify => Exec['Update xdm'],
+    -> file_line { $brc :
+         path   => $brc,
+         line   => 'export DISPLAY=:0',
+         notify => Exec['Update xdm'],
     }
   }
 
