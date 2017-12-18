@@ -27,8 +27,6 @@ class minebox::users::install {
     group  => $minebox::miner_group,
   }
 
-  -> File['/home/miner/.screenrc']
-
   # For now use of hiera is required to define the nvidia gpu specs on each system so we can set overclock, voltage, etc
   ###### Need to add logic around this, script output should vary based on minebox::gpu_type value
   # Create .screenrc script
@@ -44,6 +42,7 @@ class minebox::users::install {
       owner   => $minebox::miner_user,
       group   => $minebox::miner_group,
       mode    => '0774',
+      subscribe => File["/home/${minebox::miner_user}"],
     }
   }
 
