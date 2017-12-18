@@ -36,7 +36,7 @@ class minebox::install {
     owner  => $minebox::miner_user,
   }
 
-  $minebox::folders_req.each |String $folder| {
+  $minebox::folders.each |String $folder| {
     file { "${minebox::base_path}/${folder}" :
       ensure => directory,
       owner  => $minebox::miner_user,
