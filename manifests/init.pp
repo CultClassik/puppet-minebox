@@ -81,7 +81,7 @@ class minebox(
   # require stdlib, reboot, cron
   require apt
 
-  contain minebox::users::base
+  include minebox::users::base
   contain minebox::install
   contain minebox::config
 
