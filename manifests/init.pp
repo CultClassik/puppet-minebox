@@ -87,17 +87,4 @@ class minebox(
   Class['::minebox::install']
   -> Class['::minebox::config']
 
-  # Update bashrc
-  $bashrc_files = ["/home/${minebox::miner_user}/.bashrc",'/etc/skel/.bashrc']
-  $bashrc_files.each |String $brc| {
-    file { $brc :
-      ensure => file,
-    }
-    ->file_line { $brc :
-      path   => $brc,
-      line   => 'export DISPLAY=:0',
-      notify => Exec['Update xdm'],
-    }
-  }
-
 }
