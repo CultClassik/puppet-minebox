@@ -19,7 +19,7 @@ class minebox::install {
     }
   )
 
-  Class['::minebox::users']
+  Class['::minebox::users::base']
   -> Class['::minebox::miners']
 
   # Create the miner users local group
