@@ -12,19 +12,13 @@ class minebox::amd::install (
 
   include minebox::amd::driver
 
-  file_line { 'Enable large page support':
+  Class['::minebox::amd::driver']
+
+  -> file_line { 'Enable large page support':
     path  => '/etc/default/grub',
     line => 'GRUB_CMDLINE_LINUX_DEFAULT="nomodeset amdgpu.vm_fragment_size=9"',
     #line  => 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash amdgpu.vm_fragment_size=9"',
     match => '^GRUB_CMDLINE_LINUX_DEFAULT=.*$',
-  }
-
-  if $minebox::use_rocm == true {
-    contain minebox::amd::rocm
-  } else {
-    reboot { 'after' :
-      subscribe => Exec['Install AMD PRO GPU Blockchain Driver'],
-    }
   }
 
   file { 'AMD Fan Control Script' :

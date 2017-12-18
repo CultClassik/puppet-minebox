@@ -11,9 +11,15 @@ class minebox::amd::base {
   require apt
 
   include minebox::amd::install
-  include minebox::amd::config
 
-  Class['::minebox::amd::install']
-  -> Class['::minebox::amd::config']
+  if $minebox::use_rocm == true {
+    include minebox::amd::rocm
+    Class['::minebox::amd::install']
+    -> Class['::minebox::amd::rocm']
+  } else {
+    reboot { 'after' :
+      subscribe => Exec['Install AMD PRO GPU Blockchain Driver'],
+    }
+  }
 
 }
