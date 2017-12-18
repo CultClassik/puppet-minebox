@@ -9,7 +9,7 @@
 
 class minebox::docker::containers::ethminer_nv
 (
-  Array $gpus = lookup('minebox::docker::containers::ethminer_nv::gpus'),
+  Array $gpus, # = lookup('minebox::docker::containers::ethminer_nv::gpus'),
   #String $nv_drv = '384.69',
   String $docker_image = 'cultclassik/ethminer-nv',
   String $image_tag = 'latest',

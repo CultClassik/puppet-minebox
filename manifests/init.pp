@@ -70,6 +70,11 @@ class minebox(
       'file'    => 'ethminer.tar.gz',
       }
     },
+  Hash $accounts = {
+    'eth' => '0x96ae82e89ff22b3eff481e2499948c562354cb23',
+    'lbc' => 'cultclassik',
+    'xmr' => '447vxA7StEu5Ht9p8MiWNmhLo48dYnfwPGUYtxUAArxKD6DkSthnQiVL843NKEC1oGTS6Gmu3XaoK3uBcQ118zXaFPjLdxz',
+  }
   ) {
 
   # require stdlib, reboot, cron
