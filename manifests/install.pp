@@ -8,7 +8,6 @@
 #   include minebox::install
 class minebox::install {
 
-  contain minebox::users::base
   contain minebox::miners::base
 
   # Install required packages
