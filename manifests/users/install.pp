@@ -24,7 +24,7 @@ class minebox::users::install {
   if $::minebox::gpu_type == 'nvidia' {
     file { '/home/miner/.screenrc' :
       ensure  => file,
-      content => epp('cryptomine/screenrc.epp', { 'gpu_cfg' => lookup('minebox::docker::containers::ethminer_nv::gpus') }),
+      content => epp('cryptomine/screenrc.epp', { 'gpu_cfg' => $minebox::nv_gpus') }),
       owner   => $minebox::miner_user,
       group   => $minebox::miner_user,
       mode    => '0774',
