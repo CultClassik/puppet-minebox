@@ -34,7 +34,7 @@ class minebox(
     'files',
     ],
   Array $packages_base = [
-    "linux-headers-${facts.kernelrelease}",
+    "linux-headers-${facts['kernelrelease']}",
     'libcurl3',
     'build-essential',
     'dkms',
