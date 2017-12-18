@@ -12,6 +12,6 @@ class minebox::users {
   contain minebox::users::links
 
   Class['::minebox::users::install']
-  -> CLass ['::minebox::users::links']
-  
+  -> Class ['::minebox::users::links']
+
 }
