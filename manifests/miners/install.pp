@@ -30,7 +30,7 @@ class minebox::miners::install (
       cleanup      => true,
       extract      => true,
       extract_path => "${minebox::base_path}/files/${title}",
-      source       => "${archvie['source']}",
+      source       => "${archive['source']}",
     }
   }
 }
