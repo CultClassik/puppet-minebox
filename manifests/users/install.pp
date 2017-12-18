@@ -12,11 +12,22 @@ class minebox::users::install {
 
   # Create the mining user
   user { $minebox::miner_user :
-    ensure => present,
-    gid    => $minebox::miner_group,
-    groups => $minebox::miner_user_groups,
-    uid    => '1050',
+    ensure     => present,
+    gid        => $minebox::miner_group,
+    groups     => $minebox::miner_user_groups,
+    uid        => '1050',
+    managehome => true,
+    home       => "/home/${minebox::miner_user}"
   }
+
+  -> file { "/home/${minebox::miner_user}" :
+    ensure => directory,
+    mode   => '0774',
+    owner  => $minebox::miner_user,
+    group  => $minebox::miner_group,
+  }
+
+  -> File['/home/miner/.screenrc']
 
   # For now use of hiera is required to define the nvidia gpu specs on each system so we can set overclock, voltage, etc
   ###### Need to add logic around this, script output should vary based on minebox::gpu_type value
