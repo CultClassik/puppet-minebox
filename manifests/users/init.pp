@@ -7,11 +7,10 @@
 # @example
 #   include minebox::users
 class minebox::users {
-
   contain minebox::users::install
   contain minebox::users::links
 
   Class['::minebox::users::install']
-  -> Class ['::minebox::users::links']
+  -> Class['::minebox::users::links']
 
 }
