@@ -25,7 +25,9 @@ class minebox::install {
   # Create the miner users local group
   -> group { $minebox::miner_group :
     ensure  => present,
-    members => [ $miner_user ],
+    members => [
+      $minebox::miner_user,
+      ],
   }
 
   # Create the required folders
@@ -45,20 +47,20 @@ class minebox::install {
 
   -> Class['minebox::miners']
 
-  if $gpu_type == 'nvidia' {
+  if $minebox::gpu_type == 'nvidia' {
     notify {'NVIDIA GPU based system!':}
     include minebox::nvidia
   }
 
-  if $gpu_type == 'amd' {
+  if $minebox::gpu_type == 'amd' {
     notify {'AMD GPU based system!':}
     include minebox::amd
   }
 
   class { 'python' :
-    version    => 'system',
-    pip        => 'latest',
-    dev        => 'absent',
+    version => 'system',
+    pip     => 'latest',
+    dev     => 'absent',
   }
 
 }

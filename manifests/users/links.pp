@@ -7,9 +7,9 @@
 # @example
 #   include minebox::users::links
 class minebox::users::links {
-  
+
   # Prob need to put some params up in the init class for the module
-  file { "/home/${miner_user}/dualmine" :
+  file { "/home/${minebox::miner_user}/dualmine" :
     ensure => link,
     target => "${minebox::base_path}/claymore/start.sh",
   }

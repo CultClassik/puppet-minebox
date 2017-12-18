@@ -22,8 +22,8 @@ class minebox::nvidia::config {
     ensure => running,
   }
 
-   # Deploy xorg reconfig script
-  file { "$scripts_path}/conf-nv.sh" :
+  # Deploy xorg reconfig script
+  file { "${scripts_path}/conf-nv.sh" :
       ensure => file,
       owner  => $minebox::miner_user,
       group  => $minebox::miner_user,
@@ -34,7 +34,7 @@ class minebox::nvidia::config {
   # Update xorg config when cards change
   exec { 'Reconfigure Xorg' :
     subscribe   => File["${scripts_path}/nvoc.sh"],
-    refreshonly => true, 
+    refreshonly => true,
     command     => "${scripts_path}/conf-nv.sh",
     notify      => Reboot['after_run']
   }

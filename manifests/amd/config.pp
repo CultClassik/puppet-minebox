@@ -9,9 +9,9 @@
 class minebox::amd::config {
   # Enable large page support and reboot if the resource updates
   file_line { 'Enable large page support':
-    path => '/etc/default/grub',
+    path  => '/etc/default/grub',
     #line => 'GRUB_CMDLINE_LINUX_DEFAULT="nomodeset amdgpu.vm_fragment_size=9"',
-    line => 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash amdgpu.vm_fragment_size=9"',
+    line  => 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash amdgpu.vm_fragment_size=9"',
     match => '^GRUB_CMDLINE_LINUX_DEFAULT=.*$',
   }
 }

@@ -6,7 +6,9 @@
 #
 # @example
 #   include minebox::amd::install
-class minebox::amd::install {
+class minebox::amd::install (
+  String $fan_control_script = "amdgpu-pro-fans.sh",
+) {
 
   include minebox::amd::driver
 

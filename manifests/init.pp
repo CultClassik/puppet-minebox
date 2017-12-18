@@ -8,6 +8,9 @@
 #   include cryptomine
 
 class minebox(
+  String $gpu_type,
+  String $miner_user_pwd,
+  String $miner_user_ssh_key,
   Boolean $use_docker = true,
   Boolean $cpu_mining = true,
   String $nvdocker_pkg_name = 'nvidia-docker2',
@@ -16,8 +19,6 @@ class minebox(
   String $base_path = '/minebox',
   String $miner_user = 'miner',
   String $miner_group = 'miners',
-  String $miner_user_pwd,
-  String $miner_user_ssh_key,
   Array $miner_user_groups = [
     'adm',
     'sudo',
@@ -26,7 +27,6 @@ class minebox(
   String $nvidia_driver = 'nvidia-384',
   String $amd_driver = 'amdgpu-pro-17.40-483984',
   Boolean $use_rocm = true,
-  String $gpu_type = 'nvidia', # nvidia or amd, was = lookup('minebox::gpu_type')
   Array $folders = [
     'drivers',
     'scripts',

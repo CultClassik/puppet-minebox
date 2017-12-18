@@ -7,7 +7,7 @@
 # @example
 #   include minebox::nvidia
 class minebox::nvidia {
-  
+
   contain minebox::nvidia::install
   contain minebox::nvidia::config
 
@@ -20,5 +20,5 @@ class minebox::nvidia {
       subscribe => Class['::minebox::nvidia::config'],
     }
   }
-  
+
 }
