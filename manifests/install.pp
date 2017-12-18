@@ -7,8 +7,9 @@
 # @example
 #   include minebox::install
 class minebox::install {
-  
-  contain minebox::miners::archives
+
+  contain minebox::users::base
+  contain minebox::miners
 
   # Install required packages
   ensure_packages(
@@ -17,9 +18,6 @@ class minebox::install {
       ensure => present,
     }
   )
-
-  contain minebox::users::base
-  contain minebox::miners
 
   Class['::minebox::users::base']
   -> Class['::minebox::miners']

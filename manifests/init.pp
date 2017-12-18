@@ -58,7 +58,7 @@ class minebox(
     'xdm',
     'gtk2.0',
     ],
-  Hash $miner_bins = {
+  Hash $downloads = {
     'claymore' => {
       'version' => '10.2',
       'source'  => 'https://onedrive.live.com/download?cid=0439AD70307A0AB4&resid=439AD70307A0AB4%2115937&authkey=AEndRVqUqVLFlYM',
@@ -93,7 +93,7 @@ class minebox(
   exec { 'Refresh mounts' :
     command     => '/bin/mount',
     subscribe   => File_line['Mount Storage Share'],
-    refreshonly => true, 
+    refreshonly => true,
   }
   
   # Create .screenrc script - this is already in minebox::users::base - compare and remove this one
