@@ -31,7 +31,7 @@ class minebox::users::install {
           }
         ),
       owner   => $minebox::miner_user,
-      group   => $minebox::miners_group,
+      group   => $minebox::miner_group,
       mode    => '0774',
     }
   }
