@@ -16,7 +16,6 @@ class minebox(
   Boolean $cpu_mining = true,
   String $nvdocker_pkg_name = 'nvidia-docker2',
   String $facts_path = '/etc/facter/facts.d',
-  String $storage_path = '/sw',
   String $base_path = '/minebox',
   String $miner_user = 'miner',
   String $miner_group = 'miners',
@@ -87,21 +86,6 @@ class minebox(
 
   Class['::minebox::install']
   -> Class['::minebox::config']
-
-  file { $storage_path :
-    ensure => directory
-  }
-  # move this to a profile manifest
-  -> file_line { 'Mount Storage Share' :
-    path => '/etc/fstab',
-    line => 'nastee.diehlabs.lan:/software   /sw   nfs     defaults        0       0',
-  }
-
-  exec { 'Refresh mounts' :
-    command     => '/bin/mount',
-    subscribe   => File_line['Mount Storage Share'],
-    refreshonly => true,
-  }
 
   # Update bashrc
   $bashrc_files = ["/home/${minebox::miner_user}/.bashrc",'/etc/skel/.bashrc']
