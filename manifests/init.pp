@@ -9,7 +9,7 @@
 
 class minebox(
   Boolean $use_docker = true,
-  String $cpu_mining = true,
+  Boolean $cpu_mining = true,
   String $nvdocker_pkg_name = 'nvidia-docker2',
   String $facts_path = '/etc/facter/facts.d',
   String $storage_path = '/sw',
