@@ -13,7 +13,7 @@ class minebox::users::install {
   # Create the mining user
   user { $minebox::miner_user :
     ensure => present,
-    gif    => $minebox::miner_group,
+    gid    => $minebox::miner_group,
     groups => $minebox::miner_user_groups,
     uid    => '1050',
   }
