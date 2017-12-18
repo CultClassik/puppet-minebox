@@ -13,7 +13,7 @@ class minebox::install {
 
   # Install required packages
   ensure_packages(
-    $minebox::packages_req,
+    $minebox::packages_base,
     {
       ensure => present,
     }
