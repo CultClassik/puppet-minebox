@@ -10,10 +10,10 @@ class minebox::amd::base {
 
   require apt
 
-  contain minebox::amd::base::install
-  contain minebox::amd::base::config
+  contain minebox::amd::install
+  contain minebox::amd::config
 
-  Class['::minebox::amd::base::install']
-  -> Class['::minebox::amd::base::config']
+  Class['::minebox::amd::install']
+  -> Class['::minebox::amd::config']
 
 }

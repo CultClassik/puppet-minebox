@@ -8,16 +8,16 @@
 #   include minebox::nvidia::base
 class minebox::nvidia::base {
 
-  contain minebox::nvidia::base::install
-  contain minebox::nvidia::base::config
+  contain minebox::nvidiainstall
+  contain minebox::nvidiaconfig
 
-  Class['::minebox::nvidia::base::install']
-  -> Class['::minebox::nvidia::base::config']
+  Class['::minebox::nvidiainstall']
+  -> Class['::minebox::nvidiaconfig']
 
   if $::minebox::use_docker == true {
-    contain minebox::nvidia::base::docker
-    class { '::minebox::nvidia::base::docker' :
-      subscribe => Class['::minebox::nvidia::base::config'],
+    contain minebox::nvidiadocker
+    class { '::minebox::nvidiadocker' :
+      subscribe => Class['::minebox::nvidiaconfig'],
     }
   }
 
