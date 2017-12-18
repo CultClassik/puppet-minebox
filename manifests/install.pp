@@ -9,7 +9,7 @@
 class minebox::install {
 
   contain minebox::users::base
-  contain minebox::miners
+  contain minebox::miners::base
 
   # Install required packages
   ensure_packages(
@@ -20,7 +20,6 @@ class minebox::install {
   )
 
   Class['::minebox::users::base']
-  -> Class['::minebox::miners']
 
   # Create the miner users local group
   -> group { $minebox::miner_group :
@@ -45,16 +44,16 @@ class minebox::install {
     }
   }
 
-  -> Class['minebox::miners']
+  -> Class['minebox::miners::base']
 
   if $minebox::gpu_type == 'nvidia' {
     notify {'NVIDIA GPU based system!':}
-    include minebox::nvidia
+    include minebox::nvidia::base
   }
 
   if $minebox::gpu_type == 'amd' {
     notify {'AMD GPU based system!':}
-    include minebox::amd
+    include minebox::amd::base
   }
 
   class { 'python' :
