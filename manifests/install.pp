@@ -45,7 +45,7 @@ class minebox::install {
     }
   }
 
-  -> Class['minebox::miners::archives']
+  -> Class['minebox::miners']
 
   if $gpu_type == 'nvidia' {
     notify {'NVIDIA GPU based system!':}

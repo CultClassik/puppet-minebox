@@ -9,42 +9,8 @@
 class minebox::miners {
   $files_path = "${minebox::base_path}/files"
 
-  $minebox::miner_bins.each |Hash $program| {
-    file { "${files_path}/${title}" :
-      ensure => directory,
-      owner  => $minebox::miner_user,
-      group  => $minebox::miner_group,
-    }
-
-    #$minebox::miner_bins.each |String $title, String $name| {
-    #file { "${files_path}/${title}" :
-    #  ensure => directory,
-    #  owner  => $minebox::miner_user,
-    #  group  => $minebox::miner_group,
-    #}
-
-### make sure that tar is changing the parent folder when unarchiving
-    archive { "${files_path}/${title}" :
-      ensure       => present,
-      cleanup      => true,
-      extract      => true,
-      extract_path => "${minebox::base_path}",
-      source       => "${minebox::storage_path}/minebox/$name}",
-    }
-  }
-
-  file { "${minebox::base_path}/claymore.sh" :
-    ensure  => present,
-    owner   => $minebox::miner_user,
-    group   => $minebox::miner_group,
-    mode    => '0774',
-    content => epp(
-      'cryptomine/script_claymore.epp',
-      {
-        'path'               => '/minebox/claymore',
-        'fan_control_script' => "${minebox::base_path}/$fan_control_script}",
-      }
-    ),
+  class { 'minebox::miners::install' :
+    files_path => $files_path,
   }
 
 }
