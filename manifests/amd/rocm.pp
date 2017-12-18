@@ -1,4 +1,4 @@
-# cryptomine::amd::rocm
+# minebox::amd::rocm
 #
 # Configures Amd specific items for headless Xorg server
 #

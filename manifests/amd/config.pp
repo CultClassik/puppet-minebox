@@ -1,12 +1,12 @@
-# cryptomine::amd::config
+# minebox::amd::config
 #
 # A description of what this class does
 #
 # @summary A short summary of the purpose of this class
 #
 # @example
-#   include cryptomine::amd::config
-class cryptomine::amd::config {
+#   include minebox::amd::config
+class minebox::amd::config {
   # Enable large page support and reboot if the resource updates
   file_line { 'Enable large page support':
     path => '/etc/default/grub',

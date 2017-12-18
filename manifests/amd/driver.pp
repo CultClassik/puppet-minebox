@@ -1,4 +1,4 @@
-# cryptomine::amd::driver
+# minebox::amd::driver
 #
 # Configures Amd specific items for headless Xorg server
 #

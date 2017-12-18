@@ -1,12 +1,12 @@
-# cryptomine::install
+# minebox::install
 #
 # A description of what this class does
 #
 # @summary A short summary of the purpose of this class
 #
 # @example
-#   include cryptomine::install
-class cryptomine::install {
+#   include minebox::install
+class minebox::install {
   
   contain minebox::miners::archives
 

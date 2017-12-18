@@ -1,7 +1,7 @@
 class minebox::nvidia::docker::docker (
   Boolean $remove_old = true,
 ){
-  require profile::linux::docker::base
+  require docker
 
   ###########################
   # Remove Nvidia Docker 1.x plugin

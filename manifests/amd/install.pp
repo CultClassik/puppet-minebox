@@ -1,12 +1,12 @@
-# cryptomine::amd::install
+# minebox::amd::install
 #
 # A description of what this class does
 #
 # @summary A short summary of the purpose of this class
 #
 # @example
-#   include cryptomine::amd::install
-class cryptomine::amd::install {
+#   include minebox::amd::install
+class minebox::amd::install {
 
   include minebox::amd::driver
 

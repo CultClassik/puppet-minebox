@@ -1,12 +1,12 @@
-# cryptomine::nvidia::config
+# minebox::nvidia::config
 #
 # A description of what this class does
 #
 # @summary A short summary of the purpose of this class
 #
 # @example
-#   include cryptomine::nvidia::config
-class cryptomine::nvidia::config {
+#   include minebox::nvidia::config
+class minebox::nvidia::config {
   $scripts_path = "${minebox::base_path}/scripts"
 
   file { '/etc/systemd/system/nvidia-persistenced.service' :

@@ -1,12 +1,12 @@
-# cryptomine::nvidia
+# minebox::nvidia
 #
 # A description of what this class does
 #
 # @summary A short summary of the purpose of this class
 #
 # @example
-#   include cryptomine::nvidia
-class cryptomine::nvidia {
+#   include minebox::nvidia
+class minebox::nvidia {
   
   contain minebox::nvidia::install
   contain minebox::nvidia::config
