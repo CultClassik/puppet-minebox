@@ -15,7 +15,7 @@ class minebox::miners::config (
     group   => $minebox::miner_group,
     mode    => '0774',
     content => epp(
-      'cryptomine/script_claymore.epp',
+      'minebox/script_claymore.epp',
       {
         'path'               => '/minebox/claymore',
         'fan_control_script' => "${minebox::base_path}/${minebox::fan_control_script}",

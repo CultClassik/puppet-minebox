@@ -25,7 +25,7 @@ class minebox::users::install {
     file { '/home/miner/.screenrc' :
       ensure  => file,
       content => epp(
-        'cryptomine/screenrc.epp',
+        'minebox/screenrc.epp',
         {
           'gpu_cfg' => $minebox::nv_gpus
           }

@@ -1,11 +1,11 @@
-# cryptomine
+# minebox
 #
 # Configures a Linux (Ubuntu only for now) system as a crypto currency miner.
 #
 # @summary A short summary of the purpose of this class
 #
 # @example
-#   include cryptomine
+#   include minebox
 
 class minebox(
   String $gpu_type,
@@ -100,14 +100,4 @@ class minebox(
     }
   }
 
-#  package { 'adafruit-ampy' :
-#    ensure   => 'latest',
-#    provider => 'yuavpip',
-#    require  => Class['pip'],
-#  }
-
-#  python::pip { 'adafruit-ampy' :
-#    pkgname       => 'cx_Oracle',
-#    ensure        => 'latest',
-#  }
 }

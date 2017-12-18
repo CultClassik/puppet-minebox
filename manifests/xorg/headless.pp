@@ -10,7 +10,7 @@ class minebox::xorg::headless {
 
   file { '/etc/X11/xdm/Xsetup' :
     ensure => file,
-    source => 'puppet:///modules/cryptomine/Xsetup',
+    source => 'puppet:///modules/minebox/Xsetup',
     mode   => '0755',
   }
 

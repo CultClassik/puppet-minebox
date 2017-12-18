@@ -27,7 +27,7 @@ class minebox::amd::install (
     mode   => '0774',
     owner  => $minebox::miner_user,
     group  => $minebox::miner_group,
-    source => "puppet:///modules/cryptomine/amd/${fan_control_script}"
+    source => "puppet:///modules/minebox/amd/${fan_control_script}"
   }
 
 }

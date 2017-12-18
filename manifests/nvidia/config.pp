@@ -14,7 +14,7 @@ class minebox::nvidia::config {
     mode    => '0644',
     owner   => 'root',
     group   => 'root',
-    content => epp('cryptomine/nvidia-persistenced.epp',
+    content => epp('minebox/nvidia-persistenced.epp',
       { 'user_name' => $minebox::miner_user, }
     )
   }
@@ -28,7 +28,7 @@ class minebox::nvidia::config {
       owner  => $minebox::miner_user,
       group  => $minebox::miner_user,
       mode   => '0774',
-      source => 'puppet:///modules/cryptomine/conf-nv.sh',
+      source => 'puppet:///modules/minebox/conf-nv.sh',
   }
 
   # Update xorg config when cards change
@@ -47,7 +47,7 @@ class minebox::nvidia::config {
 
   -> file { "${scripts_path}/nvoc.sh" :
     ensure  => file,
-    content => epp('cryptomine/nvoc.sh.epp',
+    content => epp('minebox/nvoc.sh.epp',
       { 'gpu_cfg' => lookup('minebox::docker::containers::ethminer_nv::gpus'),
         'gpu_fan' => lookup('minebox::docker::containers::ethminer_nv::gpu_fan') }
       ),
