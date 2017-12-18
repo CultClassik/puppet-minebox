@@ -81,10 +81,12 @@ class minebox(
   # require stdlib, reboot, cron
   require apt
 
+  contain minebox::users::base
   contain minebox::install
   contain minebox::config
 
-  Class['::minebox::install']
+  Class['::minebox::users::base']
+  -> Class['::minebox::install']
   -> Class['::minebox::config']
 
 }

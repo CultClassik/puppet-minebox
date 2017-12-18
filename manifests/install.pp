@@ -19,10 +19,8 @@ class minebox::install {
     }
   )
 
-  Class['::minebox::users::base']
-
-  # Create the required folders
-  -> file { $minebox::base_path :
+    # Create the required folders
+  file { $minebox::base_path :
     ensure => directory,
     group  => $minebox::miner_group,
     owner  => $minebox::miner_user,
