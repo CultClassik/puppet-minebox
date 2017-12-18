@@ -74,7 +74,7 @@ class minebox(
 
   # require stdlib, reboot, cron
   require apt
-  
+
   contain minebox::install
   contain minebox::config
 
@@ -95,18 +95,9 @@ class minebox(
     subscribe   => File_line['Mount Storage Share'],
     refreshonly => true,
   }
-  
-  # Create .screenrc script - this is already in minebox::users::base - compare and remove this one
-  file { "/home/${user_name}/.screenrc" :
-    ensure  => file,
-    content => epp('cryptomine/screenrc.epp', { 'gpu_cfg' => lookup('minebox::docker::containers::ethminer_nv::gpus') }),
-    owner   => $miner_user,
-    group   => $miner_group,
-    mode    => '0774',
-  }
 
- # Update bashrc
-  $bashrc_files = ["/home/${user_name}/.bashrc",'/etc/skel/.bashrc']
+  # Update bashrc
+  $bashrc_files = ["/home/${minebox::miner_user}/.bashrc",'/etc/skel/.bashrc']
   $bashrc_files.each |String $brc| {
     file { $brc :
       ensure => file,
@@ -117,8 +108,6 @@ class minebox(
       notify => Exec['Update xdm'],
     }
   }
- 
-  
 
 #  package { 'adafruit-ampy' :
 #    ensure   => 'latest',

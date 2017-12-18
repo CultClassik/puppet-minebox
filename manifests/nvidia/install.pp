@@ -24,5 +24,5 @@ class minebox::nvidia::install {
     include minebox::nvidia::docker::docker
     include minebox::docker::containers::ethminer_nv
   }
-  
+
 }
