@@ -51,8 +51,10 @@ class minebox::nvidia::config {
   -> file { "${scripts_path}/nvoc.sh" :
     ensure  => file,
     content => epp('minebox/nvoc.sh.epp',
-      { 'gpu_cfg' => lookup('minebox::docker::containers::ethminer_nv::gpus'),
-        'gpu_fan' => lookup('minebox::docker::containers::ethminer_nv::gpu_fan') }
+      {
+        'gpu_cfg' => $minebox::docker::containers::ethminer_nv::gpus,
+        'gpu_fan' => $minebox::gpu_fan,
+        }
       ),
     owner   => $minebox::miner_user,
     group   => $minebox::miner_group,
