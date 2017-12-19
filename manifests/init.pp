@@ -13,7 +13,7 @@ class minebox(
   String $miner_user_ssh_key,
   String $storage_path,
   Hash $nv_gpus = {},
-  String $gpu_fan = 0,
+  Integer $gpu_fan = 0,
   Boolean $use_docker = true,
   Boolean $cpu_mining = true,
   String $nvdocker_pkg_name = 'nvidia-docker2',
