@@ -17,7 +17,7 @@ class minebox::users::install {
     groups     => $minebox::miner_user_groups,
     uid        => '1050',
     managehome => true,
-    home       => "/home/${minebox::miner_user}"
+    home       => "/home/${minebox::miner_user}",
     password   => $minebox::miner_user_pwd,
     ssh_key    => $minebox::miner_user_ssh_key,
   }
