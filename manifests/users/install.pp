@@ -19,7 +19,6 @@ class minebox::users::install {
     managehome => true,
     home       => "/home/${minebox::miner_user}",
     password   => $minebox::miner_user_pwd,
-    ssh_key    => $minebox::miner_user_ssh_key,
   }
 
   -> file { "/home/${minebox::miner_user}" :
@@ -27,6 +26,13 @@ class minebox::users::install {
     mode   => '0774',
     owner  => $minebox::miner_user,
     group  => $minebox::miner_group,
+  }
+
+  -> ssh_authorized_key { "${$minebox::miner_user}@${facts['hostname']}" :
+    ensure => present,
+    user   => $minebox::miner_user,
+    type   => 'ssh-rsa',
+    key    => $minebox::miner_user_ssh_key,
   }
 
   # For now use of hiera is required to define the nvidia gpu specs on each system so we can set overclock, voltage, etc
