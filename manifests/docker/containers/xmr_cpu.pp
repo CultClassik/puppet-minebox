@@ -5,7 +5,7 @@
 # @summary A short summary of the purpose of this class
 #
 # @example
-#   include minebox::docker::containers::xmt_cpu
+#   include minebox::docker::containers::xmr_cpu
 
 class minebox::docker::containers::xmr_cpu(
   $docker_image = 'servethehome/monero_moneropool',
@@ -21,14 +21,6 @@ class minebox::docker::containers::xmr_cpu(
     /Atom/              => 'nproc',
     default             => 'latest',
   }
-
-  #$cpus = Integer[ $facts['processors']['count'] / 2 ]
-
-  #$procs = $facts['processors']['models'].filter |$keys, $values| { $keys =~ /[02468]/ }
-
-  # notify { 'test':
-  #  message => "Processors (even): ${procs}",
-  #}
 
   $facts['processors']['models'].each |Integer $index, String $value| {
 #    if $index =~ /[02468]/ {

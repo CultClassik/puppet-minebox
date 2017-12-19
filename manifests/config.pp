@@ -15,9 +15,9 @@ class minebox::config {
       ensure => file,
     }
     -> file_line { $brc :
-         path   => $brc,
-         line   => 'export DISPLAY=:0',
-         notify => Exec['Update xdm'],
+        path   => $brc,
+        line   => 'export DISPLAY=:0',
+        notify => Exec['Update xdm'],
     }
   }
 
@@ -50,6 +50,10 @@ class minebox::config {
         $minebox::miner_user,
         ],
     }
+  }
+
+  if $minebox::cpu_mine == true {
+    include minebox::docker::containers::xmr_cpu
   }
 
 }
