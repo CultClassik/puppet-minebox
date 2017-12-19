@@ -8,12 +8,13 @@
 #   include minebox::users::base
 class minebox::users::base {
 
-  include minebox::users::install
-  include minebox::users::links
+  contain minebox::users::install
+  contain minebox::users::links
 
   # Create the miner users local group
   group { $minebox::miner_group :
       ensure  => present,
+      gid     => '1050',
       #members => [
       #  $minebox::miner_user,
       #  ],
