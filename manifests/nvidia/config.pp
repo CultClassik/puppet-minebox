@@ -7,9 +7,15 @@
 # @example
 #   include minebox::nvidia::config
 class minebox::nvidia::config (
-  Integer $gpu_fan,
-  Hash $nv_gpus,
+  Integer $gpu_fan = 0,
+  Hash $nv_gpus = undef,
 ) {
+
+  if $nv_gpus == undef {
+    $gpus = lookup('minebox::nvidia::config::gpus')
+  } else {
+    $gpus = $nv_gpus
+  }
 
   $scripts_path = "${minebox::base_path}/scripts"
 
