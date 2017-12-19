@@ -6,10 +6,13 @@
 #
 # @example
 #   include minebox::nvidia::config
-class minebox::nvidia::config {
+class minebox::nvidia::config (
+  Integer $gpu_fan,
+  Hash $nv_gpus,
+) {
 
   $scripts_path = "${minebox::base_path}/scripts"
-  
+
   include minebox::xorg::headless
 
   file { '/etc/systemd/system/nvidia-persistenced.service' :
@@ -52,8 +55,8 @@ class minebox::nvidia::config {
     ensure  => file,
     content => epp('minebox/nvoc.sh.epp',
       {
-        'gpu_cfg' => $minebox::docker::containers::ethminer_nv::gpus,
-        'gpu_fan' => $minebox::gpu_fan,
+        'gpu_cfg' => $minebox::nvidia::config::gpus,
+        'gpu_fan' => $minebox::nvidia::config::gpu_fan,
         }
       ),
     owner   => $minebox::miner_user,
