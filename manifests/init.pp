@@ -79,7 +79,7 @@ class minebox(
   }
   ) {
 
-  # require stdlib, reboot, cron
+  # require stdlib, reboot, cron, apt, docker
   require apt
 
   include minebox::users::base
