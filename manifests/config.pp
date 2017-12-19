@@ -52,7 +52,7 @@ class minebox::config {
     }
   }
 
-  if $minebox::cpu_mine == true {
+  if $minebox::cpu_mining == true {
     include minebox::docker::containers::xmr_cpu
   }
 
