@@ -19,6 +19,7 @@ class minebox::users::install {
     managehome => true,
     home       => "/home/${minebox::miner_user}",
     password   => $minebox::miner_user_pwd,
+    shell      => '/bin/bash',
   }
 
   -> file { "/home/${minebox::miner_user}" :
