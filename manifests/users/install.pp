@@ -18,6 +18,8 @@ class minebox::users::install {
     uid        => '1050',
     managehome => true,
     home       => "/home/${minebox::miner_user}"
+    password   => $minebox::miner_user_pwd,
+    ssh_key    => $minebox::miner_user_ssh_key,
   }
 
   -> file { "/home/${minebox::miner_user}" :
