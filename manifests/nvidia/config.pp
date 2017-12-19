@@ -6,16 +6,7 @@
 #
 # @example
 #   include minebox::nvidia::config
-class minebox::nvidia::config (
-  Integer $gpu_fan = 0,
-  Hash $nv_gpus = undef,
-) {
-
-  if $nv_gpus == undef {
-    $gpus = lookup('minebox::nvidia::config::gpus')
-  } else {
-    $gpus = $nv_gpus
-  }
+class minebox::nvidia::config {
 
   $scripts_path = "${minebox::base_path}/scripts"
 
@@ -61,8 +52,8 @@ class minebox::nvidia::config (
     ensure  => file,
     content => epp('minebox/nvoc.sh.epp',
       {
-        'gpu_cfg' => $minebox::nvidia::config::gpus,
-        'gpu_fan' => $minebox::nvidia::config::gpu_fan,
+        'gpu_cfg' => lookup('minebox::nvidia::config::gpus'),
+        'gpu_fan' => lookup('minebox::nvidia::config::gpu_fan'),
         }
       ),
     owner   => $minebox::miner_user,
