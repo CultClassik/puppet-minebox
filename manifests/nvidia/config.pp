@@ -7,7 +7,10 @@
 # @example
 #   include minebox::nvidia::config
 class minebox::nvidia::config {
+
   $scripts_path = "${minebox::base_path}/scripts"
+  
+  include minebox::xorg::headless
 
   file { '/etc/systemd/system/nvidia-persistenced.service' :
     ensure  => file,

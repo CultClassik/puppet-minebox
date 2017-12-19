@@ -8,8 +8,6 @@
 #   include minebox::config
 class minebox::config {
 
-  include minebox::xorg::headless
-  
   # Update bashrc
   $bashrc_files = ["/home/${minebox::miner_user}/.bashrc",'/etc/skel/.bashrc']
   $bashrc_files.each |String $brc| {

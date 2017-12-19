@@ -21,7 +21,6 @@ class minebox::nvidia::install {
 
   -> if $minebox::use_docker == true {
     notify { 'Including Nvidia-Docker stuff' : }
-    include minebox::nvidia::docker::docker
     include minebox::docker::containers::ethminer_nv
   }
 
