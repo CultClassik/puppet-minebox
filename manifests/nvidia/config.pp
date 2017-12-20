@@ -29,7 +29,7 @@ class minebox::nvidia::config {
   file { "${scripts_path}/conf-nv.sh" :
       ensure => file,
       owner  => $minebox::miner_user,
-      group  => $minebox::miner_user,
+      group  => $minebox::miner_group,
       mode   => '0774',
       source => 'puppet:///modules/minebox/conf-nv.sh',
   }
