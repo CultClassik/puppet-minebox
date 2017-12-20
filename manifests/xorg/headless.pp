@@ -8,7 +8,7 @@
 #   include minebox::xorg::headless
 class minebox::xorg::headless {
 
-  file { '/etc/X11/xdm/Xsetup' :
+  file { '/etc/X11/xdm/Xsetup':
     ensure => file,
     source => 'puppet:///modules/minebox/Xsetup',
     mode   => '0755',
@@ -31,7 +31,14 @@ class minebox::xorg::headless {
     match => '^allowed_users=.*$',
   }
 
-  file_line { 'xinit_stuff' :
+  file { "/home/${minebox::user_name}/.xinitrc":
+    ensure => present,
+    owner  => $minebox::miner_user,
+    group  => $minebox::miner_group,
+    mode   => '0774',
+  }
+
+  -> file_line { 'xinit_stuff':
     path => "/home/${minebox::user_name}/.xinitrc",
     line => 'DISPLAY=:0 && xterm -geometry +1+1 -n login',
   }
