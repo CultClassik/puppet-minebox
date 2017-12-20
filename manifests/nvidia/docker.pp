@@ -64,6 +64,4 @@ class minebox::nvidia::docker (
     subscribe   => Package[$minebox::nvdocker_pkg_name],
   }
 
-  -> Class['::minebox::docker::containers::ethminer_nv']
-
 }
