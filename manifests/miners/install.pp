@@ -29,7 +29,7 @@ class minebox::miners::install (
       ensure       => present,
       cleanup      => true,
       extract      => true,
-      extract_path => "${minebox::base_path}/files/${title}",
+      extract_path => "${files_path}/${title}",
       source       => $archive['source'],
     }
   }

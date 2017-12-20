@@ -7,15 +7,14 @@
 # @example
 #   include minebox::base
 class minebox::miners::base {
-  $files_path = "${minebox::base_path}/files"
+  $files_path = "${minebox::base_path}/miners"
 
-  class { 'minebox::miners::install' :
+  class { 'minebox::miners::claymore' :
     files_path => $files_path,
   }
 
-  # set up claymore start script for amd, includes fan control
-  if $minebox::gpu_type == 'amd' {
-    include minebox::miners::claymore
+  class { 'minebox::miners::install' :
+    files_path => $files_path,
   }
 
 }

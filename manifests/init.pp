@@ -33,6 +33,7 @@ class minebox(
     'drivers',
     'scripts',
     'files',
+    'miners',
     ],
   Array $packages_base = [
     "linux-headers-${facts['kernelrelease']}",
