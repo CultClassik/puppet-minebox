@@ -26,7 +26,7 @@ class minebox::docker::containers::xmr_cpu(
 #    if $index =~ /[02468]/ {
 #      notify { "Found even number CPU ${index}" : }
 #    }
-    notify { "XMR miner for CPU ${index}" : }
+
     docker::run { "xmr-cpu-${index}" :
       ensure                   => present,
       image                    => "${docker_image}:${image_tag}",
