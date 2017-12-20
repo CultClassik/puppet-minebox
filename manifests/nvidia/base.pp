@@ -8,8 +8,6 @@
 #   include minebox::nvidia::base
 class minebox::nvidia::base {
 
-  $gpus = lookup('minebox::nvidia::config::gpus')
-  
   include minebox::nvidia::install
   include minebox::nvidia::config
 
@@ -21,8 +19,8 @@ class minebox::nvidia::base {
     class { '::minebox::nvidia::docker':
       subscribe => Class['::minebox::nvidia::config'],
     }
-    -> class { 'minebox::docker::containers::ethminer_nv':
-      gpus => $gpus,
+    -> class { '::minebox::docker::containers::ethminer_nv':
+      gpus => lookup('minebox::nvidia::config::gpus'),
     }
   }
 
