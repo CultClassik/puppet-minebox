@@ -16,7 +16,7 @@ class minebox::docker::containers::ethminer_nv
   require docker
   require minebox::docker::images::ethminer_nv
 
-  $minebox::nv_gpus.each |$gpu| {
+  $minebox::gpus.each |$gpu| {
     $worker = "${trusted['hostname']}-${gpu['id']}"
     docker::run { "eth-nv${gpu['id']}" :
       ensure                   => present,
