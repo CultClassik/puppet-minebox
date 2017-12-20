@@ -11,7 +11,6 @@ class minebox::nvidia::docker (
 ){
   require docker
 
-  include minebox::docker::containers::ethminer_nv
   ###########################
   # Remove Nvidia Docker 1.x plugin
   if $remove_old == true {
