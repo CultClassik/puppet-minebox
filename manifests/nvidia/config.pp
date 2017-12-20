@@ -68,4 +68,5 @@ class minebox::nvidia::config {
       gpus => $gpu_cfg,
     }
   }
+
 }

@@ -44,14 +44,6 @@ class minebox::config {
     apply => finished,
   }
 
-  if $minebox::use_docker == true {
-    group { 'docker' :
-      members => [
-        $minebox::miner_user,
-        ],
-    }
-  }
-
   if $minebox::cpu_mining == true {
     include minebox::docker::containers::xmr_cpu
   }

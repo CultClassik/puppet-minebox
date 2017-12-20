@@ -25,6 +25,7 @@ class minebox(
     'adm',
     'sudo',
     'video',
+    'docker',
     ],
   String $nvidia_driver = 'nvidia-384',
   String $amd_driver = 'amdgpu-pro-17.40-483984',
