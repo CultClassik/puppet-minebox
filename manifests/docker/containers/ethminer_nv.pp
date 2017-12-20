@@ -11,12 +11,13 @@ class minebox::docker::containers::ethminer_nv
 (
   String $docker_image = 'cultclassik/ethminer-nv',
   String $image_tag = 'latest',
+  Hash $gpus,
 )
 {
   require docker
   require minebox::docker::images::ethminer_nv
 
-  $minebox::gpus.each |$gpu| {
+  $gpus.each |$gpu| {
     $worker = "${trusted['hostname']}-${gpu['id']}"
     docker::run { "eth-nv${gpu['id']}" :
       ensure                   => present,
