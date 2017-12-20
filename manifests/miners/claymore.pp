@@ -7,7 +7,7 @@
 # @example
 #   include minebox::miners::claymore
 class minebox::miners::claymore (
-  String $file_path,
+  String $files_path,
 ){
 
   if $minebox::gpu_type == 'amd' {
