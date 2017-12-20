@@ -9,6 +9,8 @@
 class minebox::nvidia::config {
 
   $scripts_path = "${minebox::base_path}/scripts"
+  $gpu_cfg = lookup('minebox::nvidia::config::gpus')
+  $gpu_fan = lookup('minebox::nvidia::config::gpu_fan')
 
   include minebox::xorg::headless
 
@@ -52,12 +54,18 @@ class minebox::nvidia::config {
     ensure  => file,
     content => epp('minebox/nvoc.sh.epp',
       {
-        'gpu_cfg' => lookup('minebox::nvidia::config::gpus'),
-        'gpu_fan' => lookup('minebox::nvidia::config::gpu_fan'),
+        'gpu_cfg' => $gpu_cfg,
+        'gpu_fan' => $gpu_fan,
         }
       ),
     owner   => $minebox::miner_user,
     group   => $minebox::miner_group,
     mode    => '0774',
+  }
+
+  -> if $minebox::use_docker == true {
+    class { '::minebox::docker::containers::ethminer_nv':
+      gpus => $gpu_cfg,
+    }
   }
 }

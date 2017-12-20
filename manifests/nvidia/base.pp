@@ -19,9 +19,6 @@ class minebox::nvidia::base {
     class { '::minebox::nvidia::docker':
       subscribe => Class['::minebox::nvidia::config'],
     }
-    -> class { '::minebox::docker::containers::ethminer_nv':
-      gpus => lookup('minebox::nvidia::config::gpus'),
-    }
   }
 
 }

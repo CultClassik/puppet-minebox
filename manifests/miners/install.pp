@@ -26,6 +26,7 @@ class minebox::miners::install (
 
 ### make sure that tar is changing the parent folder when unarchiving
     archive { "${files_path}/${title}" :
+    #archive { $title :
       ensure       => present,
       cleanup      => true,
       extract      => true,
