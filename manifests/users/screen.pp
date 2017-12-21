@@ -21,7 +21,6 @@ class minebox::users::screen {
       owner     => $minebox::miner_user,
       group     => $minebox::miner_group,
       mode      => '0774',
-      #subscribe => File["/home/${minebox::miner_user}"],
     }
   }
 
