@@ -13,7 +13,7 @@ class minebox::users::screen {
     file { '/home/miner/.screenrc' :
       ensure    => file,
       content   => epp(
-        'minebox/screenrc.epp',
+        'minebox/nvidia/screenrc.epp',
         {
           'gpu_cfg' => $minebox::nv_gpus
           }
