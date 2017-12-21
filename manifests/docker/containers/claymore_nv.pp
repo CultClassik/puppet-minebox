@@ -9,6 +9,7 @@
 
 class minebox::docker::containers::claymore_nv
 (
+  Hash $gpu,
   String $docker_image = 'cultclassik/claymore-nv',
   String $image_tag = 'latest',
 )

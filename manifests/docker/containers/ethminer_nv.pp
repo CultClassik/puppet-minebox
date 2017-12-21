@@ -9,6 +9,7 @@
 
 class minebox::docker::containers::ethminer_nv
 (
+  Hash $gpu,
   String $docker_image = 'cultclassik/ethminer-nv',
   String $image_tag = 'latest',
 )
