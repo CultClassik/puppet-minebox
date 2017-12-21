@@ -9,8 +9,6 @@
 #   include minebox::users::screen
 class minebox::users::screen {
 
-###### Need to add logic around this, script output should vary based on minebox::gpu_type value
-
   if $::minebox::gpu_type == 'nvidia' {
     file { '/home/miner/.screenrc' :
       ensure    => file,
@@ -26,6 +24,8 @@ class minebox::users::screen {
       subscribe => File["/home/${minebox::miner_user}"],
     }
   }
+
+  ##### ADD ELSE HERE TO GENERATE SCREENRC FOR AMD SYSTEMS
 
   -> cron { 'Screen Setup' :
     ensure  => present,

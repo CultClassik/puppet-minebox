@@ -12,7 +12,7 @@ class minebox(
   String $miner_user_pwd,
   String $miner_user_ssh_key,
   String $storage_path,
-  Hash $nv_gpus = {},
+  Hash $nv_gpus = [],
   Integer $gpu_fan = 0,
   Boolean $use_docker = true,
   Boolean $cpu_mining = true,
