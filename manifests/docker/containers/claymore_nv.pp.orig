@@ -1,12 +1,14 @@
-# minebox::docker::containers::claymore_nv
+# minebox::docker::containers::claymore
 #
-# A description of what this defined type does
+# Configures ethminer Docker image.
 #
-# @summary A short summary of the purpose of this defined type.
+# @summary A short summary of the purpose of this class
 #
-# @example
-#   minebox::docker::containers::claymore_nv { 'namevar': }
-define minebox::docker::containers::claymore_nv(
+# @exam
+#   include minebox::docker::containers::claymore
+
+class minebox::docker::containers::claymore_nv
+(
   Hash $gpu,
   String $docker_image = 'cultclassik/claymore-nv',
   String $image_tag = 'latest',
@@ -21,9 +23,8 @@ define minebox::docker::containers::claymore_nv(
     image                    => "${docker_image}:${image_tag}",
     hostname                 => "${facts['hostname']}-${gpu['id']}",
     env                      => [
-      "EWORKER=${worker}",
+      "WORKER=${worker}",
       "ETHACCT=${minebox::accounts['eth']}",
-      "DWORKER=${trusted['hostname']}",
       'NVIDIA_DRIVER_CAPABILITIES=compute,utility',
       "NVIDIA_VISIBLE_DEVICES=${gpu['id']}",
     ],
