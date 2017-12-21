@@ -1,6 +1,7 @@
 # minebox::users::screen
 #
-# Runs screen 60 seconds after boot
+# Generates a .screenrc file for the miner user and
+# runs screen 60 seconds after boot.
 #
 # @summary A short summary of the purpose of this class
 #
