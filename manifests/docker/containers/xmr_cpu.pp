@@ -23,10 +23,6 @@ class minebox::docker::containers::xmr_cpu(
   }
 
   $facts['processors']['models'].each |Integer $index, String $value| {
-#    if $index =~ /[02468]/ {
-#      notify { "Found even number CPU ${index}" : }
-#    }
-
     docker::run { "xmr-cpu-${index}" :
       ensure                   => present,
       image                    => "${docker_image}:${image_tag}",

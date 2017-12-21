@@ -9,9 +9,9 @@
 
 class minebox::docker::containers::ethminer_nv
 (
+  Array $gpus,
   String $docker_image = 'cultclassik/ethminer-nv',
   String $image_tag = 'latest',
-  Array $gpus,
 )
 {
   require docker

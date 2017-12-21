@@ -23,7 +23,7 @@ class minebox::amd::driver {
     ensure       => present,
     cleanup      => true,
     extract      => true,
-    extract_path => "${driver_path}",
+    extract_path => $driver_path,
     #source       => $amd_driver_url,
     source       => "${minebox::storage_path}/minebox/drivers_linux/${driver_file}"
   }

@@ -15,7 +15,7 @@ class minebox::nvidia::install {
     }
   )
 
-  package { $minebox::nvidia_driver :
+  -> package { $minebox::nvidia_driver :
     ensure => present,
   }
 

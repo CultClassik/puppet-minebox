@@ -85,11 +85,11 @@ class minebox(
   # require stdlib, reboot, cron, apt, docker
   require apt
 
-  include minebox::users::base
+  include minebox::users::install
   contain minebox::install
   contain minebox::config
 
-  Class['::minebox::users::base']
+  Class['::minebox::users::install']
   -> Class['::minebox::install']
   -> Class['::minebox::config']
 

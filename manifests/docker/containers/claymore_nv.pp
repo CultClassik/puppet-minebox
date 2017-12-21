@@ -1,12 +1,44 @@
-# minebox::docker::containers::claymore_nv
+# minebox::docker::containers::claymore
 #
-# Configures claymore Docker image.
+# Configures ethminer Docker image.
 #
 # @summary A short summary of the purpose of this class
 #
 # @exam
-#   include minebox::docker::containers::claymore_nv
-class minebox::docker::containers::claymore_nv {
+#   include minebox::docker::containers::claymore
+
+class minebox::docker::containers::claymore_nv
+(
+  Array $gpus,
+  String $docker_image = 'cultclassik/claymore-nv',
+  String $image_tag = 'latest',
+)
+{
   require docker
-  #https://github.com/nanopool/Claymore-Dual-Miner/releases/download/v10.0/Claymore.s.Dual.Ethereum.Decred_Siacoin_Lbry_Pascal.AMD.NVIDIA.GPU.Miner.v10.0.-.LINUX.tar.gz
+  require minebox::docker::images::claymore_nv
+
+  $gpus.each |$gpu| {
+    $worker = "${trusted['hostname']}-${gpu['id']}"
+    docker::run { "eth-nv${gpu['id']}" :
+      ensure                   => present,
+      image                    => "${docker_image}:${image_tag}",
+      hostname                 => "${facts['hostname']}-${gpu['id']}",
+      env                      => [
+        "WORKER=${worker}",
+        "ETHACCT=${minebox::accounts['eth']}",
+        'NVIDIA_DRIVER_CAPABILITIES=compute,utility',
+        "NVIDIA_VISIBLE_DEVICES=${gpu['id']}",
+      ],
+
+      dns                      => ['8.8.8.8', '8.8.4.4'],
+      expose                   => ['3333'],
+      extra_parameters         => [
+        '--runtime=nvidia',
+      ],
+      remove_container_on_stop => true,
+      remove_volume_on_stop    => true,
+      pull_on_start            => true,
+    }
+  }
+
 }

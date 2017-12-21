@@ -13,7 +13,7 @@ class minebox::miners::claymore (
   if $minebox::gpu_type == 'amd' {
     $fan_script = "${minebox::base_path}/scripts/${minebox::fan_control_script}"
   } else {
-    $fan_script = "# no fan script inserted"
+    $fan_script = '# no fan script inserted - Regards, Puppetmaster'
   }
 
   file { "${minebox::base_path}/claymore.sh" :
