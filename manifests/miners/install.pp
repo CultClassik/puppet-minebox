@@ -10,7 +10,7 @@ class minebox::miners::install (
   String $files_path,
 ) {
 
-  require puppet-archive
+  require archive
 
   $minebox::downloads.each |String $title, Hash $archive| {
     file { "${files_path}/${title}" :
