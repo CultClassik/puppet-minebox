@@ -11,9 +11,11 @@ class minebox::docker::containers::config (
 ) {
 
   $gpus.each |$gpu| {
+    $image_name = regsubst($gpu['image'], '(-)', 'G')
+    $docker_image = "${gpu['d_repo']}/${gpu['d_image']}"
     class { "::minebox::docker::containers::${gpu['d_image']}" :
-      docker_image => $gpu['d_image_name'],
-      image_tag    => $gpu['d_image_tag'],
+      docker_image => $docker_image,
+      image_tag    => $gpu['d_tag'],
     }
   }
 
