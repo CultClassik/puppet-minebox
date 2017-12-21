@@ -45,7 +45,7 @@ class minebox::nvidia::config {
   }
 
   # Add nvoc to rc.local so it executes after boot
-  file_line { 'Add nvoc.sh to rc.local':
+  file_line { 'Add nvoc.sh to rc.local' :
     path => '/etc/rc.local',
     line => " bash ${scripts_path}/nvoc.sh >/dev/null 2>&1",
   }
@@ -64,7 +64,7 @@ class minebox::nvidia::config {
   }
 
   -> if $minebox::use_docker == true {
-    class { '::minebox::docker::containers::ethminer_nv':
+    class { '::minebox::docker::containers::config' :
       gpus => $gpu_cfg,
     }
   }
