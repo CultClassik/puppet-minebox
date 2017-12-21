@@ -1,8 +1,8 @@
 # minebox::docker::containers::ethminer_nv
 #
-# A description of what this defined type does
+# Creates a NVidia Docker GPU container instance running ethminer
 #
-# @summary A short summary of the purpose of this defined type.
+# @summary Creates a NVidia Docker GPU container instance running ethminer
 #
 # @example
 #   minebox::docker::containers::ethminer_nv { 'namevar': }
