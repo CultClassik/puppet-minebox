@@ -9,7 +9,7 @@
 
 class minebox(
   String $gpu_type,
-  String $miner_user_pwd,git 
+  String $miner_user_pwd,
   String $miner_user_ssh_key,
   String $storage_path,
   Array $nv_gpus = [],

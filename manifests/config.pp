@@ -49,4 +49,10 @@ class minebox::config {
     include minebox::docker::containers::xmr_cpu
   }
 
+  file_line { 'Manage GRUB_CMDLINE_LINUX for grub conf':
+    path  => '/etc/default/grub',
+    line  => 'GRUB_CMDLINE_LINUX="text pci=noaer net.ifnames=0 biosdevname=0"',
+    match => '^GRUB_CMDLINE_LINUX=.*$',
+  }
+
 }
