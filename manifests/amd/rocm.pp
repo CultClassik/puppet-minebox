@@ -39,7 +39,7 @@ class minebox::amd::rocm {
     refreshonly => true,
     subscribe   => File_line['Enable large page support'],
     # added - test
-    notify      => Reboot['after'],
+    notify      => Reboot['after_run'],
   }
 
   #reboot { 'after':
