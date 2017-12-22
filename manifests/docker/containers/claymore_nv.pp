@@ -33,8 +33,8 @@ define minebox::docker::containers::claymore_nv(
     extra_parameters         => [
       '--runtime=nvidia',
     ],
-    remove_container_on_stop => false,
-    remove_volume_on_stop    => false,
+    remove_container_on_stop => true,
+    remove_volume_on_stop    => true,
     pull_on_start            => true,
   }
 
