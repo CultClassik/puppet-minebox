@@ -26,7 +26,7 @@ class minebox::miners::install (
       cleanup         => true,
       extract         => true,
       extract_path    => "${files_path}/${title}",
-      extract_command => "tar -xvf %s -C ${files_path}/${title} –-stripcomponents 1",
+      extract_command => "tar -xvf %s -C ${files_path}/${title} --strip-components 1",
       source          => $archive['source'],
       user            => $minebox::miner_user,
       group           => $minebox::miner_group,
