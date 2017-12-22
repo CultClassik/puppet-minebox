@@ -10,17 +10,15 @@ class minebox::amd::install (
   String $fan_control_script = 'amdgpu-pro-fans.sh',
 ) {
 
-  include minebox::amd::rocm
-  #include minebox::amd::driver
+  include minebox::amd::driver
 
-  #Class['::minebox::amd::rocm']
-  #Class['::minebox::amd::driver']
+  Class['::minebox::amd::driver']
 
-  #-> file_line { 'Enable large page support':
-  #  path  => '/etc/default/grub',
-  #  line  => 'GRUB_CMDLINE_LINUX_DEFAULT="nomodeset amdgpu.vm_fragment_size=9"',
-  #  match => '^GRUB_CMDLINE_LINUX_DEFAULT=.*$',
-  #}
+  -> file_line { 'Enable large page support':
+    path  => '/etc/default/grub',
+    line  => 'GRUB_CMDLINE_LINUX_DEFAULT="nomodeset amdgpu.vm_fragment_size=9"',
+    match => '^GRUB_CMDLINE_LINUX_DEFAULT=.*$',
+  }
 
   file { 'AMD Fan Control Script' :
     ensure => file,

@@ -14,17 +14,16 @@ class minebox::amd::driver {
   $driver_path = "${minebox::base_path}/drivers"
   $installer = "${driver_path}/${minebox::amd_driver}/amdgpu-pro-install"
 
-  # included with amd driver, not needed?
-  #package { 'clinfo' :
-  #  ensure => present,
-  #}
+  package { 'rocm-dkms' :
+    ensure => absent,
+  }
 
   archive { "${driver_path}/${driver_file}" :
     ensure       => present,
     cleanup      => true,
     extract      => true,
     extract_path => $driver_path,
-    source       => "https://s3-us-west-1.amazonaws.com/mastermine/minebox/{$driver_file}",
+    source       => "https://s3-us-west-1.amazonaws.com/mastermine/minebox/${driver_file}",
     creates      => $installer,
   }
 
@@ -44,6 +43,12 @@ class minebox::amd::driver {
     ensure  => file,
     mode    => '0774',
     content => 'export LLVM_BIN=/opt/amdgpu-pro/bin',
+  }
+
+  file_line { 'Enable large page support':
+    path  => '/etc/default/grub',
+    line  => 'GRUB_CMDLINE_LINUX_DEFAULT="nomodeset amdgpu.vm_fragment_size=9"',
+    match => '^GRUB_CMDLINE_LINUX_DEFAULT=.*$',
   }
 
 }

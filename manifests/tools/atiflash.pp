@@ -11,14 +11,14 @@ class minebox::tools::atiflash (
 ){
 
   archive { "${files_path}/atiflash.tar.xz" :
-      ensure          => present,
-      cleanup         => true,
-      extract         => true,
-      extract_path    => "${files_path}",
-      source          => 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/atiflash_linux.tar.xz',
-      user            => $minebox::miner_user,
-      group           => $minebox::miner_group,
-      creates         => "${files_path}/atiflash",
+      ensure       => present,
+      cleanup      => true,
+      extract      => true,
+      extract_path => $files_path,
+      source       => 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/atiflash_linux.tar.xz',
+      user         => $minebox::miner_user,
+      group        => $minebox::miner_group,
+      creates      => "${files_path}/atiflash",
     }
 
 }
