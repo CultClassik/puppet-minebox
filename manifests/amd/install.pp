@@ -14,12 +14,6 @@ class minebox::amd::install (
 
   Class['::minebox::amd::driver']
 
-  -> file_line { 'Enable large page support':
-    path  => '/etc/default/grub',
-    line  => 'GRUB_CMDLINE_LINUX_DEFAULT="nomodeset amdgpu.vm_fragment_size=9"',
-    match => '^GRUB_CMDLINE_LINUX_DEFAULT=.*$',
-  }
-
   file { 'AMD Fan Control Script' :
     ensure => file,
     path   => "${minebox::base_path}/scripts/${fan_control_script}",
