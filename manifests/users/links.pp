@@ -14,6 +14,7 @@ class minebox::users::links {
     target => "${minebox::base_path}/scripts/claymore.sh",
     owner  => $minebox::miner_user,
     group  => $minebox::miner_group,
+    mode   => '0774',
   }
 
   file { "/home/${minebox::miner_user}/ethminer" :
@@ -21,6 +22,7 @@ class minebox::users::links {
     target => "${minebox::base_path}/scripts/ethminer.sh",
     owner  => $minebox::miner_user,
     group  => $minebox::miner_group,
+    mode   => '0774',
   }
 
   file { "/home/${minebox::miner_user}/puppet" :
@@ -28,6 +30,7 @@ class minebox::users::links {
     target => '/opt/puppetlabs/puppet/bin/puppet',
     owner  => $minebox::miner_user,
     group  => $minebox::miner_group,
+    mode   => '0774',
   }
 
   file { "/home/${minebox::miner_user}/clinfo " :
@@ -35,5 +38,6 @@ class minebox::users::links {
     target => '/opt/amdgpu-pro/bin/clinfo',
     owner  => $minebox::miner_user,
     group  => $minebox::miner_group,
+    mode   => '0774',
   }
 }
