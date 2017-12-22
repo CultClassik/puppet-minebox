@@ -28,14 +28,15 @@ class minebox::amd::driver {
     creates      => "${driver_path}/${minebox::amd_driver}/amdgpu-pro-install",
   }
 
-  file { "${driver_path}/${minebox::amd_driver}/amdgpu-pro-install" :
+  -> file { "${driver_path}/${minebox::amd_driver}/amdgpu-pro-install" :
     ensure => file,
     mode   => '0744',
   }
 
   exec { 'Install AMD PRO GPU Blockchain Driver' :
     command     => "${driver_path}/${minebox::amd_driver}/amdgpu-pro-install --compute -y",
-    subscribe   => Archive["${driver_path}/${driver_file}"],
+    #subscribe   => Archive["${driver_path}/${driver_file}"],
+    subscribe   => File["${driver_path}/${minebox::amd_driver}/amdgpu-pro-install"],
     refreshonly => true,
   }
 
