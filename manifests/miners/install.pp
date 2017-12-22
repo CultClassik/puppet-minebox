@@ -28,6 +28,9 @@ class minebox::miners::install (
       extract_path    => "${files_path}/${title}",
       extract_command => "tar -xvf %s -C ${files_path}/${title} –stripcomponents 1",
       source          => $archive['source'],
+      user            => $minebox::miner_user,
+      group           => $minebox::miner_group,
+      creates         => "${files_path}/${title}/ethdcrminer64"
     }
   }
 
