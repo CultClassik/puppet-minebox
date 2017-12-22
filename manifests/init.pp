@@ -67,11 +67,13 @@ class minebox(
       'version' => '10.2',
       'source'  => 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/claymore_Ethereum%2BDecred_Siacoin_Lbry_Pascal_gpu_v10.2_LINUX.tar.gz',
       'file'    => 'claymore.tar.gz'
+      'creates' => 'ethcdrminer64',
       },
     'ethminer' => {
       'version' => '0.12.0',
       'source'  => 'https://github.com/ethereum-mining/ethminer/releases/download/v0.12.0/ethminer-0.12.0-Linux.tar.gz',
       'file'    => 'ethminer.tar.gz',
+      'creates' => 'ethminer',
       }
     },
   Hash $accounts = {
