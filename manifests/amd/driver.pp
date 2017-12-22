@@ -41,4 +41,10 @@ class minebox::amd::driver {
     notify      => Reboot['after_run'],
   }
 
+  file { '/etc/profile.d/amdgpu-pro.sh' :
+    ensure  => file,
+    mode    => '0774',
+    content => 'export LLVM_BIN=/opt/amdgpu-pro/bin',
+  }
+
 }
