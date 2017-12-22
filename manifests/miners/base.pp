@@ -13,7 +13,7 @@ class minebox::miners::base {
   #   aws_cli_install => true,
   # }
 
-  -> class { 'minebox::miners::claymore' :
+  class { 'minebox::miners::claymore' :
     files_path => $files_path,
   }
 
