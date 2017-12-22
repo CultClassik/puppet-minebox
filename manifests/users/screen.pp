@@ -11,7 +11,7 @@ class minebox::users::screen {
 
 
   if $::minebox::gpu_type == 'nvidia' {
-    file { '/home/miner/.screenrc' :
+    file { "/home/${minebox::miner_user}/.screenrc" :
       ensure  => file,
       content => epp(
         'minebox/nvidia/screenrc.epp',
@@ -24,12 +24,12 @@ class minebox::users::screen {
       mode    => '0774',
     }
   } else {
-    file { '/home/miner/.screenrc' :
+    file { "/home/${minebox::miner_user}/.screenrc" :
       ensure  => file,
       content => epp(
         'minebox/amd/screenrc.epp',
         {
-          'mining_script' => "home/${minebox::mining_user}/claymore",
+          'mining_script' => "home/${minebox::miner_user}/claymore",
           }
         ),
       owner   => $minebox::miner_user,
