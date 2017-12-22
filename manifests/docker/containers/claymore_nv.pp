@@ -16,6 +16,7 @@ define minebox::docker::containers::claymore_nv(
   require minebox::docker::images::claymore_nv
 
   $worker = "${trusted['hostname']}-${gpu['id']}"
+
   docker::run { "m-nv${gpu['id']}" :
     ensure                   => present,
     image                    => "${docker_image}:${image_tag}",
@@ -23,8 +24,10 @@ define minebox::docker::containers::claymore_nv(
     env                      => [
       "EWORKER=${worker}",
       "ETHACCT=${minebox::accounts['eth']}",
+      "EWALL=${minebox::accounts['eth']}.${worker}"
       "DWORKER=${trusted['hostname']}",
       "DACCT=${minebox::accounts['lbc']}",
+      "DWALL=${minebox::accounts['lbc']}.${trusted['hostname']}",
       'NVIDIA_DRIVER_CAPABILITIES=compute,utility',
       "NVIDIA_VISIBLE_DEVICES=${gpu['id']}",
     ],
