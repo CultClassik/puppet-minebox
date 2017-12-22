@@ -88,9 +88,11 @@ class minebox(
   include minebox::users::install
   contain minebox::install
   contain minebox::config
+  contain minebox::miners::base
 
   Class['::minebox::users::install']
   -> Class['::minebox::install']
   -> Class['::minebox::config']
+  -> Class['::minebox::miners::base']
 
 }
