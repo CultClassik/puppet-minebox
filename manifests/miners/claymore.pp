@@ -16,7 +16,7 @@ class minebox::miners::claymore (
     $fan_script = '# no fan script inserted - Regards, Puppetmaster'
   }
 
-  file { "${minebox::base_path}/claymore.sh" :
+  file { "${minebox::base_path}/scripts/claymore.sh" :
     ensure  => present,
     owner   => $minebox::miner_user,
     group   => $minebox::miner_group,
