@@ -22,7 +22,11 @@ class minebox::tools::base {
     files_path => $miners_path,
   }
 
-  class { 'minebox::tools::tools' :
+  #class { 'minebox::tools::tools' :
+  #  files_path => $tools_path,
+  #}
+
+  class { 'minebox::tools::atiflash' :
     files_path => $tools_path,
   }
 

@@ -78,12 +78,6 @@ class minebox(
       },
   },
   Hash $tools = {
-    'atiflash' => {
-      'version' => 'x',
-      'source'  => 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/atiflash_linux.tar.xz',
-      'file'    => 'atiflash.tar.xz',
-      'creates' => 'atiflash',
-    },
     },
   Hash $accounts = {
     'eth' => '0x96ae82e89ff22b3eff481e2499948c562354cb23',
