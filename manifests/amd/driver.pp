@@ -14,6 +14,7 @@ class minebox::amd::driver {
 
   $driver_file = "${minebox::amd_driver}.tar.xz"
   $driver_path = "${minebox::base_path}/drivers"
+  $installer = "${driver_path}/${minebox::amd_driver}/amdgpu-pro-install"
 
   package { 'clinfo' :
     ensure => present,
@@ -28,15 +29,14 @@ class minebox::amd::driver {
     creates      => "${driver_path}/${minebox::amd_driver}/amdgpu-pro-install",
   }
 
-  -> file { "${driver_path}/${minebox::amd_driver}/amdgpu-pro-install" :
+  -> file { "${installer}l" :
     ensure => file,
     mode   => '0744',
   }
 
   exec { 'Install AMD PRO GPU Blockchain Driver' :
-    command     => "${driver_path}/${minebox::amd_driver}/amdgpu-pro-install --compute -y",
-    #subscribe   => Archive["${driver_path}/${driver_file}"],
-    subscribe   => File["${driver_path}/${minebox::amd_driver}/amdgpu-pro-install"],
+    command     => "${installer} --compute -y",
+    subscribe   => File[$installer}],
     refreshonly => true,
   }
 
