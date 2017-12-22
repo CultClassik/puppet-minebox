@@ -10,8 +10,6 @@ class minebox::miners::install (
   String $files_path,
 ) {
 
-  require archive
-
   $minebox::downloads.each |String $title, Hash $archive| {
     file { "${files_path}/${title}" :
       ensure => directory,
