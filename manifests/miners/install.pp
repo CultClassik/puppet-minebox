@@ -22,13 +22,12 @@ class minebox::miners::install (
 
     ### make sure that tar is changing the parent folder when unarchiving
     archive { "${files_path}/${archive['file']}" :
-    #archive { $title :
-      ensure        => present,
-      cleanup       => true,
-      extract       => true,
-      extract_path  => "${files_path}/${title}",
-      #extract_flags => "",
-      source        => $archive['source'],
+      ensure          => present,
+      cleanup         => true,
+      extract         => true,
+      extract_path    => "${files_path}/${title}",
+      extract_command => "tar xvf %s -C ${files_path}/${title} –stripcomponents 1",
+      source          => $archive['source'],
     }
   }
 
