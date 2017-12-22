@@ -51,7 +51,7 @@ class minebox::config {
 
   file_line { 'Manage GRUB_CMDLINE_LINUX for grub conf':
     path  => '/etc/default/grub',
-    line  => 'GRUB_CMDLINE_LINUX="text pci=noaer net.ifnames=0 biosdevname=0"',
+    line  => 'GRUB_CMDLINE_LINUX="text pci=nomsi net.ifnames=0 biosdevname=0"',
     match => '^GRUB_CMDLINE_LINUX=.*$',
   }
 
