@@ -28,7 +28,8 @@ class minebox(
     'docker',
     ],
   String $nvidia_driver = 'nvidia-384',
-  String $amd_driver = 'amdgpu-pro-17.40-483984',
+  #String $amd_driver = 'amdgpu-pro-17.40-483984',
+  String $amd_driver = 'amdgpu-pro-17.40-514569',
   Boolean $use_rocm = true,
   Array $folders = [
     'drivers',
