@@ -19,14 +19,13 @@ class minebox::users::links {
     target => "${minebox::base_path}/scripts/ethminer.sh",
   }
 
-  file { "/home/${minebox::miner_user}/dualmine" :
-    ensure => link,
-    target => "${minebox::base_path}/scripts/claymore.sh",
-  }
-
   file { "/home/${minebox::miner_user}/puppet" :
     ensure => link,
-    target => "/opt/puppetlabs/puppet/bin/puppet",
+    target => '/opt/puppetlabs/puppet/bin/puppet',
   }
 
+  file { "/home/${minebox::miner_user}/clinfo " :
+    ensure => link,
+    target => '/opt/amdgpu-pro/bin/clinfo',
+  }
 }
