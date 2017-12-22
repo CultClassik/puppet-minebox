@@ -35,6 +35,7 @@ class minebox::users::screen {
       owner   => $minebox::miner_user,
       group   => $minebox::miner_group,
       mode    => '0774',
+    }
   }
 
   ##### ADD ELSE HERE TO GENERATE SCREENRC FOR AMD SYSTEMS
