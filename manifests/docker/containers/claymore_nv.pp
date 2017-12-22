@@ -24,6 +24,7 @@ define minebox::docker::containers::claymore_nv(
       "EWORKER=${worker}",
       "ETHACCT=${minebox::accounts['eth']}",
       "DWORKER=${trusted['hostname']}",
+      "DACCT=${minebox::accounts['lbc']}",
       'NVIDIA_DRIVER_CAPABILITIES=compute,utility',
       "NVIDIA_VISIBLE_DEVICES=${gpu['id']}",
     ],
