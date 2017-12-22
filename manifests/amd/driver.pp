@@ -16,9 +16,10 @@ class minebox::amd::driver {
   $driver_path = "${minebox::base_path}/drivers"
   $installer = "${driver_path}/${minebox::amd_driver}/amdgpu-pro-install"
 
-  package { 'clinfo' :
-    ensure => present,
-  }
+  # included with amd driver, not needed?
+  #package { 'clinfo' :
+  #  ensure => present,
+  #}
 
   archive { "${driver_path}/${driver_file}" :
     ensure       => present,
