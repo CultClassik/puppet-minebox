@@ -11,7 +11,8 @@ class minebox::tools::claymore (
 ){
 
   if $minebox::gpu_type == 'amd' {
-    $fan_script = "${minebox::base_path}/scripts/${minebox::fan_control_script}"
+    # disabled fan script for now, vars are out of what or something, fix it asap
+    $fan_script = "#${minebox::base_path}/scripts/${minebox::fan_control_script}"
   } else {
     $fan_script = '# no fan script inserted - Regards, Puppetmaster'
   }
@@ -24,7 +25,7 @@ class minebox::tools::claymore (
     content => epp(
       'minebox/script_claymore.epp',
       {
-        'path'               => '/minebox/claymore',
+        'path'               => '/minebox/claymore/claymore',
         'fan_control_script' => $fan_script,
       }
     ),
