@@ -20,12 +20,12 @@ class minebox::miners::install (
       mode   => '0774',
     }
 
-    #$minebox::miner_bins.each |String $title, String $name| {
-    #file { "${files_path}/${title}" :
-    #  ensure => directory,
-    #  owner  => $minebox::miner_user,
-    #  group  => $minebox::miner_group,
-    #}
+    $minebox::downloads.each |String $title, String $name| {
+    file { "${files_path}/${title}" :
+      ensure => directory,
+      owner  => $minebox::miner_user,
+      group  => $minebox::miner_group,
+    }
 
 ### make sure that tar is changing the parent folder when unarchiving
     archive { "${files_path}/${title}" :
