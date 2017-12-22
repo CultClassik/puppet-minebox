@@ -27,14 +27,17 @@ class minebox::amd::rocm {
   #-> package { 'rocm' :
   #  ensure => present,
   #}
-  ensure_packages (
+  #ensure_packages (
     #['rocm-dkms', 'rocm-amdgpu-pro'],
     #['rocm-amdgpu-pro'],
-    ['rocm-dkms'],
-    {
-      ensure => present,
-    }
-  )
+  #  ['rocm-dkms'],
+  #  {
+  #    ensure => present,
+  #  }
+  #)
+  package { 'rocm-dkms' :
+    ensure => present,
+  }
 
   exec { 'Update GRUB':
     command     => '/usr/sbin/update-grub',
