@@ -7,22 +7,23 @@
 # @example
 #   include minebox::base
 class minebox::tools::base {
-  $files_path = "${minebox::base_path}/miners"
+  $miners_path = "${minebox::base_path}/miners"
+  $tools_path = "${minebox::base_path}/tools"
 
   # class { '::archive':
   #   aws_cli_install => true,
   # }
 
   class { 'minebox::tools::claymore' :
-    files_path => $files_path,
+    files_path => $miners_path,
   }
 
   class { 'minebox::tools::miners' :
-    files_path => $files_path,
+    files_path => $miners_path,
   }
 
   class { 'minebox::tools::tools' :
-    files_path => $files_path,
+    files_path => $tools_path,
   }
 
 }
