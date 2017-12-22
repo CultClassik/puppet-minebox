@@ -65,7 +65,7 @@ class minebox(
   Hash $downloads = {
     'claymore' => {
       'version' => '10.2',
-      'source'  => 'https://onedrive.live.com/download?cid=0439AD70307A0AB4&resid=439AD70307A0AB4%2115937&authkey=AEndRVqUqVLFlYM',
+      'source'  => 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/claymore_Ethereum%2BDecred_Siacoin_Lbry_Pascal_gpu_v10.2_LINUX.tar.gz',
       'file'    => 'claymore.tar.gz'
       },
     'ethminer' => {

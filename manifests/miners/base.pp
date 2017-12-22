@@ -9,11 +9,15 @@
 class minebox::miners::base {
   $files_path = "${minebox::base_path}/miners"
 
-  class { 'minebox::miners::claymore' :
+  class { '::archive':
+    aws_cli_install => true,
+  }
+
+  -> class { 'minebox::miners::claymore' :
     files_path => $files_path,
   }
 
-  class { 'minebox::miners::install' :
+  -> class { 'minebox::miners::install' :
     files_path => $files_path,
   }
 
