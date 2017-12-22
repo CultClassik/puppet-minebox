@@ -66,7 +66,7 @@ class minebox(
     'claymore' => {
       'version' => '10.2',
       'source'  => 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/claymore_Ethereum%2BDecred_Siacoin_Lbry_Pascal_gpu_v10.2_LINUX.tar.gz',
-      'file'    => 'claymore.tar.gz'
+      'file'    => 'claymore.tar.gz',
       'creates' => 'ethcdrminer64',
       },
     'ethminer' => {
