@@ -31,7 +31,7 @@ class minebox::amd::driver {
 
   -> file { $installer :
     ensure => file,
-    mode   => '0744',
+    mode   => '0774',
   }
 
   exec { 'Install AMD PRO GPU Blockchain Driver' :
