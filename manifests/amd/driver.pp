@@ -14,10 +14,6 @@ class minebox::amd::driver {
   $driver_path = "${minebox::base_path}/drivers"
   $installer = "${driver_path}/${minebox::amd_driver}/amdgpu-pro-install"
 
-  package { 'rocm-dkms' :
-    ensure => absent,
-  }
-
   archive { "${driver_path}/${driver_file}" :
     ensure       => present,
     cleanup      => true,
@@ -32,7 +28,7 @@ class minebox::amd::driver {
   }
 
   exec { 'Install AMD PRO GPU Blockchain Driver' :
-    command     => "${installer} --compute -y",
+    command     => "${installer} --opencl=legacy,rocm --headless -y",
     subscribe   => Archive["${driver_path}/${driver_file}"],
     refreshonly => true,
     # added - test
