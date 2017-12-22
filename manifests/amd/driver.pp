@@ -26,7 +26,7 @@ class minebox::amd::driver {
     extract      => true,
     extract_path => $driver_path,
     source       => "https://s3-us-west-1.amazonaws.com/mastermine/minebox/{$driver_file}",
-    creates      => "${driver_path}/${minebox::amd_driver}/amdgpu-pro-install",
+    creates      => $installer,
   }
 
   -> file { $installer :
