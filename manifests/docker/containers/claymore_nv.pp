@@ -17,7 +17,7 @@ define minebox::docker::containers::claymore_nv(
 
   $worker = "${trusted['hostname']}-${gpu['id']}"
   docker::run { "m-nv${gpu['id']}" :
-    ensure                   => present,
+    ensure                   => absent,
     image                    => "${docker_image}:${image_tag}",
     hostname                 => "${facts['hostname']}-${gpu['id']}",
     env                      => [
