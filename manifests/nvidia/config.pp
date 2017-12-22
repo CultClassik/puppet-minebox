@@ -9,8 +9,8 @@
 class minebox::nvidia::config {
 
   $scripts_path = "${minebox::base_path}/scripts"
-  $gpu_cfg = $minebox::nv_gpus, #lookup('minebox::nvidia::config::gpus')
-  $gpu_fan = $minebox::gpu_fan, #lookup('minebox::nvidia::config::gpu_fan')
+  $gpu_cfg = $minebox::nv_gpus #lookup('minebox::nvidia::config::gpus')
+  $gpu_fan = $minebox::gpu_fan #lookup('minebox::nvidia::config::gpu_fan')
 
   include minebox::xorg::headless
 
