@@ -24,9 +24,9 @@ class minebox::amd::rocm {
   }
 
   ### addding rocm package causes errors if it's already installed, may need to use regex on the kernal to ensure it doesn't contain rocm before proceeding
-  -> package { 'rocm' :
-    ensure => present,
-  }
+  #-> package { 'rocm' :
+  #  ensure => present,
+  #}
 
   exec { 'Update GRUB':
     command     => '/usr/sbin/update-grub',
