@@ -37,6 +37,7 @@ class minebox::amd::driver {
     command     => "${installer} --compute -y",
     subscribe   => Archive["${driver_path}/${driver_file}"],
     refreshonly => true,
+    notify      => Reboot['after'],
   }
 
 }

@@ -38,11 +38,13 @@ class minebox::amd::rocm {
     command     => '/usr/sbin/update-grub',
     refreshonly => true,
     subscribe   => File_line['Enable large page support'],
+    # added - test
+    notify      => Reboot['after'],
   }
 
-  reboot { 'after':
-    subscribe => Exec['Update GRUB'],
-  }
+  #reboot { 'after':
+  #  subscribe => Exec['Update GRUB'],
+  #}
 
   file { '/etc/profile.d/amdgpu-pro.sh':
     ensure  => file,
