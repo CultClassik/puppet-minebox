@@ -99,7 +99,7 @@ class minebox(
   contain minebox::users::install
   contain minebox::install
   contain minebox::config
-  contain minebox::miners::base
+  contain minebox::tools::base
 
   Class['::minebox::users::install']
   -> Class['::minebox::install']
