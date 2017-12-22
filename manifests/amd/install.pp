@@ -10,9 +10,11 @@ class minebox::amd::install (
   String $fan_control_script = 'amdgpu-pro-fans.sh',
 ) {
 
-  include minebox::amd::rocm
+  #include minebox::amd::rocm
+  include minebox::amd::driver
 
-  Class['::minebox::amd::rocm']
+  #Class['::minebox::amd::rocm']
+  Class['::minebox::amd::driver']
 
   -> file_line { 'Enable large page support':
     path  => '/etc/default/grub',
