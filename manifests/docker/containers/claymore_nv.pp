@@ -24,7 +24,7 @@ define minebox::docker::containers::claymore_nv(
     env                      => [
       "EWORKER=${worker}",
       "ETHACCT=${minebox::accounts['eth']}",
-      "EWALL=${minebox::accounts['eth']}.${worker}"
+      "EWALL=${minebox::accounts['eth']}.${worker}",
       "DWORKER=${trusted['hostname']}",
       "DACCT=${minebox::accounts['lbc']}",
       "DWALL=${minebox::accounts['lbc']}.${trusted['hostname']}",

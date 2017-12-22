@@ -11,16 +11,16 @@ class minebox::users::screen {
 
   if $::minebox::gpu_type == 'nvidia' {
     file { '/home/miner/.screenrc' :
-      ensure    => file,
-      content   => epp(
+      ensure  => file,
+      content => epp(
         'minebox/nvidia/screenrc.epp',
         {
           'gpu_cfg' => $minebox::nv_gpus
           }
         ),
-      owner     => $minebox::miner_user,
-      group     => $minebox::miner_group,
-      mode      => '0774',
+      owner   => $minebox::miner_user,
+      group   => $minebox::miner_group,
+      mode    => '0774',
     }
   }
 
