@@ -29,7 +29,7 @@ class minebox::amd::driver {
     creates      => "${driver_path}/${minebox::amd_driver}/amdgpu-pro-install",
   }
 
-  -> file { "${installer}l" :
+  -> file { $installer :
     ensure => file,
     mode   => '0744',
   }
