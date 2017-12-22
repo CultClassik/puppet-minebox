@@ -30,7 +30,6 @@ class minebox::amd::driver {
   }
 
   -> file { $installer :
-    ensure => file,
     mode   => '0774',
   }
 
