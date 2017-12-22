@@ -23,4 +23,10 @@ class minebox::users::links {
     ensure => link,
     target => "${minebox::base_path}/scripts/claymore.sh",
   }
+
+  file { "/home/${minebox::miner_user}/puppet" :
+    ensure => link,
+    target => "/opt/puppetlabs/puppet/bin/puppet",
+  }
+
 }
