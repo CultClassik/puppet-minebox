@@ -48,9 +48,4 @@ class minebox::amd::rocm {
   #  subscribe => Exec['Update GRUB'],
   #}
 
-  file { '/etc/profile.d/amdgpu-pro.sh':
-    ensure  => file,
-    content => 'export LLVM_BIN=/opt/amdgpu-pro/bin'
-  }
-
 }
