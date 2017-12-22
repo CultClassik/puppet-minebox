@@ -81,7 +81,7 @@ class minebox(
     'atiflash' => {
       'version' => 'x',
       'source'  => 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/atiflash_linux.tar.xz',
-      'file'    => 'atiflash.tar.gz',
+      'file'    => 'atiflash.tar.xz',
       'creates' => 'atiflash',
     },
     },
