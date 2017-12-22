@@ -29,7 +29,8 @@ class minebox::amd::rocm {
   #}
   ensure_packages (
     #['rocm-dkms', 'rocm-amdgpu-pro'],
-    ['rocm-amdgpu-pro'],
+    #['rocm-amdgpu-pro'],
+    ['rocm-dkms'],
     {
       ensure => present,
     }
