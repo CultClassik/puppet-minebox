@@ -47,6 +47,10 @@ class minebox::amd::rocm {
     notify      => Reboot['after_run'],
   }
 
+  file { '/etc/profile.d/amdgpu-pro.sh' :
+    ensure  => absent,
+  }
+
   #reboot { 'after':
   #  subscribe => Exec['Update GRUB'],
   #}
