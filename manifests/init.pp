@@ -92,7 +92,7 @@ class minebox(
   # require stdlib, reboot, cron, apt, docker
   require apt
 
-  contain minebox::users::install
+  include minebox::users::install
   contain minebox::install
   contain minebox::config
   contain minebox::tools::base
