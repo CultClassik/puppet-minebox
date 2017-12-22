@@ -29,7 +29,7 @@ class minebox::users::screen {
       content => epp(
         'minebox/amd/screenrc.epp',
         {
-          'mining_script' => "home/${minebox::miner_user}/claymore",
+          'mining_script' => "/home/${minebox::miner_user}/claymore",
           }
         ),
       owner   => $minebox::miner_user,
