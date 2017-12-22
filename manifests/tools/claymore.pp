@@ -25,7 +25,7 @@ class minebox::tools::claymore (
     content => epp(
       'minebox/script_claymore.epp',
       {
-        'path'               => '/minebox/claymore/claymore',
+        'path'               => '/minebox/miners/claymore',
         'fan_control_script' => $fan_script,
       }
     ),
