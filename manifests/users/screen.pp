@@ -26,7 +26,7 @@ class minebox::users::screen {
 
   ##### ADD ELSE HERE TO GENERATE SCREENRC FOR AMD SYSTEMS
 
-  -> cron { 'Screen Setup' :
+  cron { 'Screen Setup' :
     ensure  => present,
     command => 'sleep 40 && /usr/bin/screen -d -m',
     user    => $minebox::miner_user,
