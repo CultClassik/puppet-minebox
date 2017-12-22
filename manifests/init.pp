@@ -74,7 +74,13 @@ class minebox(
       'source'  => 'https://github.com/ethereum-mining/ethminer/releases/download/v0.12.0/ethminer-0.12.0-Linux.tar.gz',
       'file'    => 'ethminer.tar.gz',
       'creates' => 'ethminer',
-      }
+      },
+    'atiflash' => {
+      'version' => 'x',
+      'source'  => 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/atiflash_linux.tar.xz',
+      'file'    => 'atiflash.tar.gz',
+      #'creates' => '',
+    }
     },
   Hash $accounts = {
     'eth' => '0x96ae82e89ff22b3eff481e2499948c562354cb23',
