@@ -35,6 +35,7 @@ class minebox(
     'scripts',
     'files',
     'miners',
+    'tools',
     ],
   Array $packages_base = [
     "linux-headers-${facts['kernelrelease']}",
@@ -62,7 +63,7 @@ class minebox(
     'xdm',
     'gtk2.0',
     ],
-  Hash $downloads = {
+  Hash $miners = {
     'claymore' => {
       'version' => '10.2',
       'source'  => 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/claymore_Ethereum%2BDecred_Siacoin_Lbry_Pascal_gpu_v10.2_LINUX.tar.gz',
@@ -75,12 +76,14 @@ class minebox(
       'file'    => 'ethminer.tar.gz',
       'creates' => 'ethminer',
       },
+  },
+  Hash $tools = {
     'atiflash' => {
       'version' => 'x',
       'source'  => 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/atiflash_linux.tar.xz',
       'file'    => 'atiflash.tar.gz',
-      #'creates' => '',
-    }
+      'creates' => 'atiflash',
+    },
     },
   Hash $accounts = {
     'eth' => '0x96ae82e89ff22b3eff481e2499948c562354cb23',
@@ -101,6 +104,6 @@ class minebox(
   Class['::minebox::users::install']
   -> Class['::minebox::install']
   -> Class['::minebox::config']
-  -> Class['::minebox::miners::base']
+  -> Class['::minebox::tools::base']
 
 }

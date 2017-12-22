@@ -1,4 +1,4 @@
-# minebox::miners::base
+# minebox::tools::base
 #
 # Configures a Linux (Ubuntu only for now) system as a crypto currency miner.
 #
@@ -6,18 +6,22 @@
 #
 # @example
 #   include minebox::base
-class minebox::miners::base {
+class minebox::tools::base {
   $files_path = "${minebox::base_path}/miners"
 
   # class { '::archive':
   #   aws_cli_install => true,
   # }
 
-  class { 'minebox::miners::claymore' :
+  class { 'minebox::tools::claymore' :
     files_path => $files_path,
   }
 
-  -> class { 'minebox::miners::install' :
+  class { 'minebox::tools::miners' :
+    files_path => $files_path,
+  }
+
+  class { 'minebox::tools::tools' :
     files_path => $files_path,
   }
 

@@ -1,16 +1,16 @@
-# minebox::miners::install
+# minebox::tools::miners
 #
 # A description of what this class does
 #
 # @summary A short summary of the purpose of this class
 #
 # @example
-#   include minebox::miners::install
-class minebox::miners::install (
+#   include minebox::tools::miners
+class minebox::tools::miners (
   String $files_path,
 ) {
 
-  $minebox::downloads.each |String $title, Hash $archive| {
+  $minebox::miners.each |String $title, Hash $archive| {
     file { "${files_path}/${title}" :
       ensure => directory,
       owner  => $minebox::miner_user,
