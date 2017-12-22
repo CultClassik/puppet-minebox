@@ -20,21 +20,16 @@ class minebox::miners::install (
       mode   => '0774',
     }
 
-    $minebox::downloads.each |String $title, String $name| {
-    file { "${files_path}/${title}" :
-      ensure => directory,
-      owner  => $minebox::miner_user,
-      group  => $minebox::miner_group,
-    }
-
-### make sure that tar is changing the parent folder when unarchiving
-    archive { "${files_path}/${title}" :
+    ### make sure that tar is changing the parent folder when unarchiving
+    archive { "${files_path}/${archive['file']}" :
     #archive { $title :
-      ensure       => present,
-      cleanup      => true,
-      extract      => true,
-      extract_path => "${files_path}/${title}",
-      source       => $archive['source'],
+      ensure        => present,
+      cleanup       => true,
+      extract       => true,
+      extract_path  => "${files_path}/${title}",
+      #extract_flags => "",
+      source        => $archive['source'],
     }
   }
+
 }
