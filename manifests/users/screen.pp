@@ -29,7 +29,7 @@ class minebox::users::screen {
       content => epp(
         'minebox/amd/screenrc.epp',
         {
-          'mining_script' => "/home/${minebox::miner_user}/claymore",
+          'mining_script' => "${minebox::base_path}/scripts/claymore.sh",
           }
         ),
       owner   => $minebox::miner_user,
@@ -37,8 +37,6 @@ class minebox::users::screen {
       mode    => '0774',
     }
   }
-
-  ##### ADD ELSE HERE TO GENERATE SCREENRC FOR AMD SYSTEMS
 
   cron { 'Screen Setup' :
     ensure  => present,
