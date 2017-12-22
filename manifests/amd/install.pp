@@ -13,7 +13,7 @@ class minebox::amd::install (
   include minebox::amd::rocm
   #include minebox::amd::driver
 
-  Class['::minebox::amd::rocm']
+  #Class['::minebox::amd::rocm']
   #Class['::minebox::amd::driver']
 
   #-> file_line { 'Enable large page support':
