@@ -27,6 +27,12 @@ class minebox::amd::rocm {
   #-> package { 'rocm' :
   #  ensure => present,
   #}
+  ensure_packages (
+    ['rocm-dkms', 'rocm-opencl-dev'],
+    {
+      ensure => present,
+    }
+  )
 
   exec { 'Update GRUB':
     command     => '/usr/sbin/update-grub',
