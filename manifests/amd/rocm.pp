@@ -49,7 +49,9 @@ class minebox::amd::rocm {
 #  }
 
   file { '/etc/profile.d/amdgpu-pro.sh' :
-    ensure  => absent,
+    ensure  => file,
+    mode    => '0774',
+    content => 'export LLVM_BIN=/opt/rocm/bin',
   }
 
 }

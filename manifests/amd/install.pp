@@ -10,7 +10,8 @@ class minebox::amd::install (
   String $fan_control_script = 'amdgpu-pro-fans.sh',
 ) {
 
-  include minebox::amd::driver
+  #include minebox::amd::driver
+  include minebox::amd::rocm
 
   #Class['::minebox::amd::driver']
 
