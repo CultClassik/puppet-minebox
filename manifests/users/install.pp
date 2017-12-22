@@ -11,8 +11,8 @@
 #   include minebox::users::install
 class minebox::users::install {
 
-  contain minebox::users::screen
-  contain minebox::users::links
+  #contain minebox::users::screen
+  #contain minebox::users::links
 
   # Create the miner users local group
   group { $minebox::miner_group :
@@ -46,7 +46,10 @@ class minebox::users::install {
     key    => $minebox::miner_user_ssh_key,
   }
 
-  -> Class['::minebox::users::links']
-  -> Class['::minebox::users::screen']
+  #-> Class['::minebox::users::links']
+  #-> Class['::minebox::users::screen']
+
+  -> class { 'minebox::users::screen' : }
+  -> class { 'minebox::users::links' : }
 
 }
