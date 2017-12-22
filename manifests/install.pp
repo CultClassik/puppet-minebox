@@ -8,8 +8,6 @@
 #   include minebox::install
 class minebox::install {
 
-  contain minebox::miners::base
-
   # Install required packages
   ensure_packages(
     $minebox::packages_base,
