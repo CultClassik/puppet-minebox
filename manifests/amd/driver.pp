@@ -36,7 +36,7 @@ class minebox::amd::driver {
 
   exec { 'Install AMD PRO GPU Blockchain Driver' :
     command     => "${installer} --compute -y",
-    subscribe   => File[$installer}],
+    subscribe   => File[$installer],
     refreshonly => true,
   }
 
