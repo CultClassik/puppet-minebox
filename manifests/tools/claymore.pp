@@ -11,7 +11,7 @@ class minebox::tools::claymore (
 ){
 
   if $minebox::gpu_type == 'amd' {
-    # disabled fan script for now, vars are out of what or something, fix it asap
+    # disabled fan script for now, vars are out of whack or something, fix it asap
     $fan_script = "#${minebox::base_path}/scripts/${minebox::fan_control_script}"
   } else {
     $fan_script = '# no fan script inserted - Regards, Puppetmaster'
@@ -27,6 +27,7 @@ class minebox::tools::claymore (
       {
         'path'               => '/minebox/miners/claymore',
         'fan_control_script' => $fan_script,
+        'dcri'               => $minebox::claymore_dcri,
       }
     ),
   }
