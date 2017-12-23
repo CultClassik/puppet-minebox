@@ -9,14 +9,17 @@
 
 class minebox(
   String $gpu_type,
-  String $miner_user_pwd,
-  String $miner_user_ssh_key,
   String $storage_path,
   Array $nv_gpus = [],
+  String $miner_user_pwd,
+  String $miner_user_ssh_key = undef,
+  String $nvidia_driver = 'nvidia-384',
+  String $amd_driver = 'amdgpu-pro-17.50-511655',
   Integer $gpu_fan = 0,
   Integer $claymore_dcri = 6,
   Boolean $use_docker = true,
   Boolean $cpu_mining = true,
+  Boolean $use_rocm = false,
   String $nvdocker_pkg_name = 'nvidia-docker2',
   String $facts_path = '/etc/facter/facts.d',
   String $base_path = '/minebox',
@@ -28,9 +31,6 @@ class minebox(
     'video',
     'docker',
     ],
-  String $nvidia_driver = 'nvidia-384',
-  String $amd_driver = 'amdgpu-pro-17.50-511655',
-  Boolean $use_rocm = true,
   Array $folders = [
     'drivers',
     'scripts',
@@ -88,8 +88,7 @@ class minebox(
   }
   ) {
 
-  # require stdlib, reboot, cron, apt, docker
-  require apt
+  require apt, docker, cron, reboot, stdlib, archive
 
   include minebox::users::install
   contain minebox::install
