@@ -29,8 +29,6 @@ class minebox(
     'docker',
     ],
   String $nvidia_driver = 'nvidia-384',
-  #String $amd_driver = 'amdgpu-pro-17.40-483984',
-  #String $amd_driver = 'amdgpu-pro-17.40-514569',
   String $amd_driver = 'amdgpu-pro-17.50-511655',
   Boolean $use_rocm = true,
   Array $folders = [
@@ -71,7 +69,7 @@ class minebox(
       'version' => '10.2',
       'source'  => 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/claymore_Ethereum%2BDecred_Siacoin_Lbry_Pascal_gpu_v10.2_LINUX.tar.gz',
       'file'    => 'claymore.tar.gz',
-      'creates' => 'ethcdrminer64',
+      'creates' => 'ethdcrminer64',
       },
     'ethminer' => {
       'version' => '0.12.0',
