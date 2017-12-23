@@ -27,14 +27,7 @@ class minebox::config {
     mode   => '0744',
   }
 
-  # Prevent PCI-E bus errors caused by power management
-  file_line { 'GRUB Conf' :
-    path  => '/etc/default/grub',
-    line  => 'GRUB_CMDLINE_LINUX="text pci=noaer net.ifnames=0 biosdevname=0"',
-    match => '^GRUB_CMDLINE_LINUX=.*$',
-  }
-
-  exec { 'Update xdm' :
+    exec { 'Update xdm' :
     command     => '/usr/sbin/update-rc.d xdm defaults & /bin/sync',
     refreshonly => true,
     subscribe   => File_line['GRUB Conf'],
@@ -49,6 +42,7 @@ class minebox::config {
     include minebox::docker::containers::xmr_cpu
   }
 
+  # Prevent PCI-E bus errors caused by power management, use normal eth if names
   file_line { 'Manage GRUB_CMDLINE_LINUX for grub conf':
     path  => '/etc/default/grub',
     line  => 'GRUB_CMDLINE_LINUX="pci=nomsi net.ifnames=0 biosdevname=0"',
