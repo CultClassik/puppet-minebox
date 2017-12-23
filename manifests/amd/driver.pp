@@ -32,7 +32,7 @@ class minebox::amd::driver {
     subscribe   => Archive["${driver_path}/${driver_file}"],
     refreshonly => true,
     # added - test
-    notify      => Reboot['after_run'],
+    #notify      => Reboot['after_run'],
   }
 
   file { '/etc/profile.d/amdgpu-pro.sh' :
