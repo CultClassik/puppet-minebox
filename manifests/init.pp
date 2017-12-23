@@ -14,6 +14,7 @@ class minebox(
   String $storage_path,
   Array $nv_gpus = [],
   Integer $gpu_fan = 0,
+  Integer $claymore_dcri = 6,
   Boolean $use_docker = true,
   Boolean $cpu_mining = true,
   String $nvdocker_pkg_name = 'nvidia-docker2',

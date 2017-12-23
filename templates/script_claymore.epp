@@ -8,5 +8,5 @@ export GPU_SINGLE_ALLOC_PERCENT=100
 
 <%= $path %>/ethdcrminer64 -epool us1.ethermine.org:4444 \
 -ewal 0x96ae82e89ff22b3eff481e2499948c562354cb23.$HOSTNAME -epsw x \
--dcoin lbc -dpool lbry.suprnova.cc:6256 -dwal cultclassik.$HOSTNAME -dpsw x -dcri 14 \
+-dcoin lbc -dpool lbry.suprnova.cc:6256 -dwal cultclassik.$HOSTNAME -dpsw x -dcri <%= $dcri %> \
 -etha 2
