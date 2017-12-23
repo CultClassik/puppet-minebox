@@ -30,8 +30,8 @@ class minebox::config {
     exec { 'Update xdm' :
     command     => '/usr/sbin/update-rc.d xdm defaults & /bin/sync',
     refreshonly => true,
-    subscribe   => File_line['GRUB Conf'],
-    #notify      => Reboot['after_run'],
+    subscribe   => File_line['GRUB_CMDLINE_LINUX'],
+    notify      => Reboot['after_run'],
   }
 
   #reboot { 'after_run' :
@@ -43,7 +43,7 @@ class minebox::config {
   }
 
   # Prevent PCI-E bus errors caused by power management, use normal eth if names
-  file_line { 'Manage GRUB_CMDLINE_LINUX for grub conf':
+  file_line { 'GRUB_CMDLINE_LINUX':
     path  => '/etc/default/grub',
     line  => 'GRUB_CMDLINE_LINUX="pci=nomsi net.ifnames=0 biosdevname=0"',
     match => '^GRUB_CMDLINE_LINUX=.*$',
