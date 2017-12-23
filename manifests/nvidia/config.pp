@@ -41,7 +41,7 @@ class minebox::nvidia::config {
     subscribe   => File["${scripts_path}/nvoc.sh"],
     refreshonly => true,
     command     => "${scripts_path}/conf-nv.sh",
-    notify      => Reboot['after_run']
+    #notify      => Reboot['after_run']
   }
 
   # Add nvoc to rc.local so it executes after boot

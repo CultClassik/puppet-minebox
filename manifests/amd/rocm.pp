@@ -37,7 +37,7 @@ class minebox::amd::rocm {
   #)
   package { 'rocm-dkms' :
     ensure => present,
-    notify => Reboot['after_run'],
+    #notify => Reboot['after_run'],
   }
 
 #  exec { 'Update GRUB':

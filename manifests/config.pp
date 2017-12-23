@@ -38,7 +38,7 @@ class minebox::config {
     command     => '/usr/sbin/update-rc.d xdm defaults & /bin/sync',
     refreshonly => true,
     subscribe   => File_line['GRUB Conf'],
-    notify      => Reboot['after_run'],
+    #notify      => Reboot['after_run'],
   }
 
   #reboot { 'after_run' :
