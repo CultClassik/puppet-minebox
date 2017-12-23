@@ -21,11 +21,12 @@ class minebox::config {
     }
   }
 
+  # MOVED TO MINEBOX::NVIDIA::CONFIG - remove this after testing is good
   # Make rc.local executible so we can run stuff there
-  file { '/etc/rc.local' :
-    ensure => file,
-    mode   => '0744',
-  }
+  #file { '/etc/rc.local' :
+  #  ensure => file,
+  #  mode   => '0744',
+  #}
 
     exec { 'Update xdm' :
     command     => '/usr/sbin/update-rc.d xdm defaults & /bin/sync',
