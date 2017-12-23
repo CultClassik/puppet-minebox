@@ -34,9 +34,9 @@ class minebox::config {
     notify      => Reboot['after_run'],
   }
 
-  #reboot { 'after_run' :
-  #  apply => finished,
-  #}
+  reboot { 'after_run' :
+    apply => finished,
+  }
 
   if $minebox::cpu_mining == true {
     include minebox::docker::containers::xmr_cpu
