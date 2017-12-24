@@ -12,7 +12,7 @@ class minebox::docker::containers::portainer {
 
   docker::run { 'portainer' :
     ensure                   => present,
-    image                    => 'portainer/portainer',
+    image                    => 'portainer/portainer:latest',
     volumes                  => [
       '/etc/localtime:/etc/localtime:ro',
       '/var/run/docker.sock:/var/run/docker.sock:ro',
