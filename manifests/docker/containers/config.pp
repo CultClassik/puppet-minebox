@@ -15,10 +15,19 @@ class minebox::docker::containers::config (
 
     $docker_image = "${gpu['d_repo']}/${gpu['d_image']}"
 
-    minebox::docker::containers::ethminer_nv { "docker container ${image_name} ${gpu['id']}" :
-      gpu          => $gpu,
-      docker_image => $docker_image,
-      image_tag    => $gpu['d_tag'],
+    if $image_name == 'ethminer_nv' {
+      minebox::docker::containers::ethminer_nv { "docker container ${image_name} ${gpu['id']}" :
+        gpu          => $gpu,
+        docker_image => $docker_image,
+        image_tag    => $gpu['d_tag'],
+      }
+    }
+    elsif $image_name == 'claymore_nv' {
+      minebox::docker::containers::claymore_nv { "docker container ${image_name} ${gpu['id']}" :
+        gpu          => $gpu,
+        docker_image => $docker_image,
+        image_tag    => $gpu['d_tag'],
+      }
     }
   }
 
