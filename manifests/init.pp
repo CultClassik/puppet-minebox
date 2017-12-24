@@ -88,7 +88,7 @@ class minebox(
   }
   ) {
 
-  require apt, docker, cron, reboot, stdlib, archive
+  #require apt, docker, cron, reboot, stdlib, archive
 
   include minebox::users::install
   contain minebox::install
