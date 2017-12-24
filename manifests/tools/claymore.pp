@@ -10,11 +10,19 @@ class minebox::tools::claymore (
   String $files_path,
 ){
 
-  if $minebox::gpu_type == 'amd' {
-    # disabled fan script for now, vars are out of whack or something, fix it asap
-    $fan_script = "#${minebox::base_path}/scripts/${minebox::fan_control_script}"
-  } else {
-    $fan_script = '# no fan script inserted - Regards, Puppetmaster'
+  unless $minebox::gpu_type == 'nvidia' {
+    $fan_script = "#${minebox::base_path}/scripts/${minebox::fan_control_script} -s 75"
+  }
+
+  if $minebox::claymore['platform'] == undef {
+    $claymore_platform = $minebox::gpu_type ? {
+      'amd'    => 1,
+      'nvidia' => 2,
+      default  => 3,
+    }
+  }
+  else {
+    $claymore_platform = $minebox::claymore['platform']
   }
 
   file { "${minebox::base_path}/scripts/claymore.sh" :
@@ -25,9 +33,14 @@ class minebox::tools::claymore (
     content => epp(
       'minebox/script_claymore.epp',
       {
-        'path'               => '/minebox/miners/claymore',
-        'fan_control_script' => $fan_script,
-        'dcri'               => $minebox::claymore_dcri,
+        'path'          => '/minebox/miners/claymore',
+        'pre_mine_opts' => $fan_script,
+        'eth_acct'      => $minebox::accounts['eth'],
+        'lbc_acct'      => $minebox::accounts['lbc'],
+        'dcri'          => $minebox::claymore['dcri'],
+        'etha'          => $minebox::claymore['etha'],
+        'ethi'          => $minebox::claymore['ethi'],
+        'platform'      => $claymore_platform,
       }
     ),
   }

@@ -10,15 +10,15 @@
 class minebox(
   String $gpu_type,
   String $storage_path,
-  Array $nv_gpus = [],
   String $miner_user_pwd,
   String $miner_user_ssh_key = undef,
+  Array $nv_gpus = [],
   String $nvidia_driver = 'nvidia-384',
   String $amd_driver = 'amdgpu-pro-17.50-511655',
   Integer $gpu_fan = 0,
-  Integer $claymore_dcri = 6,
   Boolean $use_docker = true,
   Boolean $cpu_mining = true,
+  # use_rocm is depricated and will be removed
   Boolean $use_rocm = false,
   String $nvdocker_pkg_name = 'nvidia-docker2',
   String $facts_path = '/etc/facter/facts.d',
@@ -85,7 +85,13 @@ class minebox(
     'lbc' => 'cultclassik',
     'xmr' => '447vxA7StEu5Ht9p8MiWNmhLo48dYnfwPGUYtxUAArxKD6DkSthnQiVL843NKEC1oGTS6Gmu3XaoK3uBcQ118zXaFPjLdxz',
     'sia' => '9e4337a945bdcbb7e9edfc6889a89202ea4e72d1ea389d8090bf117656e83bcb223626f10681',
-  }
+  },
+  Hash $claymore = {
+    'dcri'     => 8,
+    'etha'     => 2,
+    'ethi'     => 8,
+    'platform' => undef,
+  },
   ) {
 
   #require apt, docker, cron, reboot, stdlib, archive

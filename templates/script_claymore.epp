@@ -4,9 +4,15 @@
 export GPU_MAX_ALLOC_PERCENT=100
 export GPU_SINGLE_ALLOC_PERCENT=100
 
-<%= $fan_control_script %>
+<%= $pre_mine_opts %>
 
 <%= $path %>/ethdcrminer64 -epool us1.ethermine.org:4444 \
--ewal 0x96ae82e89ff22b3eff481e2499948c562354cb23.$HOSTNAME -epsw x \
--dcoin lbc -dpool lbry.suprnova.cc:6256 -dwal cultclassik.$HOSTNAME -dpsw x -dcri <%= $dcri %> \
--etha 2
+#-ewal 0x96ae82e89ff22b3eff481e2499948c562354cb23.$HOSTNAME -epsw x \
+-ewal <%= $eth_acct %>.$HOSTNAME -epsw x \
+#-dcoin lbc -dpool lbry.suprnova.cc:6256 -dwal cultclassik.$HOSTNAME -dpsw x -dcri <%= $dcri %> \
+-dcoin lbc -dpool lbry.suprnova.cc:6256 -dwal <%= $lbc_acct %>.$HOSTNAME -dpsw x
+-dcri <%= $dcri %> \
+-etha <%= $etha %> \
+-ethi <%= $ethi %> \
+-platform <%= $platform %> \
+<%= $xtra_opts %>
