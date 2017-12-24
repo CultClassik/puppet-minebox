@@ -12,5 +12,5 @@ export GPU_SINGLE_ALLOC_PERCENT=100
 -dcri <%= $dcri %> \
 -etha <%= $etha %> \
 -ethi <%= $ethi %> \
--platform <%= $platform %> \
+-platform <%= $platform %>
 <%= $xtra_opts %>
