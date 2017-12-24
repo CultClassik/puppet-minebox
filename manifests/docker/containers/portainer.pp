@@ -1,6 +1,6 @@
 # minebox::docker::containers::portainer
 #
-# A description of what this class does
+# Creates a Docker container with the Portainer image.
 #
 # @summary A short summary of the purpose of this class
 #
