@@ -39,8 +39,12 @@ class minebox::config {
     apply => finished,
   }
 
+  #######################################################################################################
+  # Might want to just call a install or base class and make decisions over there, for now this is here.#
+  #######################################################################################################
   if $minebox::cpu_mining == true {
     include minebox::docker::containers::xmr_cpu
+    include minebox::docker::containers::portainer
   }
 
   # Prevent PCI-E bus errors caused by power management, use normal eth if names

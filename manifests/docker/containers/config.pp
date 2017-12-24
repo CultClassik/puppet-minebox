@@ -10,8 +10,6 @@ class minebox::docker::containers::config (
   Array $gpus,
 ) {
 
-  include minebox::docker::containers::portainer
-
   $gpus.each |Hash $gpu| {
     $image_name = regsubst($gpu['d_image'], '(-)', '_', 'G')
 
