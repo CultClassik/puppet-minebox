@@ -14,10 +14,12 @@ class minebox::docker::containers::miners::ethminer_nv (
   # Generate a worker name, i.e. "miner02-3"
   $gpu['worker'] = "${trusted['hostname']}-${gpu['id']}"
 
+  # Create the container
   minebox::docker::types::ethminer_miner_nv { $gpu['worker'] :
     gpu => $gpu,
   }
 
+  # Create the monitoring endpoint exported resource
   @@minebox::docker::types::ethminer_monitoring_endpoint { $gpu['worker'] :
     monitoring_port => $monitoring_port,
   }
