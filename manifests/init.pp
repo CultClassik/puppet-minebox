@@ -85,6 +85,8 @@ class minebox(
     'lbc' => 'cultclassik',
     'xmr' => '447vxA7StEu5Ht9p8MiWNmhLo48dYnfwPGUYtxUAArxKD6DkSthnQiVL843NKEC1oGTS6Gmu3XaoK3uBcQ118zXaFPjLdxz',
     'sia' => '9e4337a945bdcbb7e9edfc6889a89202ea4e72d1ea389d8090bf117656e83bcb223626f10681',
+    'zcl' => 'your_t_addr_here',
+    'zec' => 'your_t_addr_here',
   },
   Hash $claymore = {
     'dcri'     => 8,
