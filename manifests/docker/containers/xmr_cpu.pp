@@ -18,7 +18,7 @@ class minebox::docker::containers::xmr_cpu(
   docker::run { 'xmr-cpu-miner' :
     ensure                   => present,
     image                    => "${docker_image}:${image_tag}",
-    env                      => [ "username=${minebox::accounts['xmr']}" ],
+    env                      => [ "WALLET_ADDRESS=${minebox::accounts['xmr']}" ],
     dns                      => ['8.8.8.8', '8.8.4.4'],
     extra_parameters         => [ '--restart=always',
                                   "--cpu-shares=${cpu_shares}",
