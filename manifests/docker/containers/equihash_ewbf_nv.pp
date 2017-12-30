@@ -22,6 +22,8 @@ define minebox::docker::containers::equihash_ewbf_nv(
     env                      => [
       "WORKER=${worker}",
       "T_ADDR=${minebox::accounts['zcl']}",
+      'POOL_PORT=3053',
+      'POOL_PORT_1=3053',
       'NVIDIA_DRIVER_CAPABILITIES=compute,utility',
       "NVIDIA_VISIBLE_DEVICES=${gpu['id']}",
     ],
