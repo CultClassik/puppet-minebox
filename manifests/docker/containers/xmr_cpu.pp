@@ -18,11 +18,18 @@ class minebox::docker::containers::xmr_cpu(
   docker::run { 'xmr-cpu-miner' :
     ensure                   => present,
     image                    => "${docker_image}:${image_tag}",
-    env                      => [ "WALLET_ADDRESS=${minebox::accounts['xmr']}" ],
+    env                      => [
+      "WALLET_ADDRESS=${minebox::accounts['xmr']}"
+      ],
     dns                      => ['8.8.8.8', '8.8.4.4'],
-    extra_parameters         => [ '--restart=always',
-                                  "--cpu-shares=${cpu_shares}",
-                                ],
+    extra_parameters         => [
+      '--restart=always',
+      '--privileged',
+      "--cpu-shares=${cpu_shares}",
+    ],
+    volumes                  => [
+      '/etc/localtime:/etc/localtime',
+      ],
     remove_container_on_stop => true,
     remove_volume_on_stop    => true,
     pull_on_start            => true,
