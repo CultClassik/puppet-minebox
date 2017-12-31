@@ -47,7 +47,7 @@ class minebox::config {
     include minebox::docker::containers::xmr_cpu
     include minebox::docker::containers::portainer
     Class['::minebox::system::hugepages']
-    -> Class['::docker::containers::xmr_cpu']
+    -> Class['::minebox::docker::containers::xmr_cpu']
   }
 
   # Prevent PCI-E bus errors caused by power management, use normal eth if names
