@@ -34,6 +34,7 @@ class minebox::docker::containers::xmr_cpu(
     remove_container_on_stop => true,
     remove_volume_on_stop    => true,
     pull_on_start            => true,
+    subscribe                => Exec['Refresh mounts for Huge Pages'],
   }
 
 }
