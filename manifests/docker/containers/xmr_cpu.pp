@@ -29,6 +29,7 @@ class minebox::docker::containers::xmr_cpu(
     ],
     volumes                  => [
       '/etc/localtime:/etc/localtime',
+      '/dev/hugepages:/sys/kernel/mm/hugepages',
       ],
     remove_container_on_stop => true,
     remove_volume_on_stop    => true,

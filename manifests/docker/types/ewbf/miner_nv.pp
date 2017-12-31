@@ -24,6 +24,9 @@ define minebox::docker::types::ewbf::miner_nv(
       'NVIDIA_DRIVER_CAPABILITIES=compute,utility',
       "NVIDIA_VISIBLE_DEVICES=${gpu['id']}",
     ],
+    volumes                  => [
+      '/etc/localtime:/etc/localtime',
+    ],
     dns                      => ['8.8.8.8', '8.8.4.4'],
     expose                   => ['42000'],
     extra_parameters         => [
