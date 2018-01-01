@@ -9,8 +9,8 @@
 class minebox::nvidia::config {
 
   $scripts_path = "${minebox::base_path}/scripts"
-  $gpu_cfg = $minebox::nv_gpus #lookup('minebox::nvidia::config::gpus')
-  $gpu_fan = $minebox::gpu_fan #lookup('minebox::nvidia::config::gpu_fan')
+  $gpu_cfg = $minebox::nv_gpus
+  $gpu_fan = $minebox::gpu_fan
 
   include minebox::xorg::headless
 
@@ -23,6 +23,7 @@ class minebox::nvidia::config {
       { 'user_name' => $minebox::miner_user, }
     )
   }
+
   -> service { 'nvidia-persistenced' :
     ensure => running,
   }
@@ -34,6 +35,12 @@ class minebox::nvidia::config {
       group  => $minebox::miner_group,
       mode   => '0774',
       source => 'puppet:///modules/minebox/conf-nv.sh',
+  }
+
+  exec { 'Apply Nvidia OC Settings' :
+    command     => "${scripts_path}/nvoc.sh",
+    refreshonly => true,
+    subscribe   => File["${scripts_path}/nvoc.sh"],
   }
 
   # Update xorg config when cards change
