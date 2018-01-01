@@ -53,7 +53,7 @@ class minebox::config {
   # Prevent PCI-E bus errors caused by power management, use normal eth if names
   file_line { 'GRUB_CMDLINE_LINUX':
     path  => '/etc/default/grub',
-    line  => 'GRUB_CMDLINE_LINUX="pci=nomsi net.ifnames=0 biosdevname=0"',
+    line  => 'GRUB_CMDLINE_LINUX="pci=nomsi"', #' net.ifnames=0 biosdevname=0"',
     match => '^GRUB_CMDLINE_LINUX=.*$',
   }
 
