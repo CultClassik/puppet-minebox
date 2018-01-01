@@ -10,9 +10,9 @@ define minebox::docker::containers::equihash_ewbf_nv(
   Hash $gpu,
   String $docker_image = 'cultclassik/equihash-ewbf-nv',
   String $image_tag = 'latest',
-  String $pool_name = 'zcl.suprnova.cc',
-  String $pool_port = '4042',
-  String $pool_name_1 = 'us.miningspeed.com',
+  String $pool_name = 'us.miningspeed.com',
+  String $pool_port = '3053',
+  String $pool_name_1 = 'eu.miningspeed.com',
   String $pool_port_1 = '3053',
 )
 {
@@ -25,8 +25,7 @@ define minebox::docker::containers::equihash_ewbf_nv(
     hostname                 => "${facts['hostname']}-${gpu['id']}",
     env                      => [
       "WORKER=${worker}",
-      "T_ADDR1=${minebox::accounts['zcl']}",
-      "T_ADDR=cultclassik",
+      "T_ADDR=${minebox::accounts['zcl']}",
       "POOL_SERVER=${pool_name}",
       "POOL_PORT=${pool_port}",
       "POOL_SERVER_1=${pool_name_1}",
