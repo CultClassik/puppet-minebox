@@ -10,10 +10,15 @@ define minebox::docker::containers::equihash_ewbf_nv(
   Hash $gpu,
   String $docker_image = 'cultclassik/equihash-ewbf-nv',
   String $image_tag = 'latest',
+  String $pool_name = 'zcl.suprnova.cc',
+  String $pool_port = '4042',
+  String $pool_name_1 = 'us.miningspeed.com',
+  String $pool_port_1 = '3053',
 )
 {
 
   $worker = "${trusted['hostname']}_${gpu['id']}"
+
 
   docker::run { "m-nv${gpu['id']}" :
     ensure                   => present,
@@ -22,8 +27,10 @@ define minebox::docker::containers::equihash_ewbf_nv(
     env                      => [
       "WORKER=${worker}",
       "T_ADDR=${minebox::accounts['zcl']}",
-      'POOL_PORT=3053',
-      'POOL_PORT_1=3053',
+      "POOL_NAME=${pool_name}",
+      "POOL_PORT=${pool_port}",
+      "POOL_NAME_1=${pool_name_1}",
+      "POOL_PORT_1=${pool_port_1}",
       'NVIDIA_DRIVER_CAPABILITIES=compute,utility',
       "NVIDIA_VISIBLE_DEVICES=${gpu['id']}",
     ],
