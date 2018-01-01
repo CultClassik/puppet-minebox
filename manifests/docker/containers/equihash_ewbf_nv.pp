@@ -17,7 +17,7 @@ define minebox::docker::containers::equihash_ewbf_nv(
 )
 {
 
-  $worker = "cultclassik.${trusted['hostname']}_${gpu['id']}"
+  $worker = "${trusted['hostname']}_${gpu['id']}"
 
   docker::run { "m-nv${gpu['id']}" :
     ensure                   => present,
@@ -25,7 +25,8 @@ define minebox::docker::containers::equihash_ewbf_nv(
     hostname                 => "${facts['hostname']}-${gpu['id']}",
     env                      => [
       "WORKER=${worker}",
-      "T_ADDR=${minebox::accounts['zcl']}",
+      "T_ADDR1=${minebox::accounts['zcl']}",
+      "T_ADDR=cultclassik.${worker}"
       "POOL_SERVER=${pool_name}",
       "POOL_PORT=${pool_port}",
       "POOL_SERVER_1=${pool_name_1}",
