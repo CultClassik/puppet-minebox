@@ -54,13 +54,13 @@ class minebox::nvidia::config {
   # Add nvoc to rc.local so it executes after boot
   file { '/etc/rc.local' :
     ensure  => file,
-    content => "bash ${scripts_path}/nvoc.sh >/dev/null 2>&1",
+    content => "/bin/bash ${scripts_path}/nvoc.sh >/dev/null 2>&1",
     mode    => '0744',
   }
 
   -> file { "${scripts_path}/nvoc.sh" :
     ensure  => file,
-    content => epp('minebox/nvoc.sh.epp',
+    content => epp('minebox/nvidia/nvoc.sh.epp',
       {
         'gpu_cfg' => $gpu_cfg,
         'gpu_fan' => $gpu_fan,
