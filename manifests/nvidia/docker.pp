@@ -7,7 +7,7 @@
 # @example
 #   include minebox::nvidia::docker
 class minebox::nvidia::docker (
-  Boolean $remove_old = true,
+  Boolean $remove_old = false,
 ){
   require docker
 
