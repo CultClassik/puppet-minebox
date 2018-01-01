@@ -26,7 +26,7 @@ define minebox::docker::containers::equihash_ewbf_nv(
     env                      => [
       "WORKER=${worker}",
       "T_ADDR1=${minebox::accounts['zcl']}",
-      "T_ADDR=cultclassik.${worker}"
+      "T_ADDR=cultclassik.${worker}",
       "POOL_SERVER=${pool_name}",
       "POOL_PORT=${pool_port}",
       "POOL_SERVER_1=${pool_name_1}",
