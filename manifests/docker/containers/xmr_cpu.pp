@@ -19,7 +19,7 @@ class minebox::docker::containers::xmr_cpu(
     ensure                   => present,
     image                    => "${docker_image}:${image_tag}",
     dns                      => ['8.8.8.8', '8.8.4.4'],
-    environment              => [
+    env                      => [
       "username=${minebox::accounts['xmr']}",
     ],
     extra_parameters         => [
