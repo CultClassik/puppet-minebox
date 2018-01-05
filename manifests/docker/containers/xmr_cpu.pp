@@ -18,7 +18,7 @@ class minebox::docker::containers::xmr_cpu(
     image  => "${docker_image}:${image_tag}",
   }
 
-  $facts['processors']['models'].each |Integer $index, Straing $value| {
+  $facts['processors']['models'].each |Integer $index, String $value| {
 
     docker::run { "m-cpu-${index}" :
       ensure                   => present,
