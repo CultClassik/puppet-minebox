@@ -8,7 +8,7 @@
 #   include minebox::docker::containers::xmr_cpu
 
 class minebox::docker::containers::xmr_cpu(
-  $docker_image = 'bitnn/alpine-xmrig',
+  $docker_image = 'servethehome/monero_cpu_moneropool',
   $image_tag = 'latest',
   $cpu_shares = '800',
 )
@@ -19,13 +19,11 @@ class minebox::docker::containers::xmr_cpu(
     ensure                   => present,
     image                    => "${docker_image}:${image_tag}",
     dns                      => ['8.8.8.8', '8.8.4.4'],
+    environment              => [
+      "username=${minebox::accounts['xmr']}",
+    ]
     extra_parameters         => [
-      "-u ${minebox::accounts['xmr']}",
-      '-p x',
-      '-o mine.moneropool.com:3333',
-      '-o mine.moneropool.com:3335',
       '--restart=always',
-      '--privileged',
       "--cpu-shares=${cpu_shares}",
     ],
     volumes                  => [
