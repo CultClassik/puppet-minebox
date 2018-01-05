@@ -21,7 +21,7 @@ class minebox::docker::containers::xmr_cpu(
     dns                      => ['8.8.8.8', '8.8.4.4'],
     environment              => [
       "username=${minebox::accounts['xmr']}",
-    ]
+    ],
     extra_parameters         => [
       '--restart=always',
       "--cpu-shares=${cpu_shares}",
