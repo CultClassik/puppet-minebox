@@ -14,12 +14,11 @@ class minebox::docker::containers::xmr_cpu(
 )
 {
   docker::run { 'xmr-cpu-miner' :
-    ensure => present,
-    image  => "${docker_image}:${image_tag}",
-  }
-
-  -> file { '/etc/systemd/system/docker-xmr-cpu-miner.service' :
-    ensure => absent,
+    ensure           => present,
+    image            => "${docker_image}:${image_tag}",
+    extra_parameters => [
+        '--restart=never',
+    ]
   }
 
   $facts['processors']['models'].each |Integer $index, String $value| {
