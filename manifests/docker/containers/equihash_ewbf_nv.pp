@@ -23,7 +23,7 @@ define minebox::docker::containers::equihash_ewbf_nv(
   $worker = "${trusted['hostname']}_${gpu['id']}"
 
   docker::run { "m-nv${gpu['id']}" :
-    ensure                   => stopped,
+    ensure                   => present,
     image                    => "${docker_image}:${image_tag}",
     hostname                 => $worker,
     env                      => [
