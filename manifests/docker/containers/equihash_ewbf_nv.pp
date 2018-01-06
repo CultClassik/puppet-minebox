@@ -16,16 +16,19 @@ define minebox::docker::containers::equihash_ewbf_nv(
   String $pool_port_1 = '3053',
 )
 {
+  $t_addr = ${minebox::accounts['zcl']}
 
-  $worker = "${trusted['hostname']}${gpu['id']}"
+  notify { "my_t_address:" : $addr }
+
+  $worker = "${trusted['hostname']}_${gpu['id']}"
 
   docker::run { "m-nv${gpu['id']}" :
-    ensure                   => present,
+    ensure                   => stopped,
     image                    => "${docker_image}:${image_tag}",
-    #hostname                 => "${facts['hostname']}-${gpu['id']}",
+    hostname                 => $worker,
     env                      => [
       "WORKER=${worker}",
-      "T_ADDR=${minebox::accounts['zcl']}",
+      "T_ADDR=${t_addr}",
       "POOL_SERVER=${pool_name}",
       "POOL_PORT=${pool_port}",
       "POOL_SERVER_1=${pool_name_1}",
