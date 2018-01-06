@@ -18,7 +18,7 @@ define minebox::docker::containers::equihash_ewbf_nv(
 {
   $t_addr = $minebox::accounts['zcl']
 
-  notify { "my_t_address:" : $addr }
+  notice("my_t_address: ${t_addr}")
 
   $worker = "${trusted['hostname']}_${gpu['id']}"
 
