@@ -9,18 +9,34 @@
 
 class minebox(
   String $gpu_type,
+  Integer $gpu_fan = 0,
+  # This hash param will replace various others
+  Array $nv_gpus = [],
+  String $nvidia_driver = 'nvidia-384',
+  String $nvdocker_pkg_name = 'nvidia-docker2',
+  Hash $nv_conf = {
+    'use_docker' => true,
+    'gpu_fan'    => 0,
+    'driver'     => 'nvidia-384',
+    'docker_pkg' => 'nvidia-docker2',
+    'gpus'       => [],
+  },
+  # This hash param will replace various others
+  String $amd_driver = 'amdgpu-pro-17.50-511655',
+  Hash $amd_conf = {
+    'use_docker' => false,
+    'gpu_fan'    => 0,
+    'driver'     => 'amdgpu-pro-17.50-511655',
+  },
   String $storage_path,
   String $miner_user_pwd,
   String $miner_user_ssh_key = undef,
-  Array $nv_gpus = [],
-  String $nvidia_driver = 'nvidia-384',
-  String $amd_driver = 'amdgpu-pro-17.50-511655',
-  Integer $gpu_fan = 0,
   Boolean $use_docker = true,
   Boolean $cpu_mining = true,
+
   # use_rocm is depricated and will be removed
   Boolean $use_rocm = false,
-  String $nvdocker_pkg_name = 'nvidia-docker2',
+
   String $facts_path = '/etc/facter/facts.d',
   String $base_path = '/minebox',
   String $miner_user = 'miner',
@@ -30,13 +46,6 @@ class minebox(
     'sudo',
     'video',
     'docker',
-    ],
-  Array $folders = [
-    'drivers',
-    'scripts',
-    'files',
-    'miners',
-    'tools',
     ],
   Array $packages_base = [
     "linux-headers-${facts['kernelrelease']}",
@@ -63,6 +72,13 @@ class minebox(
     'x11-xserver-utils',
     'xdm',
     'gtk2.0',
+    ],
+  Array $folders = [
+    'drivers',
+    'scripts',
+    'files',
+    'miners',
+    'tools',
     ],
   Hash $miners = {
     'claymore' => {
@@ -94,6 +110,7 @@ class minebox(
     'zcl' => 'your_t_addr_here',
     'zec' => 'your_t_addr_here',
   },
+  #move this to the miners hash param
   Hash $claymore = {
     'dcri'     => 8,
     'etha'     => 2,
@@ -101,8 +118,6 @@ class minebox(
     'platform' => undef,
   },
   ) {
-
-  #require apt, docker, cron, reboot, stdlib, archive
 
   include minebox::users::install
   contain minebox::install

@@ -32,4 +32,8 @@ class minebox::tools::claymore_equi (
     content => $cme_config,
   }
 
+  file { "${minebox::base_path}/miners/claymore-equi/start.bash" :
+    ensure => absent,
+  }
+
 }
