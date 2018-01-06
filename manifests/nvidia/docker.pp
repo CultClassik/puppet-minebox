@@ -52,7 +52,7 @@ class minebox::nvidia::docker (
     refreshonly => true,
     subscribe   => File['/etc/apt/sources.list.d/nvidia-docker.list'],
   }
-  -> package { $minebox::nvdocker_pkg_name :
+  -> package { $minebox::nv_conf['docker_pkg'] :
     ensure => present,
   }
 
@@ -60,7 +60,7 @@ class minebox::nvidia::docker (
   exec { 'Reload Docker daemon' :
     command     => '/usr/bin/pkill -SIGHUP dockerd',
     refreshonly => true,
-    subscribe   => Package[$minebox::nvdocker_pkg_name],
+    subscribe   => Package[$minebox::nv_conf['docker_pkg']],
   }
 
 }
