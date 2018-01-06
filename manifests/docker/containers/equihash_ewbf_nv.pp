@@ -16,7 +16,7 @@ define minebox::docker::containers::equihash_ewbf_nv(
   String $pool_port_1 = '3053',
 )
 {
-  $t_addr = ${minebox::accounts['zcl']}
+  $t_addr = $minebox::accounts['zcl']
 
   notify { "my_t_address:" : $addr }
 
