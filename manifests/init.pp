@@ -8,11 +8,14 @@
 #   include minebox
 
 class minebox(
+  String $storage_path = 'undef',
+  String $miner_user_pwd = 'undef',
+  String $miner_user_ssh_key = 'undef',
   #String $gpu_type,
-  Integer $gpu_fan = 0,
+  #Integer $gpu_fan = 0,
   # This hash param will replace various others
-  String $nvidia_driver = 'nvidia-384',
-  String $nvdocker_pkg_name = 'nvidia-docker2',
+  #String $nvidia_driver = 'nvidia-384',
+  #String $nvdocker_pkg_name = 'nvidia-docker2',
   Hash $nv_conf = {
     'enable'     => false,
     'use_docker' => true,
@@ -28,9 +31,6 @@ class minebox(
     'gpu_fan'    => 0,
     'driver'     => 'amdgpu-pro-17.50-511655',
   },
-  String $storage_path,
-  String $miner_user_pwd,
-  String $miner_user_ssh_key = undef,
   Boolean $use_docker = true,
   Boolean $cpu_mining = true,
 
