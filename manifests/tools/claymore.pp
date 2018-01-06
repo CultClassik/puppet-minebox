@@ -14,7 +14,7 @@ class minebox::tools::claymore (
 
   if $minebox::amd_conf['enable'] == true {
     $gpu_type = 'amd'
-  } elsif if $minebox::nv_conf['enable'] == true {
+  } elsif $minebox::nv_conf['enable'] == true {
     $gpu_type = 'nvidia'
   }
 
