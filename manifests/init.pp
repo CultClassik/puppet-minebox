@@ -77,6 +77,12 @@ class minebox(
       'file'    => 'ethminer.tar.gz',
       'creates' => 'ethminer',
       },
+    'claymore-equi' => {
+      'version' => '12.6',
+      'source'  => 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/claymore_ZCash_AMD_GPU_Miner_v12.6_LINUX.tar.gz',
+      'file'    => 'claymore-equi.tar.gz',
+      'creates' => 'zecminer64',
+    },
   },
   Hash $tools = {
     },
