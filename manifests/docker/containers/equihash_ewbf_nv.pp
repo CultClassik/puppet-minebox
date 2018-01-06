@@ -11,9 +11,9 @@ define minebox::docker::containers::equihash_ewbf_nv(
   String $docker_image = 'cultclassik/equihash-ewbf-nv',
   String $image_tag = 'latest',
   String $pool_name = 'mining.miningspeed.com',
-  String $pool_port = '3053',
+  String $pool_port = '3052',
   String $pool_name_1 = 'us.miningspeed.com',
-  String $pool_port_1 = '3053',
+  String $pool_port_1 = '3052',
 )
 {
   $t_addr = $minebox::accounts['zcl']
