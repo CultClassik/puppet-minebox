@@ -17,7 +17,7 @@ class minebox::nvidia::docker (
     exec { ' Remove old Nvidia Docker binaries' :
       refreshonly => true,
       command     => '/usr/bin/docker volume ls -q -f driver=nvidia-docker | /usr/bin/xargs -r -I{} -n1 /usr/bin/docker ps -q -a -f volume={} | /usr/bin/xargs -r /usr/bin/docker rm -f /usr/bin/apt-get purge nvidia-docker',
-      before      => Package[$minebox::nvdocker_pkg_name],
+      before      => Package[$minebox::nv_conf['docker_pkg']],
     }
   }
   ###########################
