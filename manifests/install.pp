@@ -32,12 +32,12 @@ class minebox::install {
     }
   }
 
-  if $minebox::gpu_type == 'nvidia' {
+  if $minebox::nv_conf['enable'] == true {
     notify {'NVIDIA GPU based system!':}
     include minebox::nvidia::base
   }
 
-  if $minebox::gpu_type == 'amd' {
+  if $minebox::amd_conf['enable'] == true {
     notify {'AMD GPU based system!':}
     include minebox::amd::base
   }

@@ -4,18 +4,27 @@
 #
 # @summary A short summary of the purpose of this class
 #
+# NOTE - this can't accomodate hybrid nv/amd mining systems!
+#
 # @example
 #   include minebox::tools::claymore
 class minebox::tools::claymore (
   String $files_path,
 ){
 
-  unless $minebox::gpu_type == 'nvidia' {
+  if $minebox::amd_conf['enable'] == true {
+    $gpu_type = 'amd'
+  } elsif if $minebox::nv_conf['enable'] == true {
+    $gpu_type = 'nvidia'
+  }
+
+  }
+  if $minebox::amd_conf['enable'] == true {
     $fan_script = "#${minebox::base_path}/scripts/${minebox::fan_control_script} -s 75"
   }
 
   if $minebox::claymore['platform'] == undef {
-    $claymore_platform = $minebox::gpu_type ? {
+    $claymore_platform = $gpu_type ? {
       'amd'    => 1,
       'nvidia' => 2,
       default  => 3,

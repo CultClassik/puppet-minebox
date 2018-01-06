@@ -5,12 +5,13 @@
 #
 # @summary A short summary of the purpose of this class
 #
+# NOTE - hybrid amd/nv not supported by the YET
 # @example
 #   include minebox::users::screen
 class minebox::users::screen {
 
 
-  if $::minebox::gpu_type == 'nvidia' {
+  if $::minebox::nv_conf['enable'] == true {
     file { "/home/${minebox::miner_user}/.screenrc" :
       ensure  => file,
       content => epp(

@@ -18,7 +18,7 @@ class minebox::tools::claymore_equi (
     $worker_id = $worker
   }
 
-  unless $minebox::gpu_type == 'nvidia' {
+  if $minebox::amd_conf['enable'] == true {
     $fan_script = "#${minebox::base_path}/scripts/${minebox::fan_control_script} -s 75"
   }
 
