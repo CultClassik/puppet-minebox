@@ -11,7 +11,6 @@ class minebox(
   String $gpu_type,
   Integer $gpu_fan = 0,
   # This hash param will replace various others
-  Array $nv_gpus = [],
   String $nvidia_driver = 'nvidia-384',
   String $nvdocker_pkg_name = 'nvidia-docker2',
   Hash $nv_conf = {
@@ -22,7 +21,6 @@ class minebox(
     'gpus'       => [],
   },
   # This hash param will replace various others
-  String $amd_driver = 'amdgpu-pro-17.50-511655',
   Hash $amd_conf = {
     'use_docker' => false,
     'gpu_fan'    => 0,
