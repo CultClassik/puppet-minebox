@@ -22,7 +22,7 @@ define minebox::docker::containers::equihash_ewbf_nv(
   docker::run { "m-nv${gpu['id']}" :
     ensure                   => present,
     image                    => "${docker_image}:${image_tag}",
-    hostname                 => "${facts['hostname']}-${gpu['id']}",
+    #hostname                 => "${facts['hostname']}-${gpu['id']}",
     env                      => [
       "WORKER=${worker}",
       "T_ADDR=${minebox::accounts['zcl']}",
