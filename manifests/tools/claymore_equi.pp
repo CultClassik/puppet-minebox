@@ -23,9 +23,8 @@ class minebox::tools::claymore_equi (
   }
 
   $cme_config = "-zpool us.miningspeed.com:3053
-    -u ${t_address}.${worker_id}
-    -p x
-    -t 8"
+    -zwal ${t_address}.${worker_id}
+    -zpsw x"
 
   file { "${minebox::base_path}/miners/claymore-equi/config.txt" :
     ensure  => present,
