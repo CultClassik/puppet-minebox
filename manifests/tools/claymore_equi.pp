@@ -22,9 +22,7 @@ class minebox::tools::claymore_equi (
     $fan_script = "#${minebox::base_path}/scripts/${minebox::fan_control_script} -s 75"
   }
 
-  $cme_config = "-zpool us.miningspeed.com:3053
-    -zwal ${t_address}.${worker_id}
-    -zpsw x"
+  $cme_config = "-zpool us.miningspeed.com:3053 \n-zwal ${t_address}.${worker_id}\n-zpsw x"
 
   file { "${minebox::base_path}/miners/claymore-equi/config.txt" :
     ensure  => present,
