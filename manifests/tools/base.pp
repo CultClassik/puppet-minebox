@@ -18,11 +18,16 @@ class minebox::tools::base {
     files_path => $miners_path,
   }
 
+  class { 'minebox::tools::claymore_equi' :
+    files_path => $miners_path,
+    t_address  => $minebox::accounts['zcl'],
+  }
+
   class { 'minebox::tools::miners' :
     files_path => $miners_path,
   }
 
-  #class { 'minebox::tools::tools' :
+    #class { 'minebox::tools::tools' :
   #  files_path => $tools_path,
   #}
 
