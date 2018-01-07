@@ -10,7 +10,7 @@ class minebox::nvidia::config {
 
   $scripts_path = "${minebox::base_path}/scripts"
   $gpu_cfg = $minebox::nv_conf['gpus']
-  $gpu_fan = $minebox::gpu_fan
+  $gpu_fan = $minebox::nv_conf['gpu_fan']
 
   include minebox::xorg::headless
 
