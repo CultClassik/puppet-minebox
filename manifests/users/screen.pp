@@ -51,7 +51,7 @@ class minebox::users::screen {
     false => 'present',
   }
 
-  -> cron { 'Screen Setup' :
+  cron { 'Screen Setup' :
     ensure  => $cron_screen,
     command => 'sleep 40 && /usr/bin/screen -d -m',
     user    => $minebox::miner_user,
