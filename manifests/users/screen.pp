@@ -39,8 +39,14 @@ class minebox::users::screen {
     }
   }
 
-  cron { 'Screen Setup' :
-    ensure  => present,
+  if $minebox::amd_conf['use_docker'] == false {
+    $cron_screen = 'present'
+  } else {
+    $cron_screen = 'absent'
+  }
+
+  -> cron { 'Screen Setup' :
+    ensure  => $cron_screen,
     command => 'sleep 40 && /usr/bin/screen -d -m',
     user    => $minebox::miner_user,
     special => 'reboot',
