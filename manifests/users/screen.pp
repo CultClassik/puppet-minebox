@@ -46,10 +46,9 @@ class minebox::users::screen {
     }
   }
 
-  if $minebox::amd_conf['use_docker'] == false {
-    $cron_screen = 'present'
-  } else {
-    $cron_screen = 'absent'
+  $cron_screen = $minebox::amd_conf['use_docker'] ? {
+    true  => 'absent',
+    false => 'present',
   }
 
   -> cron { 'Screen Setup' :
