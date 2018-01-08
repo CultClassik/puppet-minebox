@@ -24,13 +24,20 @@ class minebox::users::screen {
       group   => $minebox::miner_group,
       mode    => '0774',
     }
-  } else {
+  }
+
+  $mining_script = $::minebox::amd_conf['use_docker'] ? {
+    true  => '# nothing goes here for now, see module manifest:  minebox::users::screen',
+    false => "screen -t miner ${minebox::base_path}/scripts/claymore.sh",
+  }
+
+  if $::minebox::amd_conf['enable'] == true {
     file { "/home/${minebox::miner_user}/.screenrc" :
       ensure  => file,
       content => epp(
         'minebox/amd/screenrc.epp',
         {
-          'mining_script' => "screen -t miner ${minebox::base_path}/scripts/claymore.sh",
+          'mining_script' => $mining_script,
           }
         ),
       owner   => $minebox::miner_user,
