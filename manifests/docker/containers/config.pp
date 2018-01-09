@@ -29,6 +29,13 @@ class minebox::docker::containers::config (
         image_tag    => $gpu['d_tag'],
       }
     }
+    elsif $image_name == 'claymore_eth' {
+      minebox::docker::containers::claymore_amd { "docker container ${image_name} ${gpu['id']}" :
+        gpu          => $gpu,
+        docker_image => $docker_image,
+        image_tag    => $gpu['d_tag'],
+      }
+    }
     elsif $image_name == 'equihash_ewbf_nv' {
       minebox::docker::containers::equihash_ewbf_nv { "docker container ${image_name} ${gpu['id']}" :
         gpu          => $gpu,
