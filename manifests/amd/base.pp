@@ -8,6 +8,10 @@
 #   include minebox::amd::base
 class minebox::amd::base {
   include minebox::amd::install
+  include minebox::amd::config
+
+  Class['::minebox::amd::install']
+  -> Class['::minebox::amd::config']
   #if $minebox::use_rocm == true {
   #  include minebox::amd::rocm
   #  Class['::minebox::amd::install']
