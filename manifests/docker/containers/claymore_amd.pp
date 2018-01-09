@@ -14,7 +14,7 @@ define minebox::docker::containers::claymore_amd(
 {
   $worker = "${trusted['hostname']}-${gpu['id']}"
 
-  docker::run { "m-nv${gpu['id']}" :
+  docker::run { "m-gpu${gpu['id']}" :
     ensure                   => present,
     image                    => "${docker_image}:${image_tag}",
     hostname                 => "${facts['hostname']}-${gpu['id']}",
