@@ -35,4 +35,7 @@ class minebox::tools::base {
     files_path => $tools_path,
   }
 
+  class { 'minebox::tools::ohgodatool' :
+    files_path => $tools_path,
+  }
 }
