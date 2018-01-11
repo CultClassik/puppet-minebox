@@ -22,7 +22,7 @@ class minebox::tools::ohgodatool (
   }
 
   -> file { "${files_path}/ohgodatool" :
-    user  => $minebox::miner_user,
+    owner => $minebox::miner_user,
     group => $minebox::miner_group,
     mode  => '0774',
   }
