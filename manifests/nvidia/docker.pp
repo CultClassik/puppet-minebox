@@ -65,7 +65,7 @@ class minebox::nvidia::docker (
 
   -> if $minebox::nv_conf['use_docker'] == true {
     class { '::minebox::docker::containers::config' :
-      gpus => $gpu_cfg,
+      gpus => $minebox::nv_conf['gpus'],
     }
   }
 
