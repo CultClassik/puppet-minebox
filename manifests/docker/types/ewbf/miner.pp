@@ -8,6 +8,8 @@
 #   minebox::docker::types::ewbf::miner { 'namevar': }
 define minebox::docker::types::ewbf::miner(
   Hash $gpu,
+  String $docker_image,
+  String $image_tag,
 ) {
 
   docker::run { "m-nv${gpu['id']}" :
