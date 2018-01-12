@@ -1,18 +1,19 @@
-# minebox::docker::types::claymore::miner_nv
+# minebox::docker::types::claymore::miner
 #
 # A description of what this defined type does
 #
 # @summary A short summary of the purpose of this defined type.
 #
 # @example
-#   minebox::docker::types::claymore::miner_nv { 'namevar': }
-define minebox::docker::types::claymore::miner_nv(
+#   minebox::docker::types::claymore::miner { 'namevar': }
+define minebox::docker::types::claymore::miner(
   Hash $gpu,
-  String $docker_image = 'cultclassik/claymore-nv',
-  String $image_tag = 'latest',
-)
-{
+  String $docker_image,
+  String $image_tag,
+){
 
+  # ADD: some logic here to set worker/acct/user/etc based on the pool, i.e.
+  # address.worker, or if the pool wants a separate worker param
   $worker = "${trusted['hostname']}-${gpu['id']}"
 
   docker::run { "m-nv${gpu['id']}" :

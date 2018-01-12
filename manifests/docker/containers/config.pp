@@ -23,7 +23,7 @@ class minebox::docker::containers::config (
       }
     }
     elsif $image_name == 'claymore_nv' {
-      minebox::docker::containers::claymore_nv { "docker container ${image_name} ${gpu['id']}" :
+      minebox::docker::types::claymore::miner { "docker container ${image_name} ${gpu['id']}" :
         gpu          => $gpu,
         docker_image => $docker_image,
         image_tag    => $gpu['d_tag'],
