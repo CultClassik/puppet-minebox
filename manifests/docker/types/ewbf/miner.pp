@@ -14,7 +14,7 @@ define minebox::docker::types::ewbf::miner(
 
   docker::run { "m-nv${gpu['id']}" :
     ensure                   => present,
-    image                    => "${gpu['d_image']}:${gpu['d_tag']}",
+    image                    => "${docker_image}:${image_tag}",
     hostname                 => "${facts['hostname']}-${gpu['id']}",
     env                      => [
       "WORKER=${gpu['worker']}",
