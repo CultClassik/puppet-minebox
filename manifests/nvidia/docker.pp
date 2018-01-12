@@ -63,4 +63,10 @@ class minebox::nvidia::docker (
     subscribe   => Package[$minebox::nv_conf['docker_pkg']],
   }
 
+  -> if $minebox::nv_conf['use_docker'] == true {
+    class { '::minebox::docker::containers::config' :
+      gpus => $gpu_cfg,
+    }
+  }
+
 }

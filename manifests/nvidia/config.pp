@@ -71,10 +71,4 @@ class minebox::nvidia::config {
     mode    => '0774',
   }
 
-  -> if $minebox::use_docker == true {
-    class { '::minebox::docker::containers::config' :
-      gpus => $gpu_cfg,
-    }
-  }
-
 }
