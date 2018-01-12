@@ -25,7 +25,7 @@ class minebox::docker::containers::config (
     # this is current for nvidia cards with claymore, need to
     # transition to using claymore_ethash
     elsif $image_name == 'claymore_nv' {
-      minebox::docker::types::claymore::miner { "docker container ${image_name} ${gpu['id']}" :
+      minebox::docker::types::claymore::miner_ethash { "docker container ${image_name} ${gpu['id']}" :
         gpu          => $gpu,
         docker_image => $docker_image,
         image_tag    => $gpu['d_tag'],
