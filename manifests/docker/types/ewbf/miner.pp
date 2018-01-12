@@ -12,12 +12,14 @@ define minebox::docker::types::ewbf::miner(
   String $image_tag,
 ) {
 
+  $worker = "${trusted['hostname']}_${gpu['id']}"
+
   docker::run { "m-nv${gpu['id']}" :
     ensure                   => present,
     image                    => "${docker_image}:${image_tag}",
-    hostname                 => "${facts['hostname']}-${gpu['id']}",
+    hostname                 => $worker,
     env                      => [
-      "WORKER=${gpu['worker']}",
+      "WORKER=${worker}",
       "T_ADDR=${minebox::accounts['zcl']}",
       'POOL_SERVER=us.miningspeed.com',
       'POOL_PORT=3052',
