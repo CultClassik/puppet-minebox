@@ -13,7 +13,6 @@ define minebox::docker::containers::claymore_nv(
 )
 {
   require docker
-  require minebox::docker::images::claymore_nv
 
   $worker = "${trusted['hostname']}-${gpu['id']}"
 
