@@ -14,7 +14,7 @@ class minebox::nvidia::install(
   #$packages = lookup('minebox::packages_xorg', {merge => 'unique'})
   #$driver = lookup('minebox::nv_conf.driver', {merge => 'deep'})
   #$nvidia_packages = concat($packages, $driver)
-  $nvidia_packages = concat($nv_conf['packages'], $nv_conf['driver'])
+  $nvidia_packages = concat($minebox::packages_xorg, $nv_conf['driver'])
 
   ensure_packages(
     $nvidia_packages,
