@@ -52,14 +52,14 @@ minebox::nv_conf:
   enable: false
   use_docker: true
   gpu_fan: 0
-  driver: nvidia-384
-  docker_pkg: nvidia-docker2
+  driver: 'nvidia-384'
+  docker_pkg: 'nvidia-docker2'
 minebox::amd_conf:
   gpus: undef
   enable: false
   user_docker: true
   gpu_fan: 0
-  driver: amdgpu-pro-17.50-511655
+  driver: 'amdgpu-pro-17.50-511655'
 minebox::miners:
   claymore:
     version: 10.3
