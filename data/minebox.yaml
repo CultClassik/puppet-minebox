@@ -23,7 +23,7 @@ minebox::packages_base:
   - 'build-essential'
   - 'dkms'
   - 'git'
-  - screen'
+  - 'screen'
   - 'vim'
   - 'nmap'
   - 'ncdu'
