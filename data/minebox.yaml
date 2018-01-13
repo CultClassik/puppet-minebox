@@ -9,10 +9,10 @@ lookup_options:
       strategy: deep
       merge_hash_arrays: true
 
+minebox::miner_user: 'miner'
 minebox:
   base_path: '/minebox'
   storage_path: undef
-  miner_user: 'miner'
   miners_group: 'miners'
   miner_user_pwd: undef
   miner_user_ssh_key: undef
