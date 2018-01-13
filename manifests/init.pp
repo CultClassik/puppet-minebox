@@ -16,12 +16,7 @@ class minebox(
   String $miner_user_pwd,
   String $miner_user_ssh_key,
   Hash $nv_conf,
-  Hash $amd_conf = {
-    'enable'     => false,
-    'use_docker' => false,
-    'gpu_fan'    => 0,
-    'driver'     => 'amdgpu-pro-17.50-511655',
-  },
+  Hash $amd_conf,
   Boolean $cpu_mining,
   Array $packages_base,
   Array $packages_xorg,

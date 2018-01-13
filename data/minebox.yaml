@@ -6,10 +6,10 @@ lookup_options:
       merge_hash_arrays: true
 
 minebox::cpu_mining: true
-minebox::miner_user: 'miner'
 minebox::base_path: '/minebox'
 minebox::storage_path: undef
-minebox::miners_group: 'miners'
+minebox::miner_user: 'miner'
+minebox::miner_group: 'miners'
 minebox::miner_user_pwd: undef
 minebox::miner_user_ssh_key: undef
 minebox::miner_user_groups:
@@ -48,9 +48,15 @@ minebox::folders:
   - miners
   - tools
 minebox::nv_conf:
+  gpus: undef
   enable: false
   use_docker: true
   gpu_fan: 0
   driver: nvidia-384
   docker_pkg: nvidia-docker2
+minebox::amd_conf:
   gpus: undef
+  enable: false
+  user_docker: true
+  gpu_fan: 0
+  driver: amdgpu-pro-17.50-511655
