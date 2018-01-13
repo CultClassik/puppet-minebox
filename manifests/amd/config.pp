@@ -7,17 +7,15 @@
 #
 # @example
 #   include minebox::amd::config
-class minebox::amd::config {
+class minebox::amd::config(
+  Hash $amd_conf,
+){
 
   $scripts_path = "${minebox::base_path}/scripts"
-  $gpu_cfg = lookup('minebox::amd_conf.gpus', {merge => 'deep'})
-  #$gpu_cfg = $minebox::amd_conf['gpus']
-  $gpu_fan = lookup('minebox::amd_conf.gpu_fan', {merge => 'deep'})
-  #$gpu_fan = $minebox::amd_conf['gpu_fan']
 
-  if $minebox::amd_conf['use_docker'] == true {
+  if $amd_conf['use_docker'] == true {
     class { '::minebox::docker::containers::config' :
-      gpus    => $gpu_cfg,
+      gpus    => $amd_conf['gpus'],
       require => Class['::minebox::users::screen'],
     }
   }

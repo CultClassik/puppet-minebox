@@ -6,20 +6,18 @@
 #
 # @example
 #   include minebox::amd::base
-class minebox::amd::base {
-  include minebox::amd::install
-  include minebox::amd::config
+class minebox::amd::base(
+  $amd_conf = lookup('minebox::amd_conf', { merge => 'deep'}),
+){
 
-  Class['::minebox::amd::install']
-  -> Class['::minebox::amd::config']
-  #if $minebox::use_rocm == true {
-  #  include minebox::amd::rocm
-  #  Class['::minebox::amd::install']
-  #  -> Class['::minebox::amd::rocm']
-  #}# else {
-   # reboot { 'after' :
-   #   subscribe => Exec['Install AMD PRO GPU Blockchain Driver'],
-   # }
-  #}
+  include minebox::amd::install
+
+  class { 'minebox::amd::install' :
+    amd_conf => $amd_conf,
+  }
+
+  -> class { 'minebox::amd::config' :
+    amd_conf => $amd_conf,
+  }
 
 }
