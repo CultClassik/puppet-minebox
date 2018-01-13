@@ -1,10 +1,6 @@
 ---
 lookup_options:
-  minebox::miner_user:
-    merge:
-      strategy: deep
-      merge_hash_arrays: true
-"minebox::(/*)":
+  "minebox::(/*)":
     merge:
       strategy: deep
       merge_hash_arrays: true
