@@ -8,6 +8,8 @@
 #   include minebox::nvidia::base
 class minebox::nvidia::base {
 
+  notify { 'Applying Nvidia base class' : }
+
   include minebox::nvidia::install
   include minebox::nvidia::config
 
