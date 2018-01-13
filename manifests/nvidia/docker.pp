@@ -8,6 +8,7 @@
 #   include minebox::nvidia::docker
 class minebox::nvidia::docker (
   Boolean $remove_old = false,
+  $nv_conf = lookup('minebox::nv_conf', {merge => 'deep'}),
 ){
   require docker
 
@@ -17,7 +18,7 @@ class minebox::nvidia::docker (
     exec { ' Remove old Nvidia Docker binaries' :
       refreshonly => true,
       command     => '/usr/bin/docker volume ls -q -f driver=nvidia-docker | /usr/bin/xargs -r -I{} -n1 /usr/bin/docker ps -q -a -f volume={} | /usr/bin/xargs -r /usr/bin/docker rm -f /usr/bin/apt-get purge nvidia-docker',
-      before      => Package[$minebox::nv_conf['docker_pkg']],
+      before      => Package[$nv_conf['docker_pkg']],
     }
   }
   ###########################
@@ -52,7 +53,7 @@ class minebox::nvidia::docker (
     refreshonly => true,
     subscribe   => File['/etc/apt/sources.list.d/nvidia-docker.list'],
   }
-  -> package { $minebox::nv_conf['docker_pkg'] :
+  -> package { $nv_conf['docker_pkg'] :
     ensure => present,
   }
 
@@ -60,10 +61,10 @@ class minebox::nvidia::docker (
   exec { 'Reload Docker daemon' :
     command     => '/usr/bin/pkill -SIGHUP dockerd',
     refreshonly => true,
-    subscribe   => Package[$minebox::nv_conf['docker_pkg']],
+    subscribe   => Package[nv_conf['docker_pkg']],
   }
 
-  -> if $minebox::nv_conf['use_docker'] == true {
+  -> if $nv_conf['use_docker'] == true {
     class { '::minebox::docker::containers::config' :
       gpus => lookup('minebox::nv_conf.gpus', {merge => 'deep'}),
     }
