@@ -5,8 +5,8 @@ lookup_options:
       strategy: deep
       merge_hash_arrays: true
 
-minebox:base_path: '/minebox'
 minebox:
+  base_path: '/minebox'
   storage_path: undef
   miner_user: 'miner'
   miners_group: 'miners'
@@ -18,7 +18,7 @@ minebox:
     - 'video'
     - 'docker'
   packages_base:
-    - "linux-headers-%{facts['kernelrelease']}"
+    - "linux-headers-%{facts.kernelrelease}"
     - 'libcurl3'
     - 'build-essential'
     - 'dkms'
