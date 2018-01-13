@@ -6,30 +6,36 @@ lookup_options:
       merge_hash_arrays: true
 
 minebox::miner_user: 'miner'
-minebox:
-  base_path: '/minebox'
-  storage_path: undef
-  miners_group: 'miners'
-  miner_user_pwd: undef
-  miner_user_ssh_key: undef
-  miner_user_groups:
-    - 'adm'
-    - 'sudo'
-    - 'video'
-    - 'docker'
-  packages_base:
-    - "linux-headers-%{facts.kernelrelease}"
-    - 'libcurl3'
-    - 'build-essential'
-    - 'dkms'
-    - 'git'
-    - screen'
-    - 'vim'
-    - 'nmap'
-    - 'ncdu'
-    - 'busybox'
-    - 'inxi'
-    - 'links'
-    - 'unzip'
-    - 'openssh-server'
-    - 'htop'
+minebox::base_path: '/minebox'
+minebox::storage_path: undef
+minebox::miners_group: 'miners'
+minebox::miner_user_pwd: undef
+minebox::miner_user_ssh_key: undef
+minebox::miner_user_groups:
+  - 'adm'
+  - 'sudo'
+  - 'video'
+  - 'docker'
+minebox::packages_base:
+  - "linux-headers-%{facts.kernelrelease}"
+  - 'libcurl3'
+  - 'build-essential'
+  - 'dkms'
+  - 'git'
+  - screen'
+  - 'vim'
+  - 'nmap'
+  - 'ncdu'
+  - 'busybox'
+  - 'inxi'
+  - 'links'
+  - 'unzip'
+  - 'openssh-server'
+  - 'htop'
+minebox::nv_conf:
+  enable: false
+  use_docker: true
+  gpu_fan: 0
+  driver: nvidia-384
+  docker_pkg: nvidia-docker2
+  gpus: undef

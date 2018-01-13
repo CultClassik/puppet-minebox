@@ -15,14 +15,7 @@ class minebox(
   Array $miner_user_groups,
   String $miner_user_pwd,
   String $miner_user_ssh_key,
-  Hash $nv_conf = {
-    'enable'     => false,
-    'use_docker' => true,
-    'gpu_fan'    => 0,
-    'driver'     => 'nvidia-384',
-    'docker_pkg' => 'nvidia-docker2',
-    'gpus'       => [],
-  },
+  Hash $nv_conf,
   Hash $amd_conf = {
     'enable'     => false,
     'use_docker' => false,
