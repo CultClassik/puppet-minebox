@@ -6,11 +6,13 @@
 #
 # @example
 #   include minebox::nvidia::config
-class minebox::nvidia::config {
+class minebox::nvidia::config(
+  Hash $nv_conf,
+){
 
   $scripts_path = "${minebox::base_path}/scripts"
-  $gpu_cfg = $minebox::nv_conf['gpus']
-  $gpu_fan = $minebox::nv_conf['gpu_fan']
+  $gpu_cfg = $nv_conf['gpus']
+  $gpu_fan = $nv_conf['gpu_fan']
 
   include minebox::xorg::headless
 

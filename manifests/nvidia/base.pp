@@ -6,18 +6,29 @@
 #
 # @example
 #   include minebox::nvidia::base
-class minebox::nvidia::base {
+class minebox::nvidia::base(
+  Hash $nv_conf = lookup('minebox::nv_conf', { merge => 'deep' }),
+){
 
-  include minebox::nvidia::install
-  include minebox::nvidia::config
+  #include minebox::nvidia::install
+  #include minebox::nvidia::config
 
-  Class['::minebox::nvidia::install']
-  -> Class['::minebox::nvidia::config']
+  #Class['::minebox::nvidia::install']
+  #-> Class['::minebox::nvidia::config']
 
-  if lookup('minebox::nv_conf.use_docker', { merge => 'deep' }) == true {
+  class { '::minebox::nvidia::install' :
+    nv_conf => $nv_conf
+  }
+
+  -> class { '::minebox::nvidia::config' :
+    nv_conf => $nv_conf
+  }
+
+  if $nv_conf['use_docker'] == true {
     notify { 'Applying nvidia::docker class' : }
 
     class { '::minebox::nvidia::docker':
+      nv_conf   => $nv_conf,
       subscribe => Class['::minebox::nvidia::config'],
     }
   }
