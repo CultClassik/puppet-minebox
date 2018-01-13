@@ -1,5 +1,5 @@
 ---
-minebox:base:path: '/minebox'
+minebox:base_path: '/minebox'
 minebox:
   storage_path: undef
   miner_user: 'miner'
