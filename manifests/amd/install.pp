@@ -7,12 +7,12 @@
 # @example
 #   include minebox::amd::install
 class minebox::amd::install (
-  Hash $amd_conf,
+  String $amd_driver,
   String $fan_control_script = 'amdgpu-pro-fans.sh',
 ) {
 
   class { 'minebox::amd::driver' :
-    amd_driver => $amd_conf['driver'],
+    amd_driver => $amd_driver,
   }
 
   file { 'AMD Fan Control Script' :
