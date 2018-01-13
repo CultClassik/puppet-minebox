@@ -60,3 +60,24 @@ minebox::amd_conf:
   user_docker: true
   gpu_fan: 0
   driver: amdgpu-pro-17.50-511655
+minebox::miners:
+  claymore:
+    version: 10.3
+    source: 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/claymore_Ethereum%2BDecred_Siacoin_Lbry_Pascal_gpu_v10.3_+LINUX.tar.gz'
+    file: claymore.tar.gz
+    creates: ethdcrminer64
+  ethminer:
+    version: 0.12.0
+    source: 'https://github.com/ethereum-mining/ethminer/releases/download/v0.12.0/ethminer-0.12.0-Linux.tar.gz'
+    file: ethminer.tar.gz
+    creates: ethminer
+  claymore-equi:
+    version: 12.6
+    source: 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/claymore_ZCash_AMD_GPU_Miner_v12.6_LINUX.tar.gz'
+    file: claymore-equi.tar.gz
+    creates: zecminer64
+  dstm-equihash:
+    version: 0.5.8
+    source: 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/zm_0.5.8.tar.gz'
+    file: zm_0.5.8.tar.gz
+    creates: zm
