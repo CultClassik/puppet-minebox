@@ -10,9 +10,10 @@
 #   include minebox::amd::driver
 class minebox::amd::driver {
 
-  $driver_file = "${minebox::amd_conf['driver']}.tar.xz"
+  $driver = lookup('minebox::amd_conf.driver', {merge => 'deep'})
+  $driver_file = "${driver}.tar.xz"
   $driver_path = "${minebox::base_path}/drivers"
-  $installer = "${driver_path}/${minebox::amd_conf['driver']}/amdgpu-pro-install"
+  $installer = "${driver_path}/${driver}/amdgpu-pro-install"
 
   archive { "${driver_path}/${driver_file}" :
     ensure       => present,

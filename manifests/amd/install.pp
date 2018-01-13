@@ -11,9 +11,6 @@ class minebox::amd::install (
 ) {
 
   include minebox::amd::driver
-  #include minebox::amd::rocm
-
-  #Class['::minebox::amd::driver']
 
   file { 'AMD Fan Control Script' :
     ensure => file,
