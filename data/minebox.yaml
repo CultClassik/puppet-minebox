@@ -1,0 +1,5 @@
+---
+minebox:
+  storage_path: undef
+  miner_user_pwd: undef
+  miner_usr_ssh_key: undef
