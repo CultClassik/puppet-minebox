@@ -10,7 +10,7 @@ class minebox::nvidia::install {
 
   require stdlib
 
-  $nvidia_packages = concat($minebox::packages_xorg, $minebox::nv_conf['driver'])
+  $nvidia_packages = concat(lookup($minebox::packages_xorg), lookup($minebox::nv_conf['driver'])
 
   ensure_packages(
     $nvidia_packages,
