@@ -1,9 +1,9 @@
 ---
-lookup_options:
-  minebox:
-    merge:
-      strategy: deep
-      merge_hash_arrays: true
+#lookup_options:
+#  minebox:
+#    merge:
+#      strategy: deep
+#      merge_hash_arrays: true
 
 minebox:
   base_path: '/minebox'
