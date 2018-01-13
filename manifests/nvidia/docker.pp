@@ -61,7 +61,7 @@ class minebox::nvidia::docker (
   exec { 'Reload Docker daemon' :
     command     => '/usr/bin/pkill -SIGHUP dockerd',
     refreshonly => true,
-    subscribe   => Package[nv_conf['docker_pkg']],
+    subscribe   => Package[$nv_conf['docker_pkg']],
   }
 
   -> if $nv_conf['use_docker'] == true {
