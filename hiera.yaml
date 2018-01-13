@@ -6,3 +6,8 @@ defaults:
 hierarchy:
   - name: "Module Specific"
     path: "minebox.yaml"
+lookup_options:
+  minebox:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
