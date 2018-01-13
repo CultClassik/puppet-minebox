@@ -3,3 +3,19 @@ minebox:
   storage_path: undef
   miner_user_pwd: undef
   miner_usr_ssh_key: undef
+  packages_base:
+    - "linux-headers-${facts['kernelrelease']}"
+    - 'libcurl3'
+    - 'build-essential'
+    - 'dkms'
+    - 'git'
+    - screen'
+    - 'vim'
+    - 'nmap'
+    - 'ncdu'
+    - 'busybox'
+    - 'inxi'
+    - 'links'
+    - 'unzip'
+    - 'openssh-server'
+    - 'htop'
