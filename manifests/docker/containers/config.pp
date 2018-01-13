@@ -10,6 +10,8 @@ class minebox::docker::containers::config (
   Array $gpus,
 ) {
 
+  notify { 'Applying Docker GPU Miner Container Class..' : }
+
   $gpus.each |Hash $gpu| {
     $image_name = regsubst($gpu['d_image'], '(-)', '_', 'G')
 
