@@ -1,23 +1,22 @@
 ---
-#lookup_options:
-#  minebox:
-#    merge:
-#      strategy: deep
-#      merge_hash_arrays: true
+lookup_options:
+  minebox:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
 
-minebox:
-  base_path: '/minebox'
-  storage_path: undef
-  miner_user: 'miner'
-  miners_group: 'miners'
-  miner_user_pwd: undef
-  miner_user_ssh_key: undef
-  miner_user_groups:
+minebox:base_path: '/minebox'
+minebox:storage_path: undef
+minebox:miner_user: 'miner'
+minebox:miners_group: 'miners'
+minebox:miner_user_pwd: undef
+minebox:miner_user_ssh_key: undef
+minebox:miner_user_groups:
     - 'adm'
     - 'sudo'
     - 'video'
     - 'docker'
-  packages_base:
+minebox:packages_base:
     - "linux-headers-%{facts.kernelrelease}"
     - 'libcurl3'
     - 'build-essential'
