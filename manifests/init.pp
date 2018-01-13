@@ -22,24 +22,10 @@ class minebox(
     'gpu_fan'    => 0,
     'driver'     => 'amdgpu-pro-17.50-511655',
   },
-  Boolean $cpu_mining = true,
-  Array $packages_base = [],
-  Array $packages_xorg = [
-    'xserver-xorg',
-    'xserver-xorg-core',
-    'xserver-xorg-input-evdev',
-    'xserver-xorg-video-dummy',
-    'x11-xserver-utils',
-    'xdm',
-    'gtk2.0',
-    ],
-  Array $folders = [
-    'drivers',
-    'scripts',
-    'files',
-    'miners',
-    'tools',
-    ],
+  Boolean $cpu_mining,
+  Array $packages_base,
+  Array $packages_xorg,
+  Array $folders,
   Hash $miners = {
     'claymore' => {
       'version' => '10.3',

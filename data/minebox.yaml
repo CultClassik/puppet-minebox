@@ -5,6 +5,7 @@ lookup_options:
       strategy: deep
       merge_hash_arrays: true
 
+minebox::cpu_mining: true
 minebox::miner_user: 'miner'
 minebox::base_path: '/minebox'
 minebox::storage_path: undef
@@ -32,6 +33,20 @@ minebox::packages_base:
   - 'unzip'
   - 'openssh-server'
   - 'htop'
+minebox::packages_xorg:
+  - xserver-xorg
+  - xserver-xorg-core
+  - xserver-xorg-input-evdev
+  - xserver-xorg-video-dummy
+  - x11-xserver-utils
+  - xdm
+  - gtk2.0
+minebox::folders:
+  - drivers
+  - scripts
+  - files
+  - miners
+  - tools
 minebox::nv_conf:
   enable: false
   use_docker: true
