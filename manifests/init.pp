@@ -11,11 +11,6 @@ class minebox(
   String $storage_path = 'undef',
   String $miner_user_pwd = 'undef',
   String $miner_user_ssh_key = 'undef',
-  #String $gpu_type,
-  #Integer $gpu_fan = 0,
-  # This hash param will replace various others
-  #String $nvidia_driver = 'nvidia-384',
-  #String $nvdocker_pkg_name = 'nvidia-docker2',
   Hash $nv_conf = {
     'enable'     => false,
     'use_docker' => true,
@@ -24,20 +19,13 @@ class minebox(
     'docker_pkg' => 'nvidia-docker2',
     'gpus'       => [],
   },
-  # This hash param will replace various others
   Hash $amd_conf = {
     'enable'     => false,
     'use_docker' => false,
     'gpu_fan'    => 0,
     'driver'     => 'amdgpu-pro-17.50-511655',
   },
-  Boolean $use_docker = true,
   Boolean $cpu_mining = true,
-
-  # use_rocm is depricated and will be removed
-  Boolean $use_rocm = false,
-
-  String $facts_path = '/etc/facter/facts.d',
   String $base_path = '/minebox',
   String $miner_user = 'miner',
   String $miner_group = 'miners',
@@ -82,8 +70,8 @@ class minebox(
     ],
   Hash $miners = {
     'claymore' => {
-      'version' => '10.2',
-      'source'  => 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/claymore_Ethereum%2BDecred_Siacoin_Lbry_Pascal_gpu_v10.2_LINUX.tar.gz',
+      'version' => '10.3',
+      'source'  => 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/claymore_Ethereum%2BDecred_Siacoin_Lbry_Pascal_gpu_v10.3_+LINUX.tar.gz',
       'file'    => 'claymore.tar.gz',
       'creates' => 'ethdcrminer64',
       },
