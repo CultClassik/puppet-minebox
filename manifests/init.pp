@@ -8,9 +8,13 @@
 #   include minebox
 
 class minebox(
-  String $storage_path = 'undef',
-  String $miner_user_pwd = 'undef',
-  String $miner_user_ssh_key = 'undef',
+  String $base_path,
+  String $storage_path,
+  String $miner_user,
+  String $miner_group,
+  Array $miner_user_groups,
+  String $miner_user_pwd,
+  String $miner_user_ssh_key,
   Hash $nv_conf = {
     'enable'     => false,
     'use_docker' => true,
@@ -26,32 +30,7 @@ class minebox(
     'driver'     => 'amdgpu-pro-17.50-511655',
   },
   Boolean $cpu_mining = true,
-  String $base_path = '/minebox',
-  String $miner_user = 'miner',
-  String $miner_group = 'miners',
-  Array $miner_user_groups = [
-    'adm',
-    'sudo',
-    'video',
-    'docker',
-    ],
-  Array $packages_base = [
-    "linux-headers-${facts['kernelrelease']}",
-    'libcurl3',
-    'build-essential',
-    'dkms',
-    'git',
-    'screen',
-    'vim',
-    'nmap',
-    'ncdu',
-    'busybox',
-    'inxi',
-    'links',
-    'unzip',
-    'openssh-server',
-    'htop',
-    ],
+  Array $packages_base = [],
   Array $packages_xorg = [
     'xserver-xorg',
     'xserver-xorg-core',
@@ -87,9 +66,14 @@ class minebox(
       'file'    => 'claymore-equi.tar.gz',
       'creates' => 'zecminer64',
     },
+    'dstm-equihash' => {
+      'version' => '0.5.8',
+      'source'  => 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/zm_0.5.8.tar.gz',
+      'file'    => 'zm_0.5.8.tar.gz',
+      'creates' => 'zm'
+    }
   },
-  Hash $tools = {
-    },
+  Hash $tools = { },
   Hash $accounts = {
     'eth' => '0x96ae82e89ff22b3eff481e2499948c562354cb23',
     'lbc' => 'cultclassik',
@@ -105,7 +89,7 @@ class minebox(
     'ethi'     => 8,
     'platform' => undef,
   },
-  ) {
+  ){
 
   include minebox::users::install
   contain minebox::install
