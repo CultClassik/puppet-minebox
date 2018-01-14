@@ -30,7 +30,7 @@ class minebox::docker::containers::config (
     $container_name = "m-${worker_id}"
 
     # need selector here to assign the value of $container_type
-    $container_type = minebox::docker::types::dstm::miner
+    $container_type = 'minebox::docker::types::dstm::miner'
 
     $container_type { $container_name :
         gpu            => $gpu,
