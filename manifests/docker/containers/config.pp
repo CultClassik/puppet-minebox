@@ -17,7 +17,7 @@ class minebox::docker::containers::config (
 
   $gpus.each |Hash $gpu| {
 
-    $miner = is_hash($gpu[miner])
+    $miner = $gpu[miner]
 
     #$docker_image = "${gpu['miner']['repo']}/${gpu['miner']['image']}"
     #$docker_image = $miner[repo]
