@@ -8,7 +8,7 @@
 # @example
 #   minebox::docker::types::dstm::miner { 'namevar': }
 define minebox::docker::types::dstm::miner(
-  Hash $gpu,
+  String $gpu_id,
   String $container_name,
   String $image,
   String $command,
@@ -27,7 +27,7 @@ define minebox::docker::types::dstm::miner(
     #image                    => "${repo}/${image}:${tag}",
     image                    => $image,
     hostname                 => "${::hostname}-gpu${gpu['id']}",
-    env                      => [ "NVIDIA_VISIBLE_DEVICES=${gpu['id']}" ],
+    env                      => [ "NVIDIA_VISIBLE_DEVICES=${gpu_id}" ],
     volumes                  => [ '/etc/localtime:/etc/localtime' ],
     dns                      => [ '8.8.8.8', '8.8.4.4 '],
     expose                   => [ '2222' ],
