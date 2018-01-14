@@ -32,12 +32,24 @@ class minebox::docker::containers::config (
     # need selector here to assign the value of $container_type
     $container_type = 'minebox::docker::types::dstm::miner'
 
-    $container_type { $container_name :
+    ensure_resource(
+      $container_type,
+      $container_name,
+      {
+        ensure         => present,
         gpu            => $gpu,
         container_name => $container_name,
         image          => $docker_image,
-        command        => $gpu['miner']['command'],
-    }
+       command         => $gpu['miner']['command'],
+      }
+    )
+
+    #$container_type { $container_name :
+    ##    gpu            => $gpu,
+    #    container_name => $container_name,
+    ##    image          => $docker_image,
+     #   command        => $gpu['miner']['command'],
+   # }
     #notify { "gpu-${gpu['id']}" :
     #  message => $command,
     #}
