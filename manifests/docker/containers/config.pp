@@ -12,6 +12,13 @@ class minebox::docker::containers::config (
 
   notify { 'Applying Docker GPU Miner Container Class..' : }
 
+  ###testing merge
+  $gpu_conf = deep_merge($minebox::miner_defaults::amd::eth, $minebox::nv_conf::gpus['0'])
+  $worker = $minebox::nv_conf::gpus['0']
+  $command = regsubst($gpu_conf['command'], 'WORKER_ID', $worker)
+  notify { "${command}" : }
+  ###
+
   $gpus.each |Hash $gpu| {
     $image_name = regsubst($gpu['d_image'], '(-)', '_', 'G')
 
