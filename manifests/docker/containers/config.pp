@@ -20,7 +20,7 @@ class minebox::docker::containers::config (
     #$image_name = regsubst($gpu['miner']['image'], '-', '_', 'G')
 
     # generate full image name from repo and image variable values
-    $docker_image = "${gpu.miner.repo]}/${gpu.miner.image}"
+    $docker_image = "${gpu.miner.repo}/${gpu.miner.image}"
 
     # generate worker id
     $worker_id = "gpu${gpu['id']}"
