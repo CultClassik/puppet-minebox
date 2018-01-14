@@ -15,7 +15,5 @@ class minebox::docker::containers::config (
   # merge defaults with gpu specific configs
   #$gpu_defaults = lookup('minebox::miner_defaults.nv.eth')
 
-  $gpus.each |Hash $gpu| {
-    notify { $gpu : }
-  }
+  
 }
