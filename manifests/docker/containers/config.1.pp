@@ -16,8 +16,10 @@ class minebox::docker::containers::config (
   #$gpu_defaults = lookup('minebox::miner_defaults.nv.eth')
 
   $gpus.each |Hash $gpu| {
+    # Replace - in image names with _
     $image_name = regsubst($gpu['miner']['image'], '(-)', '_', 'G')
 
+    # generate full image name from repo and image variable values
     $docker_image = "${gpu['d_repo']}/${gpu['d_image']}"
 
     if $image_name == 'ethminer_nv' {

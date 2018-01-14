@@ -9,6 +9,7 @@
 #   minebox::docker::types::dstm::miner { 'namevar': }
 define minebox::docker::types::dstm::miner(
   Hash $gpu,
+  String $container_name,
   String $command,
   String $repo = 'cryptojunkies',
   String $image = 'dstm',
@@ -18,7 +19,7 @@ define minebox::docker::types::dstm::miner(
  # I think we can make this a generic type of equihash - doesn't matter what miner we're using just pass
  # in the correct cmd to run?
  # Make sure that hostname interpolates correctly.
-  $container_name = "gpu-nv${gpu['id']}"
+  #$container_name = "gpu-nv${gpu['id']}"
 
   docker::run { $container_name :
     ensure                   => present,
