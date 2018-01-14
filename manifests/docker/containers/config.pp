@@ -12,6 +12,9 @@ class minebox::docker::containers::config (
 
   notify { 'Applying Docker GPU Miner Container Class..' : }
 
+  # merge defaults with gpu specific configs
+  #$gpu_defaults = lookup('minebox::miner_defaults.nv.eth')
+
   $gpus.each |Hash $gpu| {
     $image_name = regsubst($gpu['d_image'], '(-)', '_', 'G')
 
@@ -20,8 +23,8 @@ class minebox::docker::containers::config (
     if $image_name == 'ethminer_nv' {
       minebox::docker::containers::ethminer_nv { "docker container ${image_name} ${gpu['id']}" :
         gpu          => $gpu,
-        docker_image => $docker_image,
-        image_tag    => $gpu['d_tag'],
+        docker_image => $gpu['miner']['image'],
+        image_tag    => $gpu['miner']['tag'],
       }
     }
     # this is current for nvidia cards with claymore, need to
@@ -29,24 +32,32 @@ class minebox::docker::containers::config (
     elsif $image_name == 'claymore_nv' {
       minebox::docker::types::claymore::miner_ethash { "docker container ${image_name} ${gpu['id']}" :
         gpu          => $gpu,
-        docker_image => $docker_image,
-        image_tag    => $gpu['d_tag'],
+        docker_image => $gpu['miner']['image'],
+        image_tag    => $gpu['miner']['tag'],
       }
     }
     elsif $image_name == 'claymore_eth' {
       minebox::docker::containers::claymore_amd { "docker container ${image_name} ${gpu['id']}" :
         gpu          => $gpu,
-        docker_image => $docker_image,
-        image_tag    => $gpu['d_tag'],
+        docker_image => $gpu['miner']['image'],
+        image_tag    => $gpu['miner']['tag'],
       }
     }
     elsif $image_name == 'equihash_ewbf_nv' {
       minebox::docker::types::ewbf::miner { "docker container ${image_name} ${gpu['id']}" :
         gpu          => $gpu,
-        docker_image => $docker_image,
-        image_tag    => $gpu['d_tag'],
+        docker_image => $gpu['miner']['image'],
+        image_tag    => $gpu['miner']['tag'],
       }
     }
+    elsif $image_name == 'dstm' {
+      minebox::docker::types::ewbf::miner { "docker container ${image_name} ${gpu['id']}" :
+        gpu          => $gpu,
+        docker_image => $gpu['miner']['image'],
+        image_tag    => $gpu['miner']['tag'],
+      }
+    }
+
   }
 
 }

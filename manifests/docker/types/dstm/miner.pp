@@ -9,7 +9,7 @@
 #   minebox::docker::types::dstm::miner { 'namevar': }
 define minebox::docker::types::dstm::miner(
   Hash $gpu,
-  String $command = '--server us.miningspeed.com --port 3052 --user  t1R1VkvxFBFsfdU2MaRnJSHvnkVNhuFiydF.miner043 --pass x --telemetry 0.0.0.0:2222',
+  String $command,
   String $repo = 'cryptojunkies',
   String $image = 'dstm',
   String $tag = 'latest',
