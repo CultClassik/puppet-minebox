@@ -14,7 +14,11 @@ class minebox::docker::containers::config (
 
   ###testing merge
   $t_defaults = lookup('minebox::miner_defaults.nv.eth')
-  $t_gpu = lookup('minebox::nv_conf::gpus.0')
+  $t_gpu = {
+    'id' => '0',
+    'mod' => '1070',
+
+  }
   $gpu_conf = deep_merge($t_defaults, $t_gpu)
   #$gpu_conf = deep_merge($minebox::miner_defaults::nv::eth, $minebox::nv_conf::gpus['0'])
   $worker = $minebox::nv_conf::gpus['0']
