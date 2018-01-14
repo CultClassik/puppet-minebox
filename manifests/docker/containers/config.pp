@@ -17,7 +17,7 @@ class minebox::docker::containers::config (
 
   $gpus.each |Hash $gpu| {
 
-    notify { "gpu-$gpu['id']" :
+    notify { "gpu-${gpu['id']}" :
       message => $gpu,
     }
   }
