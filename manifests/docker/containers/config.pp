@@ -16,48 +16,6 @@ class minebox::docker::containers::config (
   #$gpu_defaults = lookup('minebox::miner_defaults.nv.eth')
 
   $gpus.each |Hash $gpu| {
-    $image_name = regsubst($gpu['d_image'], '(-)', '_', 'G')
-
-    $docker_image = "${gpu['d_repo']}/${gpu['d_image']}"
-
-    if $image_name == 'ethminer_nv' {
-      minebox::docker::containers::ethminer_nv { "docker container ${image_name} ${gpu['id']}" :
-        gpu          => $gpu,
-        docker_image => $gpu['miner']['image'],
-        image_tag    => $gpu['miner']['tag'],
-      }
-    }
-    # this is current for nvidia cards with claymore, need to
-    # transition to using claymore_ethash
-    elsif $image_name == 'claymore_nv' {
-      minebox::docker::types::claymore::miner_ethash { "docker container ${image_name} ${gpu['id']}" :
-        gpu          => $gpu,
-        docker_image => $gpu['miner']['image'],
-        image_tag    => $gpu['miner']['tag'],
-      }
-    }
-    elsif $image_name == 'claymore_eth' {
-      minebox::docker::containers::claymore_amd { "docker container ${image_name} ${gpu['id']}" :
-        gpu          => $gpu,
-        docker_image => $gpu['miner']['image'],
-        image_tag    => $gpu['miner']['tag'],
-      }
-    }
-    elsif $image_name == 'equihash_ewbf_nv' {
-      minebox::docker::types::ewbf::miner { "docker container ${image_name} ${gpu['id']}" :
-        gpu          => $gpu,
-        docker_image => $gpu['miner']['image'],
-        image_tag    => $gpu['miner']['tag'],
-      }
-    }
-    elsif $image_name == 'dstm' {
-      minebox::docker::types::ewbf::miner { "docker container ${image_name} ${gpu['id']}" :
-        gpu          => $gpu,
-        docker_image => $gpu['miner']['image'],
-        image_tag    => $gpu['miner']['tag'],
-      }
-    }
-
+    notify { $gpu : }
   }
-
 }
