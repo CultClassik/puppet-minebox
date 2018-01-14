@@ -17,7 +17,7 @@ class minebox::docker::containers::config (
 
   $gpus.each |Hash $gpu| {
     # Replace - in image names with _
-    $image_name = regsubst($gpu['miner']['image'], '(-)', '_', 'G')
+    $image_name = regsubst($gpu['miner']['image'], '-', '_', 'G')
 
     # generate full image name from repo and image variable values
     $docker_image = "${gpu['miner']['repo']}/${gpu['miner']['image']}"
