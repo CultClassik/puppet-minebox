@@ -19,7 +19,7 @@ bindkey -m "^k" stuff k               # move up one line
 
 # screens for gpu miners
 <% $gpu_cfg.each |$gpu| { -%>
-screen -t <%= $gpu['id'] %>-<%= $gpu['mod'] %> docker logs -f --tail 50 m-nv<%= $gpu['id'] %>
+screen -t <%= $gpu['id'] %>-<%= $gpu['mod'] %> docker logs -f --tail 50 m-gpu<%= $gpu['id'] %>
 <% } %>
 
 screen -t system htop
