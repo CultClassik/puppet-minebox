@@ -26,9 +26,21 @@ class minebox::docker::containers::config (
     # set worker id in docker command
     $command = regsubst($gpu['miner']['command'], 'WORKER_ID', $worker_id)
 
-    notify { "gpu-${gpu['id']}" :
-      message => $command,
+    # generate the container name
+    $container_name = "m-${worker_id}"
+
+    # need selector here to assign the value of $container_type
+    $container_type = minebox::docker::types::dstm::miner
+
+    $container_type { $container_name :
+        gpu            => $gpu,
+        container_name => $container_name,
+        image          => $docker_image,
+        command        => $gpu['miner']['command'],
     }
+    #notify { "gpu-${gpu['id']}" :
+    #  message => $command,
+    #}
   }
 
 

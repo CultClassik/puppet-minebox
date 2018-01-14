@@ -10,11 +10,12 @@
 define minebox::docker::types::dstm::miner(
   Hash $gpu,
   String $container_name,
+  String $image,
   String $command,
-  String $repo = 'cryptojunkies',
-  String $image = 'dstm',
-  String $tag = 'latest',
 ) {
+  # String $repo = 'cryptojunkies',
+  # String $image = 'dstm',
+  # String $tag = 'latest',
 
  # I think we can make this a generic type of equihash - doesn't matter what miner we're using just pass
  # in the correct cmd to run?
@@ -23,7 +24,8 @@ define minebox::docker::types::dstm::miner(
 
   docker::run { $container_name :
     ensure                   => present,
-    image                    => "${repo}/${image}:${tag}",
+    #image                    => "${repo}/${image}:${tag}",
+    image                    => $image,
     hostname                 => "${::trusted.hostname}-gpu${gpu['id']}",
     env                      => [ "NVIDIA_VISIBLE_DEVICES=${gpu['id']}" ],
     volumes                  => [ '/etc/localtime:/etc/localtime' ],
