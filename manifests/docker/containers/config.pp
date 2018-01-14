@@ -36,7 +36,6 @@ class minebox::docker::containers::config (
       $container_type,
       $container_name,
       {
-        ensure         => present,
         gpu            => $gpu,
         container_name => $container_name,
         image          => $docker_image,
