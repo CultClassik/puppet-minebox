@@ -21,7 +21,7 @@ class minebox::docker::containers::config (
   }
   $gpu_conf = deep_merge($t_defaults, $t_gpu)
   #$gpu_conf = deep_merge($minebox::miner_defaults::nv::eth, $minebox::nv_conf::gpus['0'])
-  $worker = $minebox::nv_conf::gpus['0']
+  $worker = "gpu${t_gpu.id}"
   $command = regsubst($gpu_conf['command'], 'WORKER_ID', $worker)
   notify { "${command}" : }
   ###
