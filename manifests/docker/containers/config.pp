@@ -39,7 +39,7 @@ class minebox::docker::containers::config (
         gpu_id         => $gpu['id'],
         container_name => $container_name,
         image          => $docker_image,
-       command         => $gpu['miner']['command'],
+        command        => $command,
       }
     )
 
