@@ -4,6 +4,8 @@
 #
 # @summary A short summary of the purpose of this class
 #
+# NOTE! the image name received must match a defined type name
+#
 # @example
 #   include minebox::docker::containers::config
 class minebox::docker::containers::config (
@@ -11,9 +13,6 @@ class minebox::docker::containers::config (
 ) {
 
   notify { 'Applying Docker GPU Miner Container Class..' : }
-
-  # merge defaults with gpu specific configs
-  #$gpu_defaults = lookup('minebox::miner_defaults.nv.eth')
 
   $gpus.each |Hash $gpu| {
 
@@ -29,11 +28,8 @@ class minebox::docker::containers::config (
     # generate the container name
     $container_name = "m-${worker_id}"
 
-    # NOTE! the image name received must match a defined type name
-
     ensure_resource(
       "minebox::docker::types::${gpu['miner']['image']}::miner",
-      #$container_type,
       $container_name,
       {
         gpu_id         => $gpu['id'],
@@ -42,17 +38,6 @@ class minebox::docker::containers::config (
         command        => $command,
       }
     )
-
-    #$container_type { $container_name :
-    ##    gpu            => $gpu,
-    #    container_name => $container_name,
-    ##    image          => $docker_image,
-     #   command        => $gpu['miner']['command'],
-   # }
-    #notify { "gpu-${gpu['id']}" :
-    #  message => $command,
-    #}
   }
-
 
 }
