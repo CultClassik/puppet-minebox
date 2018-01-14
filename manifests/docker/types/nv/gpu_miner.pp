@@ -20,7 +20,7 @@ define minebox::docker::types::nv::gpu_miner(
     env                      => [ "NVIDIA_VISIBLE_DEVICES=${gpu_id}" ],
     volumes                  => [ '/etc/localtime:/etc/localtime' ],
     dns                      => [ '8.8.8.8', '8.8.4.4 '],
-    extra_parameters         => [ '--runtime=nvidia' ],
+    extra_parameters         => [ '--runtime=nvidia', '--restart on-failure:10' ],
     command                  => $command,
     remove_container_on_stop => true,
     remove_volume_on_stop    => true,
