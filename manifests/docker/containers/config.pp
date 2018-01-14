@@ -18,7 +18,7 @@ class minebox::docker::containers::config (
   $gpus.each |Hash $gpu| {
 
     #$docker_image = "${gpu['miner']['repo']}/${gpu['miner']['image']}"
-    $docker_image = $gpu['miner']['repo']
+    $docker_image = $gpu['miner'].repo
 
     notify { "gpu-${gpu['id']}" :
       message => $docker_image,
