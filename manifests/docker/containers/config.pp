@@ -17,14 +17,17 @@ class minebox::docker::containers::config (
 
   $gpus.each |Hash $gpu| {
 
+    # generate full image name from repo and image variable values
     $docker_image = "${gpu['miner']['repo']}/${gpu['miner']['image']}:${gpu['miner']['tag']}"
 
+    # generate worker id
+    $worker_id = "gpu${gpu['id']}"
 
-    #$docker_image = "${gpu['miner']['repo']}/${gpu['miner']['image']}"
-    #$docker_image = $miner[repo]
+    # set worker id in docker command
+    $command = regsubst($gpu['miner']['command'], 'WORKER_ID', $worker_id)
 
     notify { "gpu-${gpu['id']}" :
-      message => $docker_image,
+      message => $command,
     }
   }
 
