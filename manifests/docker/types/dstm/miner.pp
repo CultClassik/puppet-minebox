@@ -26,7 +26,7 @@ define minebox::docker::types::dstm::miner(
     ensure                   => present,
     #image                    => "${repo}/${image}:${tag}",
     image                    => $image,
-    hostname                 => "${::trusted.hostname}-gpu${gpu['id']}",
+    hostname                 => "${::hostname}-gpu${gpu['id']}",
     env                      => [ "NVIDIA_VISIBLE_DEVICES=${gpu['id']}" ],
     volumes                  => [ '/etc/localtime:/etc/localtime' ],
     dns                      => [ '8.8.8.8', '8.8.4.4 '],
