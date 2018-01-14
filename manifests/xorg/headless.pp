@@ -39,7 +39,7 @@ class minebox::xorg::headless {
   }
 
   -> file_line { 'xinit_stuff':
-    path => "/home/${minebox::user_name}/.xinitrc",
+    path => "/home/${minebox::miner_user}/.xinitrc",
     line => 'DISPLAY=:0 && xterm -geometry +1+1 -n login',
   }
 
