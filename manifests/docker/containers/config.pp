@@ -15,6 +15,11 @@ class minebox::docker::containers::config (
 
   notify { 'Applying Docker GPU Miner Container Class..' : }
 
+
+  # replace dashes with underscores in the resource type
+  #$resource_type = regsubst("minebox::docker::types::${gpu['miner']['image']}::miner", '-', '_', "G")
+  $resource_type = "minebox::docker::types::${gpu_type}::gpu_miner"
+
   $gpus.each |Hash $gpu| {
 
     # generate full image name from repo and image variable values
@@ -28,9 +33,6 @@ class minebox::docker::containers::config (
 
     # generate the container name
     $container_name = "m-${worker_id}"
-
-    # replace dashes with underscores in the resource type
-    $resource_type = regsubst("minebox::docker::types::${gpu['miner']['image']}::miner", '-', '_', "G")
 
     ensure_resource(
       $resource_type,
