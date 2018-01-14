@@ -15,8 +15,9 @@ class minebox::amd::config(
 
   if $amd_conf['use_docker'] == true {
     class { '::minebox::docker::containers::config' :
-      gpus    => $amd_conf['gpus'],
-      require => Class['::minebox::users::screen'],
+      gpu_type => 'amd',
+      gpus     => $amd_conf['gpus'],
+      require  => Class['::minebox::users::screen'],
     }
   }
 

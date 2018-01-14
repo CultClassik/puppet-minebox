@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe 'minebox::docker::types::equihash_ewbf_nv' do
+describe 'minebox::docker::types::amd::gpu_miner' do
   let(:title) { 'namevar' }
   let(:params) do
     {}
   end
 
-  on_supported_os(facterversion: '2.4').each do |os, os_facts|
+  on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let(:facts) { os_facts }
 

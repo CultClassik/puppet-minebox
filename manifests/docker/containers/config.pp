@@ -9,6 +9,7 @@
 # @example
 #   include minebox::docker::containers::config
 class minebox::docker::containers::config (
+  String gpu_type,
   Array $gpus,
 ) {
 
