@@ -31,7 +31,7 @@ class minebox::xorg::headless {
     match => '^allowed_users=.*$',
   }
 
-  file { "/home/${minebox::user_name}/.xinitrc":
+  file { "/home/${minebox::miner_user}/.xinitrc":
     ensure => present,
     owner  => $minebox::miner_user,
     group  => $minebox::miner_group,
