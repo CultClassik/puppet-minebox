@@ -28,8 +28,11 @@ class minebox::docker::containers::config (
     # generate the container name
     $container_name = "m-${worker_id}"
 
+    # replace dashes with underscores in the resource type
+    $resource_type = regsubst("minebox::docker::types::${gpu['miner']['image']}::miner", '-', '_', "G")
+
     ensure_resource(
-      "minebox::docker::types::${gpu['miner']['image']}::miner",
+      $resource_type,
       $container_name,
       {
         gpu_id         => $gpu['id'],
