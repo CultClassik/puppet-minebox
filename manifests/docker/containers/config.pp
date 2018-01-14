@@ -22,10 +22,14 @@ class minebox::docker::containers::config (
     # generate full image name from repo and image variable values
     $docker_image = "${gpu['miner']['repo']}/${gpu['miner']['image']}"
 
-    # generate the container name
-    $container_name = "m-gpu${gpu['id']}"
+    # generate worker id
+    $worker_id = "gpu${gpu['id']}"
 
     # set worker id in docker command
+    $command = regsubst($gpu['miner']['command'], 'WORKER_ID', $worker_id)
+
+    # generate the container name
+    $container_name = "m-${worker_id}"
 
     #minebox::docker::types::$image_name::miner { $container_name :
     $myres = minebox::docker::types::dstm::miner
@@ -33,9 +37,11 @@ class minebox::docker::containers::config (
     $myres { $container_name :
         gpu            => $gpu,
         container_name => $container_name,
-        docker_image   => $gpu['miner']['image'],
-        image_tag      => $gpu['miner']['tag'],
         command        => $gpu['miner']['command'],
+        repo           => $gpu['miner']['repo'],
+        image          => $gpu['miner']['image'],
+        tag            => $gpu['miner']['tag'],
+
     }
   }
 
