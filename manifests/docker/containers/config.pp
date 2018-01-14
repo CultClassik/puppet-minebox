@@ -23,7 +23,7 @@ class minebox::docker::containers::config (
     #$docker_image = $miner[repo]
 
     notify { "gpu-${gpu['id']}" :
-      message => $miner,
+      message => $docker_image,
     }
   }
 
