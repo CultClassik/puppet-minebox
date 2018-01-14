@@ -8,7 +8,7 @@
 # @example
 #   minebox::docker::types::dstm::miner { 'namevar': }
 define minebox::docker::types::dstm::miner(
-  String $gpu_id,
+  Integer $gpu_id,
   String $container_name,
   String $image,
   String $command,
