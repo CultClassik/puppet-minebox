@@ -40,7 +40,7 @@ minebox::packages_xorg:
   - xserver-xorg-video-dummy
   - x11-xserver-utils
   - xdm
-  - gtk2.0
+#  - gtk2.0
 minebox::folders:
   - drivers
   - scripts
