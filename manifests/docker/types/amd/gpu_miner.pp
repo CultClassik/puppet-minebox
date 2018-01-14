@@ -13,6 +13,10 @@ define minebox::docker::types::amd::gpu_miner(
   String $command,
 ) {
 
+  # add the gpu id for the -di switch
+  # this is necessary on amd since the container can see all of the gpus, unlike nvidia
+  $docker_command = regsubst($command, 'GPU_ID', $gpu_id)
+
   docker::run { $container_name :
     ensure                   => present,
     image                    => $image,
@@ -21,7 +25,7 @@ define minebox::docker::types::amd::gpu_miner(
     volumes                  => [ '/etc/localtime:/etc/localtime' ],
     dns                      => [ '8.8.8.8', '8.8.4.4 '],
     extra_parameters         => [ '--device=/dev/dri' ],
-    command                  => $command,
+    command                  => $docker_command,
     remove_container_on_stop => true,
     remove_volume_on_stop    => true,
     pull_on_start            => true,
