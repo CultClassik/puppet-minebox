@@ -12,12 +12,12 @@ class minebox::tools::base {
 
   $miners = lookup('minebox::miners.hybrid')
 
-  if $minebox::nv_conf.enable == true {
+  if $minebox::nv_conf['enable'] == true {
     $miners = deep_merge($miners, lookup('minebox::miners.nv'))
     $tools = deep_merge($tools, lookup('minebox::tools.nv'))
   }
 
-  if $minebox::amd_conf.enable == true {
+  if $minebox::amd_conf['enable'] == true {
     $miners = deep_merge($miners, lookup('minebox::miners.amd'))
     $tools = deep_merge($tools, lookup('minebox::tools.amd'))
   }
