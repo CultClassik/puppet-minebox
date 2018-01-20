@@ -8,17 +8,8 @@
 #   include minebox::tools::miners
 class minebox::tools::miners (
   String $files_path,
+  Hash $miners,
 ) {
-
-  $miners = lookup('minebox::miners.hybrid')
-
-  if $minebox::nv_conf::enable == true {
-    $miners = deep_merge($miners, lookup('minebox::miner.nv'))
-  }
-
-  if $minebox::amd_conf::enable == true {
-    $miners = deep_merge($miners, lookup('minebox::miners.amd'))
-  }
 
   $miners.each |String $title, Hash $archive| {
     file { "${files_path}/${title}" :

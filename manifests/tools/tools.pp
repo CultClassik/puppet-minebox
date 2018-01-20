@@ -18,7 +18,7 @@ class minebox::tools::tools (
       group  => $minebox::miner_group,
       mode   => '0774',
     }
-    
+
     archive { "${files_path}/${archive['file']}" :
       ensure          => present,
       cleanup         => true,

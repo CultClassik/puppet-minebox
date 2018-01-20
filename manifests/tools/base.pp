@@ -33,11 +33,4 @@ class minebox::tools::base {
     tools      => $tools,
   }
 
-  #class { 'minebox::tools::atiflash' :
-  #  files_path => $tools_path,
-  #}
-
-  #class { 'minebox::tools::ohgodatool' :
-  #  files_path => $tools_path,
-  #}
 }
