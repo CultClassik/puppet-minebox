@@ -10,14 +10,14 @@ class minebox::tools::miners (
   String $files_path,
 ) {
 
-  $miners = $minebox::miners:hybrid
+  $miners = $minebox::miners::hybrid
 
   if $minebox::nv_conf::enable == true {
-    $miners = deep_merge($miners, $minebox::miners:nv)
+    $miners = deep_merge($miners, $minebox::miners::nv)
   }
 
   if $minebox::amd_conf::enable == true {
-    $miners = deep_merge($miners, $minebox::miners:amd)
+    $miners = deep_merge($miners, $minebox::miners::amd)
   }
 
   $miners.each |String $title, Hash $archive| {
