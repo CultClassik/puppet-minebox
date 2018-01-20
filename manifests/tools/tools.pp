@@ -8,17 +8,17 @@
 #   include minebox::tools::tools
 class minebox::tools::tools (
   String $files_path,
+  Hash $tools,
 ) {
 
-  $minebox::tools.each |String $title, Hash $archive| {
+  $tools.each |String $title, Hash $archive| {
     file { "${files_path}/${title}" :
       ensure => directory,
       owner  => $minebox::miner_user,
       group  => $minebox::miner_group,
       mode   => '0774',
     }
-
-    ### make sure that tar is changing the parent folder when unarchiving
+    
     archive { "${files_path}/${archive['file']}" :
       ensure          => present,
       cleanup         => true,

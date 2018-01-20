@@ -89,3 +89,11 @@ minebox::miners:
       source: 'https://github.com/ethereum-mining/ethminer/releases/download/v0.12.0/ethminer-0.12.0-Linux.tar.gz'
       file: ethminer.tar.gz
       creates: ethminer
+minebox::tools:
+  hybrid:
+  nv:
+  amd:
+    version: 4.25
+    source: 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/atiflash_linux.tar.xz'
+    files: atiflash.tar.xz
+    creates: atiflash

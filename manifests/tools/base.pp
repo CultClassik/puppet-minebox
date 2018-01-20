@@ -10,32 +10,34 @@ class minebox::tools::base {
   $miners_path = "${minebox::base_path}/miners"
   $tools_path = "${minebox::base_path}/tools"
 
-  # class { '::archive':
-  #   aws_cli_install => true,
-  # }
+  $miners = lookup('minebox::miners.hybrid')
+  $tools = lookup('minebox::tools.hybrid')
 
-  class { 'minebox::tools::claymore' :
-    files_path => $miners_path,
+  if $minebox::nv_conf::enable == true {
+    $miners = deep_merge($miners, lookup('minebox::miners.nv'))
+    $tools = deep_merge($tools, lookup('minebox::tools.nv'))
   }
 
-  class { 'minebox::tools::claymore_equi' :
-    files_path => $miners_path,
-    t_address  => $minebox::accounts['zcl'],
+  if $minebox::amd_conf::enable == true {
+    $miners = deep_merge($miners, lookup('minebox::miners.amd'))
+    $tools = deep_merge($tools, lookup('minebox::tools.amd'))
   }
 
   class { 'minebox::tools::miners' :
     files_path => $miners_path,
+    miners     => $miners,
   }
 
-    #class { 'minebox::tools::tools' :
+  class { 'minebox::tools::tools' :
+    files_path => $tools_path,
+    tools      => $tools,
+  }
+
+  #class { 'minebox::tools::atiflash' :
   #  files_path => $tools_path,
   #}
 
-  class { 'minebox::tools::atiflash' :
-    files_path => $tools_path,
-  }
-
-  class { 'minebox::tools::ohgodatool' :
-    files_path => $tools_path,
-  }
+  #class { 'minebox::tools::ohgodatool' :
+  #  files_path => $tools_path,
+  #}
 }
