@@ -23,15 +23,8 @@ class minebox(
   Array $packages_xorg,
   Array $folders,
   Hash $miners,
-  Hash $tools = {},
-  #move this to the miners hash param
-  Hash $claymore = {
-    'dcri'     => 8,
-    'etha'     => 2,
-    'ethi'     => 8,
-    'platform' => undef,
-  },
-  ){
+  Hash $tools,
+){
 
   include minebox::users::install
   contain minebox::install
