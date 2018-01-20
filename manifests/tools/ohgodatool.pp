@@ -11,7 +11,7 @@ class minebox::tools::ohgodatool (
 ){
 
   archive { "${files_path}/ohgodatool" :
-      ensure       => present,
+      ensure       => absent,
       cleanup      => false,
       extract      => false,
       extract_path => $files_path,
@@ -22,6 +22,7 @@ class minebox::tools::ohgodatool (
   }
 
   -> file { "${files_path}/ohgodatool" :
+    ensure => absent,
     owner => $minebox::miner_user,
     group => $minebox::miner_group,
     mode  => '0774',
