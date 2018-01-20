@@ -10,7 +10,17 @@ class minebox::tools::miners (
   String $files_path,
 ) {
 
-  $minebox::miners.each |String $title, Hash $archive| {
+  $miners = lookup('minebox::miners::hybrid')
+
+  if $minebox::nv_conf::enable == true {
+    $miners == deep_merge($miners, lookup('minebox::miners::nv'))
+  }
+
+  if $minebox::amd_conf::enable == true {
+    $miners == deep_merge($miners, lookup('minebox::miners::amd'))
+  }
+
+  $miners.each |String $title, Hash $archive| {
     file { "${files_path}/${title}" :
       ensure => directory,
       owner  => $minebox::miner_user,
