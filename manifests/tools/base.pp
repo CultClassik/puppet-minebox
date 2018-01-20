@@ -16,12 +16,6 @@ class minebox::tools::base {
     $miners = lookup('minebox::miners.hybrid')
   }
 
-  if lookup('minebox::tools.hybrid') == undef {
-    $tools = {}
-  } else {
-    $tools = lookup('minebox::tools.hybrid')
-  }
-
   if $minebox::nv_conf::enable == true {
     $miners = deep_merge($miners, lookup('minebox::miners.nv'))
     $tools = deep_merge($tools, lookup('minebox::tools.nv'))
@@ -29,7 +23,11 @@ class minebox::tools::base {
 
   if $minebox::amd_conf::enable == true {
     $miners = deep_merge($miners, lookup('minebox::miners.amd'))
-    $tools = deep_merge($tools, lookup('minebox::tools.amd'))
+    if $tools == undef {
+      $tools = lookup('minebox::tools.amd')
+    } else {
+      $tools = deep_merge($tools, lookup('minebox::tools.amd'))
+    }
   }
 
   notify { 'Tools going to happen':
