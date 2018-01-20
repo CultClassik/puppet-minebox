@@ -98,3 +98,4 @@ minebox::tools:
       source: 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/atiflash_linux.tar.xz'
       files: atiflash.tar.xz
       creates: atiflash
+      create_subdir: false

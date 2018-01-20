@@ -12,23 +12,33 @@ class minebox::tools::tools (
 ) {
 
   $tools.each |String $title, Hash $archive| {
-    file { "${files_path}/${title}" :
-      ensure => directory,
-      owner  => $minebox::miner_user,
-      group  => $minebox::miner_group,
-      mode   => '0774',
+
+    if $archive['creaet_subdir'] == true {
+      file { "${files_path}/${title}" :
+        ensure => directory,
+        owner  => $minebox::miner_user,
+        group  => $minebox::miner_group,
+        mode   => '0774',
+      }
+      $extract_path = "${files_path}/${title}"
+      $extract_command = "tar -xvf %s -C ${files_path}/${title} --strip-components 1"
+      $creates = "${files_path}/${title}/${archive['creates']}"
+    } else {
+      $extract_path = $files_path
+      $extract_command = "tar -xvf %s -C ${files_path}"
+      $creates = "${files_path}/${archive['creates']}"
     }
 
     archive { "${files_path}/${archive['file']}" :
       ensure          => present,
       cleanup         => true,
       extract         => true,
-      extract_path    => "${files_path}/${title}",
-      extract_command => "tar -xvf %s -C ${files_path}/${title} --strip-components 1",
+      extract_path    => $extract_path,
+      extract_command => $extract_command,
       source          => $archive['source'],
       user            => $minebox::miner_user,
       group           => $minebox::miner_group,
-      creates         => "${files_path}/${title}/${archive['creates']}",
+      creates         => $creates,
     }
   }
 
