@@ -32,6 +32,10 @@ class minebox::tools::base {
     $tools = deep_merge($tools, lookup('minebox::tools.amd'))
   }
 
+  notify { 'Tools going to happen':
+    message => $tools
+  }
+
   class { 'minebox::tools::miners' :
     files_path => $miners_path,
     miners     => $miners,
