@@ -13,6 +13,10 @@ class minebox::tools::base {
   $miners = lookup('minebox::miners.hybrid')
   $tools = lookup('minebox::tools.hybrid')
 
+  if $tools == undef {
+    $tools = {}
+  }
+
   if $minebox::nv_conf::enable == true {
     $miners = deep_merge($miners, lookup('minebox::miners.nv'))
     $tools = deep_merge($tools, lookup('minebox::tools.nv'))
