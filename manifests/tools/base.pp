@@ -11,11 +11,11 @@ class minebox::tools::base {
   $tools_path = "${minebox::base_path}/tools"
 
   if $minebox::nv_conf['enable'] == true {
-    $miners_nv = deep_merge(lookup('minebox::miners.hybrid', lookup('minebox::miners.nv'))
+    $miners_nv = deep_merge(lookup('minebox::miners.hybrid'), lookup('minebox::miners.nv'))
   }
 
   if $minebox::amd_conf['enable'] == true {
-    $miners_amd = deep_merge(lookup('minebox::miners.hybrid', lookup('minebox::miners.amd'))
+    $miners_amd = deep_merge(lookup('minebox::miners.hybrid'), lookup('minebox::miners.amd'))
     class { 'minebox::tools::atiflash' :
       files_path => $tools_path,
     }
