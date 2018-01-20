@@ -10,7 +10,11 @@ class minebox::tools::base {
   $miners_path = "${minebox::base_path}/miners"
   $tools_path = "${minebox::base_path}/tools"
 
-  $miners = lookup('minebox::miners.hybrid')
+  if lookup('minebox::miners.hybrid') == undef {
+    $miners = {}
+  } else {
+    $miners = lookup('minebox::miners.hybrid')
+  }
 
   if lookup('minebox::tools.hybrid') == undef {
     $tools = {}
