@@ -11,10 +11,11 @@ class minebox::tools::base {
   $tools_path = "${minebox::base_path}/tools"
 
   $miners = lookup('minebox::miners.hybrid')
-  $tools = lookup('minebox::tools.hybrid')
 
-  if $tools == undef {
+  if lookup('minebox::tools.hybrid') == undef {
     $tools = {}
+  } else {
+    $tools = lookup('minebox::tools.hybrid')
   }
 
   if $minebox::nv_conf::enable == true {
