@@ -13,11 +13,11 @@ class minebox::tools::miners (
   $miners = lookup('minebox::miners::hybrid')
 
   if $minebox::nv_conf::enable == true {
-    $miners == deep_merge($miners, lookup('minebox::miners::nv'))
+    $miners = deep_merge($miners, lookup('minebox::miners::nv'))
   }
 
   if $minebox::amd_conf::enable == true {
-    $miners == deep_merge($miners, lookup('minebox::miners::amd'))
+    $miners = deep_merge($miners, lookup('minebox::miners::amd'))
   }
 
   $miners.each |String $title, Hash $archive| {
