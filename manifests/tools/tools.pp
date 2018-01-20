@@ -13,7 +13,7 @@ class minebox::tools::tools (
 
   $tools.each |String $title, Hash $archive| {
 
-    if $archive['creaet_subdir'] == true {
+    if $archive['create_subdir'] == true {
       file { "${files_path}/${title}" :
         ensure => directory,
         owner  => $minebox::miner_user,
