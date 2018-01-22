@@ -18,7 +18,7 @@ bindkey -m "^[k" stuff ^b             # move up one page
 bindkey -m "^k" stuff k               # move up one line
 
 # screens for gpu miners
-<% $gpu_cfg.each |Array $gpu| { -%>
+<% $gpu_cfg.each |Hash $gpu| { -%>
 screen -t <%= $gpu['id'] %>-<%= $gpu['mod'] %> docker logs -f --tail 50 m-gpu<%= $gpu['id'] %>
 <% } %>
 
