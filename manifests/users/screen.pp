@@ -17,8 +17,8 @@ class minebox::users::screen {
       content => epp(
         'minebox/nvidia/screenrc.epp',
         {
-          #'gpu_cfg' => $minebox::nv_conf['gpus'],
-          'gpu_cfg' => lookup('minebox::nv_conf.gpus', {merge => 'hash'}),
+          'gpu_cfg' => $minebox::nv_conf['gpus'],
+          #'gpu_cfg' => lookup('minebox::nv_conf.gpus', {merge => 'hash'}),
           }
         ),
       owner   => $minebox::miner_user,
