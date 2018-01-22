@@ -46,7 +46,7 @@ class minebox::users::install {
     key    => $minebox::miner_user_ssh_key,
   }
 
-  #-> class { 'minebox::users::screen' : }
+  -> class { 'minebox::users::screen' : }
   -> class { 'minebox::users::links' : }
 
 }
