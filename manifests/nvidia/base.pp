@@ -25,7 +25,7 @@ class minebox::nvidia::base(
   }
 
   if $nv_conf['use_docker'] == true {
-    notify { 'Applying nvidia::docker class' : }
+    # notify { 'Applying nvidia::docker class' : }
 
     class { '::minebox::nvidia::docker':
       nv_conf   => $nv_conf,
