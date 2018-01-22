@@ -2,7 +2,7 @@
 lookup_options:
   "minebox::(/*)":
     merge:
-      strategy: deep
+      strategy: hash
       merge_hash_arrays: true
 
 minebox::cpu_mining: true
@@ -57,7 +57,7 @@ minebox::nv_conf:
 minebox::amd_conf:
   gpus: undef
   enable: false
-  user_docker: true
+  use_docker: true
   gpu_fan: 0
   driver: 'amdgpu-pro-17.50-511655'
 minebox::miners:
