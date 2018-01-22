@@ -11,12 +11,64 @@
 #   include minebox::users::screen
 class minebox::users::screen {
 
-  $minebox::nv_conf['gpus'].each |$gpu| {
-    notify { "GPU-${gpu['id']}" :
-      message => $gpu,
+  if $::minebox::nv_conf['enable'] == true {
+    if $::minebox::nv_conf['use_docker'] == true {
+      file { "/home/${minebox::miner_user}/.screenrc" :
+        ensure  => file,
+        content => epp(
+          'minebox/nvidia/screenrc.epp',
+          {
+            'gpu_cfg' => $minebox::nv_conf['gpus'],
+            }
+          ),
+        owner   => $minebox::miner_user,
+        group   => $minebox::miner_group,
+        mode    => '0774',
+      }
+      $cron_screen = 'absent'
     }
   }
 
-  $cron_screen = 'absent'
+
+
+
+  if $::minebox::amd_conf['enable'] == true {
+    if $::minebox::amd_conf['use_docker'] == true {
+      file { "/home/${minebox::miner_user}/.screenrc" :
+        ensure  => file,
+        content => epp(
+          'minebox/docker/screenrc.epp',
+          {
+            'gpu_cfg' => $minebox::amd_conf['gpus'],
+          }
+        ),
+        owner   => $minebox::miner_user,
+        group   => $minebox::miner_group,
+        mode    => '0774',
+      }
+      $cron_screen = 'absent'
+    } else {
+      file { "/home/${minebox::miner_user}/.screenrc" :
+        ensure  => file,
+        content => epp(
+          'minebox/amd/screenrc.epp',
+          {
+            'mining_script' => "screen -t miner ${minebox::base_path}/scripts/claymore.sh",
+            }
+          ),
+        owner   => $minebox::miner_user,
+        group   => $minebox::miner_group,
+        mode    => '0774',
+      }
+      $cron_screen = 'absent'
+    }
+
+    cron { 'Screen Setup' :
+      ensure  => $cron_screen,
+      command => 'sleep 40 && /usr/bin/screen -d -m',
+      user    => $minebox::miner_user,
+      special => 'reboot',
+    }
+  }
 
 }
