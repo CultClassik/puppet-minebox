@@ -49,7 +49,7 @@ class minebox::users::install {
   #-> Class['::minebox::users::links']
   #-> Class['::minebox::users::screen']
 
-  -> class { 'minebox::users::screen' : }
+  #-> class { 'minebox::users::screen' : }
   -> class { 'minebox::users::links' : }
 
 }
