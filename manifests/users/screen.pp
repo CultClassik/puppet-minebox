@@ -29,9 +29,6 @@ class minebox::users::screen {
     }
   }
 
-
-
-
   if $::minebox::amd_conf['enable'] == true {
     if $::minebox::amd_conf['use_docker'] == true {
       file { "/home/${minebox::miner_user}/.screenrc" :
