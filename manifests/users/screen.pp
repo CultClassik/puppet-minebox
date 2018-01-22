@@ -12,7 +12,7 @@
 class minebox::users::screen {
 
   $minebox::nv_conf['gpus'].each |$gpu| {
-    notify { $gpu['id']:
+    notify { "GPU-${gpu['id']}" :
       message => $gpu,
     }
   }
