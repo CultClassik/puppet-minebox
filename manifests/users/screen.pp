@@ -19,42 +19,4 @@ class minebox::users::screen {
 
   $cron_screen = 'absent'
 
-  if $::minebox::amd_conf['use_docker'] == true {
-    file { "/home/${minebox::miner_user}/.screenrc" :
-      ensure  => file,
-      content => epp(
-        'minebox/docker/screenrc.epp',
-        {
-          'gpu_cfg' => $minebox::amd_conf['gpus'],
-          }
-        ),
-      owner   => $minebox::miner_user,
-      group   => $minebox::miner_group,
-      mode    => '0774',
-    }
-  }
-  elsif $::minebox::amd_conf['enable'] == true {
-    $cron_screen = 'present'
-
-      file { "/home/${minebox::miner_user}/.screenrc" :
-        ensure  => file,
-        content => epp(
-          'minebox/amd/screenrc.epp',
-          {
-            'mining_script' => "screen -t miner ${minebox::base_path}/scripts/claymore.sh",
-            }
-          ),
-        owner   => $minebox::miner_user,
-        group   => $minebox::miner_group,
-        mode    => '0774',
-      }
-
-      cron { 'Screen Setup' :
-        ensure  => $cron_screen,
-        command => 'sleep 40 && /usr/bin/screen -d -m',
-        user    => $minebox::miner_user,
-        special => 'reboot',
-      }
-  }
-
 }
