@@ -2,7 +2,7 @@
 lookup_options:
   "minebox::(/*)":
     merge:
-      strategy: hash
+      strategy: deep
       merge_hash_arrays: true
 
 minebox::cpu_mining: true
