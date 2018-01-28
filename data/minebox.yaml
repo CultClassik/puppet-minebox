@@ -1,9 +1,9 @@
 ---
 lookup_options:
-  "minebox::(/*)":
+  '^minebox::(.*)':
     merge:
-      strategy: hash
-      #merge_hash_arrays: true
+      strategy: deep
+      merge_hash_arrays: true
 
 minebox::cpu_mining: true
 minebox::base_path: '/minebox'
