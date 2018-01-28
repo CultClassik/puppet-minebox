@@ -17,6 +17,7 @@ minebox::miner_user_groups:
   - 'sudo'
   - 'video'
   - 'docker'
+
 minebox::packages_base:
   - "linux-headers-%{facts.kernelrelease}"
   - 'libcurl3'
@@ -33,6 +34,7 @@ minebox::packages_base:
   - 'unzip'
   - 'openssh-server'
   - 'htop'
+
 minebox::packages_xorg:
   - xserver-xorg
   - xserver-xorg-core
@@ -40,13 +42,14 @@ minebox::packages_xorg:
   - xserver-xorg-video-dummy
   - x11-xserver-utils
   - xdm
-#  - gtk2.0
+
 minebox::folders:
   - drivers
   - scripts
   - files
   - miners
   - tools
+
 minebox::nv_conf:
   gpus: undef
   enable: false
@@ -54,12 +57,14 @@ minebox::nv_conf:
   gpu_fan: 0
   driver: 'nvidia-384'
   docker_pkg: 'nvidia-docker2'
+
 minebox::amd_conf:
   gpus: undef
   enable: false
   use_docker: true
   gpu_fan: 0
   driver: 'amdgpu-pro-17.50-511655'
+
 minebox::miners:
   amd:
   nv:
@@ -89,6 +94,7 @@ minebox::miners:
       source: 'https://github.com/ethereum-mining/ethminer/releases/download/v0.12.0/ethminer-0.12.0-Linux.tar.gz'
       file: ethminer.tar.gz
       creates: ethminer
+
 minebox::tools:
   hybrid:
   nv:
