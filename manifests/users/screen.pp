@@ -11,8 +11,8 @@
 #   include minebox::users::screen
 class minebox::users::screen {
 
-  if $::minebox::nv_conf['enable'] == true {
-    if $::minebox::nv_conf['use_docker'] == true {
+  if $minebox::nv_conf['enable'] == true {
+    if $minebox::nv_conf['use_docker'] == true {
       file { "/home/${minebox::miner_user}/.screenrc" :
         ensure  => file,
         content => epp(
@@ -29,8 +29,8 @@ class minebox::users::screen {
     }
   }
 
-  if $::minebox::amd_conf['enable'] == true {
-    if $::minebox::amd_conf['use_docker'] == true {
+  if $minebox::amd_conf['enable'] == true {
+    if $minebox::amd_conf['use_docker'] == true {
       file { "/home/${minebox::miner_user}/.screenrc" :
         ensure  => file,
         content => epp(
