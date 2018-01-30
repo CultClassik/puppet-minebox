@@ -12,7 +12,7 @@ class minebox::amd::driver(
   String $amd_driver,
 ){
 
-  $driver_file = "${driver}.tar.xz"
+  $driver_file = "${amd_driver}.tar.xz"
   $driver_path = "${minebox::base_path}/drivers"
   $installer = "${driver_path}/${amd_driver}/amdgpu-pro-install"
 
