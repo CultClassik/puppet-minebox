@@ -16,7 +16,7 @@ class minebox::docker::containers::xmr_cpu(
     ensure           => present,
     image            => "${docker_image}:${image_tag}",
     extra_parameters => [
-        '--restart=never',
+        '--restart=no',
     ]
   }
 
