@@ -12,13 +12,6 @@ class minebox::docker::containers::xmr_cpu(
   $image_tag = 'latest',
   $cpu_shares = '800',
 ){
-  docker::run { 'xmr-cpu-miner' :
-    ensure           => present,
-    image            => "${docker_image}:${image_tag}",
-    extra_parameters => [
-        '--restart=no',
-    ]
-  }
 
   $facts['processors']['models'].each |Integer $index, String $value| {
 
