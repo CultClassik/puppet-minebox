@@ -18,10 +18,11 @@ define minebox::docker::types::amd::gpu_miner(
 
   if $image =~ /claymore/ {
     $gpu_id_new = $gpu_id ? {
-      10 => 'a',
-      11 => 'b',
-      12 => 'c',
-      13 => 'd',
+      10      => 'a',
+      11      => 'b',
+      12      => 'c',
+      13      => 'd',
+      default => $gpu_id,
     }
   }
 
