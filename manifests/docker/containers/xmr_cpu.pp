@@ -11,8 +11,7 @@ class minebox::docker::containers::xmr_cpu(
   $docker_image = 'servethehome/monero_cpu_moneropool',
   $image_tag = 'latest',
   $cpu_shares = '800',
-)
-{
+){
   docker::run { 'xmr-cpu-miner' :
     ensure           => present,
     image            => "${docker_image}:${image_tag}",
