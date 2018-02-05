@@ -30,7 +30,7 @@ class minebox::amd::driver(
   }
 
   exec { 'Install AMD PRO GPU Blockchain Driver' :
-    command     => "${installer} --opencl=legacy,rocm --headless -y",
+    command     => "${installer} --opencl=legacy,rocm --headless --compute -y",
     subscribe   => Archive["${driver_path}/${driver_file}"],
     refreshonly => true,
     # added - test
