@@ -20,7 +20,8 @@ class minebox::docker::containers::xmr_cpu(
       image                    => "${docker_image}:${image_tag}",
       dns                      => ['8.8.8.8', '8.8.4.4'],
       env                      => [
-        "username=${minebox::accounts['xmr']}",
+        #"username=${minebox::accounts['xmr']}",
+        "username=${lookup(minebox::accounts['xmr'])}",
       ],
       extra_parameters         => [
         '--restart=always',
