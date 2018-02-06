@@ -10,9 +10,9 @@
 # @example
 #   include minebox::docker::config
 class minebox::docker::config(
-  Boolean $swarm_enable,
+  Boolean $swarm_mode,
 ){
-  if $swarm_enable == true {
+  if $swarm_mode == true {
     require docker
     contain minxbox::docker::services::eth_proxy
   }
