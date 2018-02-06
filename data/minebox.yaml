@@ -130,5 +130,5 @@ minebox::docker::services::eth_proxy::traefik_host_name: 'undef'
 minebox::docker::services::eth_proxy::traefik_port: 'undef'
 minebox::docker::services::eth_proxy::swarm_replicas: 1
 minebox::docker::services::eth_proxy::docker_network: proxy-tier
-minebox::docker::services::eth_proxy::service_name: eth-proxy,
-minebox::docker::services::eth_proxy::image_name: "cryptojunkies/eth-proxy:latest",
+minebox::docker::services::eth_proxy::service_name: eth-proxy
+minebox::docker::services::eth_proxy::image_name: "cryptojunkies/eth-proxy:latest"
