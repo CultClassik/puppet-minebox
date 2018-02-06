@@ -7,6 +7,7 @@
 # @example
 #   include minebox::docker::services::eth_proxy
 class minebox::docker::services::eth_proxy(
+  Boolean $enable,
   Boolean $debug,
   String $wallet,
   String $pool_host,
@@ -27,20 +28,20 @@ class minebox::docker::services::eth_proxy(
   #String $docker_network_stratum,
 ) {
 
-  docker::services { $service_name :
-    create       => true,
-    service_name => $service_name,
-    image        => $image_name,
-    replicas     => $swarm_replicas,
-    extra_params => [
-      "--network ${docker_network}",
-      '--label traefik.enable=true',
-      "--label traefik.port=${host_port}",
-      "--label traefik.frontend.rule=Host:${host_name}",
-      # Make constraint optional:
-      #'--constraint=node.role==manager',
-    ],
+  if $minebox::docker::services::eth_proxy::enable == true {
 
-  }
-
+    docker::services { $service_name :
+      create       => true,
+      service_name => $service_name,
+      image        => $image_name,
+      replicas     => $swarm_replicas,
+      extra_params => [
+        "--network ${docker_network_web}",
+        '--label traefik.enable=true',
+        "--label traefik.port=${host_port}",
+        "--label traefik.frontend.rule=Host:${host_name}",
+        # Make constraint optional:
+        #'--constraint=node.role==manager',
+      ],
+    }
 }

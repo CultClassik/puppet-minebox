@@ -91,6 +91,8 @@ minebox::tools:
       creates: atiflash
       create_subdir: false
 
+minebox::docker::config::swarm_mode: false
+
 minebox::nv_conf:
   gpus: undef
   enable: false
@@ -113,6 +115,7 @@ minebox::accounts:
   sia: 'undef'
   zcl: 'undef'
 
+minebox::docker::services::eth_proxy::enable: false
 minebox::docker::services::eth_proxy::debug: false
 minebox::docker::services::eth_proxy::wallet: "%{minebox::accounts.eth}"
 minebox::docker::services::eth_proxy::pool_host: 'undef'
