@@ -44,4 +44,5 @@ class minebox::docker::services::eth_proxy(
         #'--constraint=node.role==manager',
       ],
     }
+    
 }
