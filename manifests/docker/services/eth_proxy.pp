@@ -27,22 +27,4 @@ class minebox::docker::services::eth_proxy(
   # Network to be dedicated to miner traffic:
   #String $docker_network_stratum,
 ) {
-
-  if $enable == true {
-
-    docker::services { $service_name :
-      create       => true,
-      service_name => $service_name,
-      image        => $image_name,
-      replicas     => $swarm_replicas,
-      extra_params => [
-        "--network ${docker_network_web}",
-        '--label traefik.enable=true',
-        "--label traefik.port=${traefik_port}",
-        "--label traefik.frontend.rule=Host:${traefik_host_name}",
-        # Make constraint optional:
-        #'--constraint=node.role==manager',
-      ],
-    }
-
 }
