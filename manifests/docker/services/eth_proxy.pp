@@ -20,11 +20,25 @@ class minebox::docker::services::eth_proxy(
   String $pool_port_failover3,
   String $service_name,
   String $image_name,
+  String $docker_network_web,
+  Integer $swarm_replicas,
   String $traefik_host_name,
   String $traefik_port,
-  String $docker_network_web,
-  Integer $swarm_replicas
   # Network to be dedicated to miner traffic:
   #String $docker_network_stratum,
 ) {
+
+  if $enable == true {
+    docker::services { $service_name :
+      create       => true,
+      service_name => $service_name,
+      image        => $image_name,
+      replicas     => $swarm_replicas,
+      extra_params => [
+        "--network ${docker_network_web}",
+        '--label traefik.enable=true',
+        "--label traefik.port=${traefik_port}",
+        "--label traefik.frontend.rule=Host:${traefik_host_name}",
+      ],
+    }
 }
