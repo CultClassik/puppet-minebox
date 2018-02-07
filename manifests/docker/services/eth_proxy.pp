@@ -41,4 +41,5 @@ class minebox::docker::services::eth_proxy(
         "--label traefik.frontend.rule=Host:${traefik_host_name}",
       ],
     }
+  }
 }
