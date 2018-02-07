@@ -15,13 +15,15 @@ class minebox::docker::containers::xmr_cpu(
 
   $facts['processors']['models'].each |Integer $index, String $value| {
 
+    $xmr_acct = lookup(minebox::accounts['xmr'])
+
     docker::run { "m-cpu-${index}" :
       ensure                   => present,
       image                    => "${docker_image}:${image_tag}",
       dns                      => ['8.8.8.8', '8.8.4.4'],
       env                      => [
         #"username=${minebox::accounts['xmr']}",
-        "username=${lookup(minebox::accounts['xmr'])}",
+        "username=${xmr_acct}",
       ],
       extra_parameters         => [
         '--restart=always',
