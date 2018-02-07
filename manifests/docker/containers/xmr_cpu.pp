@@ -15,7 +15,7 @@ class minebox::docker::containers::xmr_cpu(
 
   $facts['processors']['models'].each |Integer $index, String $value| {
 
-    $xmr_acct = lookup(minebox::accounts['xmr'])
+    $xmr_acct = lookup(minebox::accounts.xmr)
 
     docker::run { "m-cpu-${index}" :
       ensure                   => present,
