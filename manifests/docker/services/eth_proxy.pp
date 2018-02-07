@@ -41,6 +41,11 @@ class minebox::docker::services::eth_proxy(
         "--label traefik.frontend.rule=Host:${traefik_host_name}",
         '--constraint node.role==manager',
       ],
+      env          => [
+        "WALLET=${wallet}",
+        "HOST=${pool_host}",
+        "PORT=${pool_port}",
+      ],
     }
   }
 }
