@@ -21,7 +21,7 @@ class minebox::docker::services::eth_proxy(
   String $service_name,
   String $image_name,
   String $docker_network_web,
-  Integer $swarm_replicas,
+  String $swarm_replicas,
   String $traefik_host_name,
   String $traefik_port,
   # Network to be dedicated to miner traffic:
