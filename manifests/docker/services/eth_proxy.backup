@@ -24,32 +24,29 @@ class minebox::docker::services::eth_proxy(
   String $swarm_replicas,
   String $traefik_host_name,
   String $traefik_port,
-  String $compose_file = '/tmp/eth-proxy.yaml',
   # Network to be dedicated to miner traffic:
   #String $docker_network_stratum,
 ) {
 
   if $enable == true {
-    file { $compose_file :
-      ensure => present,
-      content => epp(
-        'minebox/docker/compose/eth-proxy.yaml.epp',
-        {
-          'wallet'    => $wallet,
-          'pool_host' => $pool_host,
-          'pool_port' => $pool_port,
-          'traefik_host_name' => $traefik_host_name,
-          'traefik_port'      => $traefik_port,
-        }
-      ),
-    }
-
-    -> docker::stack { $service_name :
-      ensure       => present,
-      stack_name   => $service_name,
-      compose_file => $compose_file,
-      require      => File[$compose_file],
+    docker::services { $service_name :
+      create       => true,
+      service_name => $service_name,
+      image        => $image_name,
+      replicas     => $swarm_replicas,
+      extra_params => [
+        "--network ${docker_network_web}",
+        '--label traefik.enable=true',
+        "--label traefik.port=${traefik_port}",
+        "--label traefik.frontend.rule=Host:${traefik_host_name}",
+        '--constraint node.role==manager',
+      ],
+      env          => [
+        "DEBUG=${debug}",
+        "WALLET=${wallet}",
+        "HOST=${pool_host}",
+        "PORT=${pool_port}",
+      ],
     }
   }
-
 }

@@ -12,8 +12,9 @@
 class minebox::docker::config(
   Boolean $swarm_mode,
 ){
+  require docker
+
   if $swarm_mode == true {
-    require docker
     contain minebox::docker::services::eth_proxy
   }
 
