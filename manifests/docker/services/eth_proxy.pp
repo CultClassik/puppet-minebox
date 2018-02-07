@@ -35,7 +35,7 @@ class minebox::docker::services::eth_proxy(
       content => epp(
         'minebox/docker/compose/eth-proxy.yaml.epp',
         {
-          'wallet'    => $wallet,
+          'wallet'    => "${wallet}",
           'pool_host' => $pool_host,
           'pool_port' => $pool_port,
           'traefik_host_name' => $traefik_host_name,
