@@ -65,8 +65,8 @@ minebox::miners:
       creates: miner
   hybrid:
     claymore-ethash:
-      version: 10.3
-      source: 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/claymore_Ethereum%2BDecred_Siacoin_Lbry_Pascal_gpu_v10.3_+LINUX.tar.gz'
+      version: 11.0
+      source: 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/Claymore_Dual_Ethereum%2BDecred_Siacoin_Lbry_Pascal_Blake2s_Keccak_gpu_v11.0_LINUX.tar.gz'
       file: claymore.tar.gz
       creates: ethdcrminer64
     claymore-equihash:
