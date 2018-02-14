@@ -42,13 +42,13 @@ class minebox::config {
   #######################################################################################################
   # Might want to just call a install or base class and make decisions over there, for now this is here.#
   #######################################################################################################
-  if $minebox::cpu_mining == true {
-    include minebox::system::hugepages
+  #if $minebox::cpu_mining == true {
+  #  include minebox::system::hugepages
     include minebox::docker::containers::xmr_cpu
-    include minebox::docker::containers::portainer
-    Class['::minebox::system::hugepages']
-    -> Class['::minebox::docker::containers::xmr_cpu']
-  }
+  #  include minebox::docker::containers::portainer
+  #  Class['::minebox::system::hugepages']
+  #  -> Class['::minebox::docker::containers::xmr_cpu']
+  #}
 
   # Prevent PCI-E bus errors caused by power management, use normal eth if names
   file_line { 'GRUB_CMDLINE_LINUX':
