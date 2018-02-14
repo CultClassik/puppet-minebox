@@ -31,7 +31,7 @@ class minebox::docker::services::eth_proxy(
 
   if $enable == true {
     file { $compose_file :
-      ensure => file,
+      ensure  => file,
       content => epp(
         'minebox/docker/compose/eth-proxy.yaml.epp',
         {
