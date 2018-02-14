@@ -8,17 +8,25 @@
 #   include minebox::docker::containers::xmr_cpu
 
 class minebox::docker::containers::xmr_cpu(
+  $enable = lookup('minebox::cpu_mining'),
   $docker_image = 'servethehome/monero_cpu_moneropool',
   $image_tag = 'latest',
   $cpu_shares = '800',
+
 ){
+
+  if $enable == true {
+    $ensure = 'present'
+  } else {
+    $ensure = 'absent'
+  }
 
   $facts['processors']['models'].each |Integer $index, String $value| {
 
     $xmr_acct = lookup('minebox::accounts.xmr')
 
     docker::run { "m-cpu-${index}" :
-      ensure                   => present,
+      ensure                   => $ensure,
       image                    => "${docker_image}:${image_tag}",
       dns                      => ['8.8.8.8', '8.8.4.4'],
       env                      => [
