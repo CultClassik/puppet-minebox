@@ -5,7 +5,7 @@ lookup_options:
       strategy: deep
       merge_hash_arrays: true
 
-minebox::cpu_mining: true
+minebox::cpu_mining: false
 minebox::base_path: '/minebox'
 minebox::storage_path: undef
 minebox::miner_user: 'miner'
