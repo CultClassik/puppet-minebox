@@ -7,7 +7,7 @@
 # @example
 #   include minebox::config
 class minebox::config {
-  include minebox::docker::config
+  #include minebox::docker::config
 
   # Update bashrc
   $bashrc_files = ["/home/${minebox::miner_user}/.bashrc",'/etc/skel/.bashrc']
