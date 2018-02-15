@@ -117,7 +117,7 @@ minebox::accounts:
 
 minebox::docker::services::eth_proxy::enable: false
 minebox::docker::services::eth_proxy::debug: false
-minebox::docker::services::eth_proxy::wallet: "%{minebox::accounts.eth}"
+minebox::docker::services::eth_proxy::wallet: "%{alias('minebox::accounts.eth')}"
 minebox::docker::services::eth_proxy::pool_host: 'undef'
 minebox::docker::services::eth_proxy::pool_port: 'undef'
 minebox::docker::services::eth_proxy::pool_host_failover1: "%{minebox::docker::services::eth_proxy:pool_host}"
