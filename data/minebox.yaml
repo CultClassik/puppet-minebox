@@ -75,8 +75,8 @@ minebox::miners:
       file: claymore-equi.tar.gz
       creates: zecminer64
     ethminer:
-      version: 0.12.0
-      source: 'https://github.com/ethereum-mining/ethminer/releases/download/v0.12.0/ethminer-0.12.0-Linux.tar.gz'
+      version: 0.13.0
+      source: 'https://github.com/ethereum-mining/ethminer/releases/download/v0.13.0/ethminer-0.13.0-Linux.tar.gz'
       file: ethminer.tar.gz
       creates: ethminer
 
