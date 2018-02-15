@@ -25,7 +25,7 @@ services:
     #  - "8080:8080/tcp"
     #networks:
     #  - monitoring
-    command: --wallet <%= wallet %> --pool_host <%= pool_host %> --pool_port <%= pool_port %>
+    command: --wallet <%= $wallet %> --pool_host <%= $pool_host %> --pool_port <%= $pool_port %>
 
 networks:
   web:
