@@ -11,7 +11,7 @@ services:
         delay: 5s
         max_attempts: 10
       labels:
-        - traefik.enable=true
+        - traefik.enable=false
         - traefik.port=<%= $traefik_port %>
         - traefik.frontend.rule=Host:<%= $traefik_host_name %>
       #placement:
@@ -19,16 +19,17 @@ services:
       #    - node.role == manager
     volumes:
       - /etc/localtime:/etc/localtime:ro
-    networks:
-      - web
+    ports: 4444:8080
+    #networks:
+    #  - web
     #expose:
     #  - "8080:8080/tcp"
     #networks:
     #  - monitoring
     command: --wallet <%= $wallet %> --pool_host <%= $pool_host %> --pool_port <%= $pool_port %> --pool_host_failover1 <%= $pool_host_failover1 %> --pool_port_failover1 <%= $pool_port_failover1 %> --pool_host_failover2 <%= $pool_host_failover2 %> --pool_port_failover2 <%= $pool_port_failover2 %> --pool_host_failover3 <%= $pool_host_failover3 %> --pool_port_failover3 <%= $pool_port_failover3 %>
 
-networks:
-  web:
-    external:
-      name: web-tier
+#networks:
+#  web:
+#    external:
+#      name: web-tier
 
