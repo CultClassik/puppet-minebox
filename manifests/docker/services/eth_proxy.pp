@@ -35,11 +35,17 @@ class minebox::docker::services::eth_proxy(
       content => epp(
         'minebox/docker/compose/eth-proxy.yaml.epp',
         {
-          'wallet'            => $wallet,
-          'pool_host'         => $pool_host,
-          'pool_port'         => $pool_port,
-          'traefik_host_name' => $traefik_host_name,
-          'traefik_port'      => $traefik_port,
+          'wallet'              => $wallet,
+          'pool_host'           => $pool_host,
+          'pool_port'           => $pool_port,
+          'traefik_host_name'   => $traefik_host_name,
+          'traefik_port'        => $traefik_port,
+          'pool_host_failover1' => $pool_host_failover1,
+          'pool_port_failover1' => $pool_port_failover1,
+          'pool_host_failover2' => $pool_host_failover2,
+          'pool_port_failover2' => $pool_port_failover2,
+          'pool_host_failover3' => $pool_host_failover3,
+          'pool_port_failover3' => $pool_port_failover3,
         }
       ),
     }
