@@ -5,7 +5,7 @@ services:
     image: cryptojunkies/eth-proxy:latest
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: <%= $swarm_replicas %>
       restart_policy:
         condition: on-failure
         delay: 5s

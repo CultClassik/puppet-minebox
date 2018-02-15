@@ -46,6 +46,7 @@ class minebox::docker::services::eth_proxy(
           'pool_port_failover3' => $pool_port_failover3,
           'traefik_host_name'   => $traefik_host_name,
           'traefik_port'        => $traefik_port,
+          'swarm_replicas'      => $swarm_replicas,
         }
       ),
     }
