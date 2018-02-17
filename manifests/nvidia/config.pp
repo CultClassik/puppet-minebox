@@ -39,13 +39,7 @@ class minebox::nvidia::config(
       source => 'puppet:///modules/minebox/conf-nv.sh',
   }
 
-  exec { 'Apply Nvidia OC Settings' :
-    command     => "${scripts_path}/nvoc.sh",
-    refreshonly => true,
-    subscribe   => File["${scripts_path}/nvoc.sh"],
-  }
-
-  # Update xorg config when cards change
+  # Update xorg config when cards change.
   exec { 'Reconfigure Xorg' :
     subscribe   => File["${scripts_path}/nvoc.sh"],
     refreshonly => true,
@@ -53,14 +47,15 @@ class minebox::nvidia::config(
     #notify      => Reboot['after_run']
   }
 
-  # Add nvoc to rc.local so it executes after boot
+  # Add nvoc to rc.local so it executes after boot.
   file { '/etc/rc.local' :
     ensure  => file,
     content => "/bin/bash ${scripts_path}/nvoc.sh >/dev/null 2>&1",
     mode    => '0744',
   }
 
-  -> file { "${scripts_path}/nvoc.sh" :
+  # Generate Nvidia overclock script using minebox::nv_conf gpu params.
+  file { "${scripts_path}/nvoc.sh" :
     ensure  => file,
     content => epp('minebox/nvidia/nvoc.sh.epp',
       {
@@ -71,6 +66,12 @@ class minebox::nvidia::config(
     owner   => $minebox::miner_user,
     group   => $minebox::miner_group,
     mode    => '0774',
+    notify  => Exec['Apply Nvidia OC Settings'],
+  }
+
+  exec { 'Apply Nvidia OC Settings' :
+    command     => "${scripts_path}/nvoc.sh",
+    refreshonly => true,
   }
 
 }
