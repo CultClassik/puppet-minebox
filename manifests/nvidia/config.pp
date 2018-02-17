@@ -22,7 +22,8 @@ class minebox::nvidia::config(
     owner   => 'root',
     group   => 'root',
     content => epp('minebox/nvidia/nvidia-persistenced.epp',
-      { 'user_name' => $minebox::miner_user, }
+      #{ 'user_name' => $minebox::miner_user, }
+      { 'user_name' => 'root', }
     )
   }
 
