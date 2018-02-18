@@ -17,6 +17,7 @@ minebox::miner_user_groups:
   - 'sudo'
   - 'video'
   - 'docker'
+minebox::grub_options: 'quiet splash nomodeset'
 
 minebox::packages_base:
   - "linux-headers-%{facts.kernelrelease}"

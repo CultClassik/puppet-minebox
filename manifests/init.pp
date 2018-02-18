@@ -24,6 +24,7 @@ class minebox(
   Array $folders,
   Hash $miners,
   Hash $tools,
+  String $grub_options,
 ){
 
   include minebox::users::install

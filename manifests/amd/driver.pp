@@ -43,10 +43,4 @@ class minebox::amd::driver(
     content => 'export LLVM_BIN=/opt/amdgpu-pro/bin',
   }
 
-  file_line { 'Enable large page support':
-    path  => '/etc/default/grub',
-    line  => 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash amdgpu.vm_fragment_size=9"',
-    match => '^GRUB_CMDLINE_LINUX_DEFAULT=.*$',
-  }
-
 }

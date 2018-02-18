@@ -58,4 +58,16 @@ class minebox::config {
     match => '^GRUB_CMDLINE_LINUX=.*$',
   }
 
+  if $minebox::amd_conf::enable == true {
+    $final_grub_options = "${minebox::grub_options} amdgpu.vm_fragment_size=9"
+  } else {
+    $final_grub_options = $minebox::grub_options
+  }
+
+  file_line { 'GRUB_CMDLINE_LINUX_DEFAULT':
+    path  => '/etc/default/grub',
+    line  => $final_grub_options,
+    match => '^GRUB_CMDLINE_LINUX_DEFAULT=.*$',
+  }
+
 }
