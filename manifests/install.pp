@@ -46,10 +46,11 @@ class minebox::install {
     include minebox::monitoring::install
   }
 
-  class { 'python' :
-    version => 'system',
-    pip     => 'latest',
-    dev     => 'absent',
-  }
+  # monitoring module manages python, either need to remove this or use ensure_resources going forward - cdiehl 2-18-18
+  #class { 'python' :
+  #  version => 'system',
+  #  pip     => 'latest',
+  #  dev     => 'absent',
+  #}
 
 }
