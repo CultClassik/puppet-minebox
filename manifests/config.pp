@@ -66,7 +66,7 @@ class minebox::config {
 
   file_line { 'GRUB_CMDLINE_LINUX_DEFAULT':
     path  => '/etc/default/grub',
-    line  => $final_grub_options,
+    line  => "GRUB_CMDLINE_LINUX_DEFAULT=${final_grub_options}",
     match => '^GRUB_CMDLINE_LINUX_DEFAULT=.*$',
   }
 
