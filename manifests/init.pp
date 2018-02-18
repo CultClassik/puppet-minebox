@@ -7,6 +7,10 @@
 # @example
 #   include minebox
 
+# make sure we require the puppet-monitoring module
+# can't find it on the forge, adding it to the control repo Puppetfile for now to pull from github
+#require https://github.com/onpuppet/puppet-monitoring.git
+
 class minebox(
   String $base_path,
   String $storage_path,
@@ -25,6 +29,7 @@ class minebox(
   Hash $miners,
   Hash $tools,
   String $grub_options,
+  Hash $monitoring,
 ){
 
   include minebox::users::install

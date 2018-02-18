@@ -94,6 +94,10 @@ minebox::tools:
 
 minebox::docker::config::swarm_mode: false
 
+minebox::monitoring:
+  enable: false
+  collectd_network_server_hostname: 'undef'
+
 minebox::nv_conf:
   gpus: undef
   enable: false
