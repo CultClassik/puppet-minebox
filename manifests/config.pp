@@ -58,7 +58,7 @@ class minebox::config {
     match => '^GRUB_CMDLINE_LINUX=.*$',
   }
 
-  if $minebox::amd_conf::enable == true {
+  if $minebox::amd_conf['enable'] == true {
     $final_grub_options = "${minebox::grub_options} amdgpu.vm_fragment_size=9"
   } else {
     $final_grub_options = $minebox::grub_options
