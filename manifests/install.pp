@@ -42,6 +42,10 @@ class minebox::install {
     include minebox::amd::base
   }
 
+  if $minebox::monitoring['enable'] == true {
+    include minebox::monitoring::install
+  }
+
   class { 'python' :
     version => 'system',
     pip     => 'latest',
