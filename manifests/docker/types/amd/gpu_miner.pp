@@ -26,7 +26,7 @@ define minebox::docker::types::amd::gpu_miner(
     }
   }
 
-  $docker_command = regsubst($command, 'GPU_ID', "${gpu_id_new}")
+  $docker_command = regsubst($command, 'GPU_ID', $gpu_id_new)
 
   docker::run { $container_name :
     ensure                   => present,

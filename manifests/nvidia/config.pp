@@ -48,11 +48,13 @@ class minebox::nvidia::config(
     notify      => Reboot['after_run']
   }
 
-  # Add nvoc to rc.local so it executes after boot.
-  file { '/etc/rc.local' :
-    ensure  => file,
-    content => "/bin/bash ${scripts_path}/nvoc.sh >/dev/null 2>&1",
-    mode    => '0744',
+  file_line { 'rc.local-nvoc.sh' :
+    path              => '/etc/rc.local',
+    #line             => "/bin/bash ${scripts_path}/nvoc.sh >/dev/null 2>&1",
+    line              => "${scripts_path}/nvoc.sh 30 &",
+    match             => "^${scripts_path}/nvoc.sh",
+    match_for_absence => true,
+    after             => File['/etc/rc.local'],
   }
 
   # Generate Nvidia overclock script using minebox::nv_conf gpu params.

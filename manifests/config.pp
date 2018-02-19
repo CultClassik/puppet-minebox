@@ -51,17 +51,22 @@ class minebox::config {
   #  -> Class['::minebox::docker::containers::xmr_cpu']
   #}
 
+  if $minebox::amd_conf['enable'] == true {
+    $final_grub_options = "${minebox::grub_options} amdgpu.vm_fragment_size=9"
+  } else {
+    $final_grub_options = $minebox::grub_options
+  }
+
+  file { '/etc/rc.local' :
+    ensure => file,
+    mode   => '0744',
+  }
+
   # Prevent PCI-E bus errors caused by power management, use normal eth if names
   file_line { 'GRUB_CMDLINE_LINUX':
     path  => '/etc/default/grub',
     line  => 'GRUB_CMDLINE_LINUX="pci=nomsi"', #' net.ifnames=0 biosdevname=0"',
     match => '^GRUB_CMDLINE_LINUX=.*$',
-  }
-
-  if $minebox::amd_conf['enable'] == true {
-    $final_grub_options = "${minebox::grub_options} amdgpu.vm_fragment_size=9"
-  } else {
-    $final_grub_options = $minebox::grub_options
   }
 
   file_line { 'GRUB_CMDLINE_LINUX_DEFAULT':
