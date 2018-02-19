@@ -33,13 +33,12 @@ class minebox(
 ){
 
   include minebox::users::install
-  contain minebox::cleanup
+  include minebox::cleanup
   contain minebox::install
   contain minebox::config
   contain minebox::tools::base
 
   Class['::minebox::users::install']
-  -> Class['::minebox::cleanup']
   -> Class['::minebox::install']
   -> Class['::minebox::config']
   -> Class['::minebox::tools::base']
