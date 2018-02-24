@@ -13,8 +13,10 @@ define minebox::docker::types::amd::gpu_miner(
   String $command,
 ) {
 
-  # add the gpu id for the -di switch
-  # this is necessary on amd since the container can see all of the gpus, unlike nvidia
+  # debug
+  notify { 'Params for minebox::docker::types::amd::gpu_miner':
+    message => "${gpu_id} -- ${container_name} -- ${image} -- ${command}",
+  }
 
   if $image =~ /claymore/ {
     $gpu_id_new = $gpu_id ? {
