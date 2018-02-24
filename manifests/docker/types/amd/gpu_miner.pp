@@ -13,11 +13,6 @@ define minebox::docker::types::amd::gpu_miner(
   String $command,
 ) {
 
-  # debug
-  notify { 'Params for minebox::docker::types::amd::gpu_miner':
-    message => "${gpu_id} -- ${container_name} -- ${image} -- ${command}",
-  }
-
   if $image =~ /claymore/ {
     $gpu_id_new = $gpu_id ? {
       10      => 'a',
@@ -28,7 +23,7 @@ define minebox::docker::types::amd::gpu_miner(
     }
   }
 
-  $docker_command = regsubst($command, 'GPU_ID', "${gpu_id_new}")
+  $docker_command = regsubst($command, /GPU_ID/, "${gpu_id_new}")
 
   docker::run { $container_name :
     ensure                   => present,
