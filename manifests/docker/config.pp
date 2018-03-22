@@ -18,4 +18,11 @@ class minebox::docker::config(
     contain minebox::docker::services::eth_proxy
   }
 
+  group { 'docker':
+    after   => Class['docker'],
+    members => [
+      $::minebox::miner_user,
+    ]
+  }
+
 }
