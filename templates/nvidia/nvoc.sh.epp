@@ -6,13 +6,13 @@
 
 export DISPLAY=:0
 
-nvidia-smi -pm ENABLED
-nvidia-smi -pl 100
+/usr/bin/nvidia-smi -pm ENABLED
+/usr/bin/nvidia-smi -pl 100
 
 <% $gpu_cfg.each |$gpu| { -%>
 echo "Configuring card: <%= $gpu['mod'] %>"
-nvidia-smi -pl <%= $gpu['pwr'] %> -i <%= $gpu['id'] %>
-nvidia-settings -a "[gpu:<%= $gpu['id'] -%>]/GPUGraphicsClockOffset[3]=<%= $gpu['gpu'] -%>" \
+/usr/bin/nvidia-smi -pl <%= $gpu['pwr'] %> -i <%= $gpu['id'] %>
+/usr/bin/nvidia-settings -a "[gpu:<%= $gpu['id'] -%>]/GPUGraphicsClockOffset[3]=<%= $gpu['gpu'] -%>" \
  -a "[gpu:<%= $gpu['id'] -%>]/GPUMemoryTransferRateOffset[3]=<%= $gpu['mem'] -%>" \
  -a "[gpu:<%= $gpu['id'] -%>]/GPUFanControlState=<%= $gpu_fan %>" \
  <% if $gpu_fan == true { -%>
