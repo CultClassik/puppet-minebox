@@ -7,6 +7,10 @@
 # If the user is managed in a linux server base profile, we'll need to amend the user resource attributes with a collector:
 # https://puppet.com/docs/puppet/4.10/lang_resources_advanced.html#adding-or-modifying-attributes
 #
+# need to add some aliases
+# ex:
+# https://github.com/Cyclenerd/ethereum_nvidia_miner/blob/master/files/bash_aliases
+#
 # @example
 #   include minebox::users::install
 class minebox::users::install {
