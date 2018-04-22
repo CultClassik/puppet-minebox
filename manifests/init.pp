@@ -34,9 +34,9 @@ class minebox(
 
   include minebox::users::install
   include minebox::cleanup
-  contain minebox::install
-  contain minebox::config
-  contain minebox::tools::base
+  include minebox::install
+  include minebox::config
+  include minebox::tools::base
 
   Class['::minebox::users::install']
   -> Class['::minebox::install']
