@@ -45,7 +45,7 @@ class minebox::config {
   #######################################################################################################
   #if $minebox::cpu_mining == true {
   #  include minebox::system::hugepages
-    include minebox::docker::containers::xmr_cpu
+  #  include minebox::docker::containers::xmr_cpu
   #  include minebox::docker::containers::portainer
   #  Class['::minebox::system::hugepages']
   #  -> Class['::minebox::docker::containers::xmr_cpu']
