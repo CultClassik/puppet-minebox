@@ -16,13 +16,14 @@ class minebox::install {
     }
   )
 
-    # Create the required folders
+  # Create the required folders (base folders)
   file { $minebox::base_path :
     ensure => directory,
     group  => $minebox::miner_group,
     owner  => $minebox::miner_user,
   }
 
+  # Create the required folders (base child folders)
   $minebox::folders.each |String $folder| {
     file { "${minebox::base_path}/${folder}" :
       ensure    => directory,
@@ -33,24 +34,11 @@ class minebox::install {
   }
 
   if $minebox::nv_conf['enable'] == true {
-    # notify {'NVIDIA GPU based system!':}
     include minebox::nvidia::base
   }
 
   if $minebox::amd_conf['enable'] == true {
-    # notify {'AMD GPU based system!':}
     include minebox::amd::base
   }
-
-  if $minebox::monitoring['enable'] == true {
-    include minebox::monitoring::install
-  }
-
-  # monitoring module manages python, either need to remove this or use ensure_resources going forward - cdiehl 2-18-18
-  #class { 'python' :
-  #  version => 'system',
-  #  pip     => 'latest',
-  #  dev     => 'absent',
-  #}
 
 }

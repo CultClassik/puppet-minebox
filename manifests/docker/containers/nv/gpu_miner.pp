@@ -1,12 +1,12 @@
-# minebox::docker::types::nv::gpu_miner
+# minebox::docker::containers::nv::gpu_miner
 #
 # A description of what this defined type does
 #
 # @summary A short summary of the purpose of this defined type.
 #
 # @example
-#   minebox::docker::types::nv::gpu_miner { 'namevar': }
-define minebox::docker::types::nv::gpu_miner(
+#   minebox::docker::containers::nv::gpu_miner { 'namevar': }
+define minebox::docker::containers::nv::gpu_miner(
   Integer $gpu_id,
   String $container_name,
   String $image,
