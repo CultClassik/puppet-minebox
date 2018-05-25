@@ -28,6 +28,7 @@ class minebox(
   Array $folders,
   Hash $miners,
   Hash $tools,
+  String $minebox::gpu_monitoring_network,
   String $grub_options,
 ){
 

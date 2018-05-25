@@ -11,7 +11,9 @@ define minebox::docker::containers::amd::gpu_miner(
   String $container_name,
   String $image,
   String $command,
+  String $monitor_net,
 ) {
+  require minebox::docker::config
 
   if $image =~ /claymore/ {
     $gpu_id_new = $gpu_id ? {
@@ -31,7 +33,11 @@ define minebox::docker::containers::amd::gpu_miner(
     hostname                 => "${::hostname}-gpu${gpu_id_new}",
     volumes                  => [ '/etc/localtime:/etc/localtime' ],
     dns                      => [ '8.8.8.8', '8.8.4.4 '],
-    extra_parameters         => [ '--device=/dev/dri', '--restart on-failure:10' ],
+    extra_parameters         => [
+      '--device=/dev/dri',
+      '--restart on-failure:10'
+      "--network=${monitor_net}"
+      ],
     command                  => $docker_command,
     remove_container_on_stop => true,
     remove_volume_on_stop    => true,

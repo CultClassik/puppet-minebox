@@ -11,8 +11,10 @@ define minebox::docker::containers::nv::gpu_miner(
   String $container_name,
   String $image,
   String $command,
+  String $monitor_net,
 ) {
-
+  require minebox::docker::config
+  
   docker::run { $container_name :
     ensure                   => present,
     image                    => $image,
@@ -20,7 +22,11 @@ define minebox::docker::containers::nv::gpu_miner(
     env                      => [ "NVIDIA_VISIBLE_DEVICES=${gpu_id}" ],
     volumes                  => [ '/etc/localtime:/etc/localtime' ],
     dns                      => [ '8.8.8.8', '8.8.4.4 '],
-    extra_parameters         => [ '--runtime=nvidia', '--restart on-failure:10' ],
+    extra_parameters         => [
+      '--runtime=nvidia',
+      '--restart on-failure:10'
+      "--network=${monitor_net}"
+      ],
     command                  => $command,
     remove_container_on_stop => true,
     remove_volume_on_stop    => true,

@@ -13,8 +13,6 @@ class minebox::docker::containers::config (
   Array $gpus,
 ) {
 
-  #notify { 'Applying Docker GPU Miner Container Class..' : }
-
   # replace dashes with underscores in the resource type
   #$resource_type = regsubst("minebox::docker::containers::${gpu['miner']['image']}::miner", '-', '_', "G")
   $resource_type = "minebox::docker::containers::${gpu_type}::gpu_miner"
@@ -41,6 +39,7 @@ class minebox::docker::containers::config (
         container_name => $container_name,
         image          => $docker_image,
         command        => $command,
+        monitor_net    => $::minebox::gpu_monitoring_network,
       }
     )
   }

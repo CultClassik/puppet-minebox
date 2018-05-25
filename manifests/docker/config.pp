@@ -25,4 +25,11 @@ class minebox::docker::config(
     ]
   }
 
+  docker_network { $minebox::gpu_monitoring_network :
+    ensure  => 'present',
+    driver  => 'bridge',
+    options => '--attachable',
+    after   => Class['docker'],
+  }
+
 }

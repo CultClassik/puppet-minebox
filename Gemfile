@@ -124,3 +124,10 @@ extra_gemfiles.each do |gemfile|
   end
 end
 # vim: syntax=ruby
+
+# Puppet Strings for doc generation
+gem 'puppet-strings'
+gem 'yard'
+gem 'rgen'
+
+gem 'rake'
