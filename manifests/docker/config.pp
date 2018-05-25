@@ -15,7 +15,8 @@ class minebox::docker::config(
   require docker
 
   if $swarm_mode == true {
-    contain minebox::docker::services::eth_proxy
+    # deploy services here, may not keep this section
+    #contain minebox::docker::services::eth_proxy
   }
 
   docker_network { $minebox::gpu_monitoring_network :
