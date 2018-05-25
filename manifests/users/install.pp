@@ -24,8 +24,14 @@ class minebox::users::install {
       gid    => '1050',
   }
 
+  cron { 'nvoc':
+    command => 'sleep 2m && bash /minebox/scripts/nvoc.sh >/dev/null 2>&1',
+    user    => 'root',
+    special => 'reboot',
+  }
+
   # Create the mining user
-  -> user { $minebox::miner_user :
+  user { $minebox::miner_user :
     ensure     => present,
     gid        => $minebox::miner_group,
     groups     => $minebox::miner_user_groups,
@@ -34,6 +40,7 @@ class minebox::users::install {
     home       => "/home/${minebox::miner_user}",
     password   => $minebox::miner_user_pwd,
     shell      => '/bin/bash',
+    require    => Group[$minebox::miner_group],
   }
 
   -> file { "/home/${minebox::miner_user}" :
@@ -49,6 +56,8 @@ class minebox::users::install {
     type   => 'ssh-rsa',
     key    => $minebox::miner_user_ssh_key,
   }
+
+
 
   -> class { 'minebox::users::screen' : }
   -> class { 'minebox::users::links' : }
