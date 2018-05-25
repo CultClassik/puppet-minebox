@@ -5,6 +5,9 @@ lookup_options:
       strategy: deep
       merge_hash_arrays: true
 
+docker::docker_users:
+  - "%{lookup('minebox::miner_user')}"
+
 minebox::gpu_monitoring_network: minerstats
 minebox::cpu_mining: false
 minebox::base_path: '/minebox'
