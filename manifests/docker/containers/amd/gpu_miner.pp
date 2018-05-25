@@ -35,8 +35,8 @@ define minebox::docker::containers::amd::gpu_miner(
     dns                      => [ '8.8.8.8', '8.8.4.4 '],
     extra_parameters         => [
       '--device=/dev/dri',
-      '--restart on-failure:10'
-      "--network=${monitor_net}"
+      '--restart on-failure:10',
+      "--network=${monitor_net}",
       ],
     command                  => $docker_command,
     remove_container_on_stop => true,

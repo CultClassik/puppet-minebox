@@ -14,7 +14,7 @@ define minebox::docker::containers::nv::gpu_miner(
   String $monitor_net,
 ) {
   require minebox::docker::config
-  
+
   docker::run { $container_name :
     ensure                   => present,
     image                    => $image,
@@ -24,8 +24,8 @@ define minebox::docker::containers::nv::gpu_miner(
     dns                      => [ '8.8.8.8', '8.8.4.4 '],
     extra_parameters         => [
       '--runtime=nvidia',
-      '--restart on-failure:10'
-      "--network=${monitor_net}"
+      '--restart on-failure:10',
+      "--network=${monitor_net}",
       ],
     command                  => $command,
     remove_container_on_stop => true,
