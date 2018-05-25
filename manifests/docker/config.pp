@@ -22,7 +22,7 @@ class minebox::docker::config(
     ensure  => 'present',
     driver  => 'bridge',
     options => '--attachable',
-    after   => Class['docker'],
+    require => Class['docker'],
   }
 
 }
