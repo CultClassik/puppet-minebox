@@ -6,6 +6,8 @@
 #   include minebox::docker::containers::mstatsd
 class minebox::docker::containers::mstatsd (
   String $container_name,
+  String $miner_host,
+  String $miner_port,
   String $monitor_net,
   String $image,
 ) {

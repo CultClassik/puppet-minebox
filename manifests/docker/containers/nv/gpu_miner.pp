@@ -15,10 +15,12 @@ define minebox::docker::containers::nv::gpu_miner(
 ) {
   require minebox::docker::config
 
+  $cont_hostname = "${::hostname}-gpu${gpu_id}"
+
   docker::run { $container_name :
     ensure                   => present,
     image                    => $image,
-    hostname                 => "${::hostname}-gpu${gpu_id}",
+    hostname                 => $cont_hostname,
     env                      => [ "NVIDIA_VISIBLE_DEVICES=${gpu_id}" ],
     volumes                  => [ '/etc/localtime:/etc/localtime' ],
     dns                      => [ '8.8.8.8', '8.8.4.4 '],
@@ -33,9 +35,12 @@ define minebox::docker::containers::nv::gpu_miner(
     pull_on_start            => true,
   }
 
+  # think we need to use a var for this damn miner_port somewhere...and other stuff, this is rough and needs work
   -> class { 'minebox::docker::containers::mstatsd' :
        container_name => "mstatsd-${gpu_id}",
        monitor_net    => $monitor_net,
+       miner_host     => $cont_hostname,
+       miner_port     => '3333',
        image          => 'cryptojunkies/mstats-exp:latest',
   }
 
