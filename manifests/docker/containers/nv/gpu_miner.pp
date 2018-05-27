@@ -46,7 +46,7 @@ define minebox::docker::containers::nv::gpu_miner(
       "INFLUX_DB=minerstats",
       "INFLUX_USER=monit0r",
       "INFLUX_PASS=monit0r",
-      "MINER_HOST=${miner_host}",
+      "MINER_HOST=$cont_hostname",
       "MINER_PORT='3333'",
       ],
     volumes                  => [ '/etc/localtime:/etc/localtime' ],
