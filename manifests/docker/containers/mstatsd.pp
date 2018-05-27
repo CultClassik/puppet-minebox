@@ -34,5 +34,6 @@ class minebox::docker::containers::mstatsd (
     remove_container_on_stop => true,
     remove_volume_on_stop    => true,
     pull_on_start            => true,
-
   }
+
+}
