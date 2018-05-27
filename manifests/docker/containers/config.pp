@@ -42,6 +42,7 @@ class minebox::docker::containers::config (
         monitor_net    => $::minebox::gpu_monitoring_network,
       }
     )
+
   }
 
 }

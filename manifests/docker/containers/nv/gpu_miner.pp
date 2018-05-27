@@ -33,4 +33,10 @@ define minebox::docker::containers::nv::gpu_miner(
     pull_on_start            => true,
   }
 
+  -> class { 'minebox::docker::containers::mstatsd' :
+       container_name => "mstatsd-${gpu_id}",
+       monitor_net    => $monitor_net,
+       image          => 'cryptojunkies/mstats-exp:latest',
+  }
+
 }
