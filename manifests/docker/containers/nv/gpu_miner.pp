@@ -15,12 +15,10 @@ define minebox::docker::containers::nv::gpu_miner(
 ) {
   require minebox::docker::config
 
-  $cont_hostname = "${::hostname}-gpu${gpu_id}"
-
   docker::run { $container_name :
     ensure                   => present,
     image                    => $image,
-    hostname                 => $cont_hostname,
+    hostname                 => "${::hostname}-gpu${gpu_id}",
     env                      => [ "NVIDIA_VISIBLE_DEVICES=${gpu_id}" ],
     volumes                  => [ '/etc/localtime:/etc/localtime' ],
     dns                      => [ '8.8.8.8', '8.8.4.4 '],
@@ -46,7 +44,7 @@ define minebox::docker::containers::nv::gpu_miner(
       "INFLUX_DB=minerstats",
       "INFLUX_USER=monit0r",
       "INFLUX_PASS=monit0r",
-      "MINER_HOST=$cont_hostname",
+      "MINER_HOST=${container_name}",
       "MINER_PORT='3333'",
       ],
     volumes                  => [ '/etc/localtime:/etc/localtime' ],
