@@ -36,12 +36,26 @@ define minebox::docker::containers::nv::gpu_miner(
   }
 
   # think we need to use a var for this damn miner_port somewhere...and other stuff, this is rough and needs work
-  -> class { 'minebox::docker::containers::mstatsd' :
-       container_name => "mstatsd-${gpu_id}",
-       monitor_net    => $monitor_net,
-       miner_host     => $cont_hostname,
-       miner_port     => '3333',
-       image          => 'cryptojunkies/mstats-exp:latest',
+  docker::run { "mstatsd-${gpu_id}" :
+    ensure                   => present,
+    image                    => 'cryptojunkies/mstats-exp:latest',
+    hostname                 => "${::hostname}-msd",
+    env                      => [
+      "INFLUX_HOST=influx_mine.diehlabs.lan",
+      "INFLUX_DB=minerstats",
+      "INFLUX_USER=monit0r",
+      "INFLUX_PASS=monit0r",
+      "MINER_HOST=${miner_host}",
+      "MINER_PORT='3333'",
+      ],
+    volumes                  => [ '/etc/localtime:/etc/localtime' ],
+    extra_parameters         => [
+      '--restart on-failure:10',
+      "--network=${monitor_net}",
+      ],
+    remove_container_on_stop => true,
+    remove_volume_on_stop    => true,
+    pull_on_start            => true,
   }
 
 }
