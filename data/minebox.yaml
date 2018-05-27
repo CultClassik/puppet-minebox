@@ -69,8 +69,8 @@ minebox::miners:
       creates: miner
   hybrid:
     claymore-ethash:
-      version: 11.0
-      source: 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/Claymore_Dual_Ethereum%2BDecred_Siacoin_Lbry_Pascal_Blake2s_Keccak_gpu_v11.0_LINUX.tar.gz'
+      version: 11.7
+      source: 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/claymore_eth_11.7_linux.tar.gz'
       file: claymore.tar.gz
       creates: ethdcrminer64
     claymore-equihash:
@@ -79,8 +79,8 @@ minebox::miners:
       file: claymore-equi.tar.gz
       creates: zecminer64
     ethminer:
-      version: 0.13.0
-      source: 'https://github.com/ethereum-mining/ethminer/releases/download/v0.13.0/ethminer-0.13.0-Linux.tar.gz'
+      version: 0.14.0
+      source: 'https://github.com/ethereum-mining/ethminer/releases/download/v0.14.0/ethminer-0.14.0-Linux.tar.gz'
       file: ethminer.tar.gz
       creates: ethminer
 
@@ -100,6 +100,10 @@ minebox::docker::config::swarm_mode: false
 minebox::monitoring:
   enable: false
   collectd_network_server_hostname: 'undef'
+
+minebox:monitor:mstatsd:
+  docker_image: 'cryptojunkies/mstats-exp:latest'
+  api_port: '3333'
 
 minebox::nv_conf:
   gpus: undef
@@ -122,6 +126,43 @@ minebox::accounts:
   xmr: 'undef'
   sia: 'undef'
   zcl: 'undef'
+
+minebox::miner_defaults:
+  monitor:
+    api_port:
+      claymore: '3333'
+      ethminer: '3333'
+      dstm: '2222'
+  amd:
+    eth:
+      ethminer:
+        repo: cryptojunkies
+        image: ethminer
+        tag: latest-amd
+        command: -RH -U -S us1.ethermine.org:4444 -FS us2.ethermine.org:4444 --farm-recheck 2000 -O %{minebox::accounts.eth}.%{facts.hostname}-WORKER_ID -HWMON --api-port %{minebox:monitor.api_port.ethminer} --opencl --opencl-device GPU_ID
+      cm_eth_only:
+        repo: cryptojunkies
+        image: claymore
+        tag: eth-amd-latest
+        command: -epool us1.ethermine.org:4444 -epool us2.ethermine.org:4444 -ewal %{minebox::accounts.eth}.%{facts.hostname}-WORKER_ID -epsw x -mode 1 -mport %{minebox:monitor.api_port.claymore} -platform 1 -di GPU_ID
+  nv:
+    zec:
+      flypool:
+        repo: cryptojunkies
+        image: dstm
+        tag: latest
+        command: --server us1-zcash.flypool.org --port 3333 --user %{minebox::accounts.zec}.%{facts.hostname}-WORKER_ID --pass x --telemetry 0.0.0.0:%{minebox:monitor.api_port.dstm}
+    eth:
+      ethminer_stable:
+        repo: cryptojunkies
+        image: ethminer
+        tag: 0.14.0-cuda9.0
+        command: -RH -U -S us1.ethermine.org:4444 -FS us2.ethermine.org:4444 --farm-recheck 2000 -O %{minebox::accounts.eth}.%{facts.hostname}-WORKER_ID -HWMON --api-port %{minebox:monitor.api_port.ethminer}
+      ethminer_latest:
+        repo: cryptojunkies
+        image: ethminer
+        tag: latest-cuda9.0
+        command: -RH -U -S us1.ethermine.org:4444 -FS us2.ethermine.org:4444 --farm-recheck 2000 -O %{minebox::accounts.eth}.%{facts.hostname}-WORKER_ID -HWMON --api-port %{minebox:monitor.api_port.ethminer}
 
 minebox::docker::services::eth_proxy::enable: false
 minebox::docker::services::eth_proxy::debug: false

@@ -9,19 +9,21 @@
 define minebox::docker::containers::nv::gpu_miner(
   Integer $gpu_id,
   String $container_name,
-  String $image,
+  String $miner_image,
   String $command,
   String $monitor_net,
+  String $monitor_image,
+  String $miner_api_port,
+  Hash $influxdb,
 ) {
   require minebox::docker::config
 
   docker::run { $container_name :
     ensure                   => present,
-    image                    => $image,
+    image                    => $miner_image,
     hostname                 => "${::hostname}-gpu${gpu_id}",
     env                      => [ "NVIDIA_VISIBLE_DEVICES=${gpu_id}" ],
     volumes                  => [ '/etc/localtime:/etc/localtime' ],
-    dns                      => [ '8.8.8.8', '8.8.4.4 '],
     extra_parameters         => [
       '--runtime=nvidia',
       '--restart on-failure:10',
@@ -36,16 +38,16 @@ define minebox::docker::containers::nv::gpu_miner(
   # think we need to use a var for this damn miner_port somewhere...and other stuff, this is rough and needs work
   docker::run { "mstatsd-${gpu_id}" :
     ensure                   => present,
-    image                    => 'cryptojunkies/mstats-exp:latest',
+    image                    => $monitor_image,
     hostname                 => "${::hostname}-msd",
     env                      => [
-      "INFLUX_HOST=influx_mine.diehlabs.lan",
-      "INFLUX_PORT=80",
-      "INFLUX_DB=minerstats",
-      "INFLUX_USER=monit0r",
-      "INFLUX_PASS=monit0r",
+      "INFLUX_HOST=${influxdb['host']}",
+      "INFLUX_PORT=${influxdb['port']}",
+      "INFLUX_DB=${influxdb['db']}",
+      "INFLUX_USER=${influxdb['user']}",
+      "INFLUX_PASS=${influxdb['pass']}",
       "MINER_HOST=${container_name}",
-      "MINER_PORT=3333",
+      "MINER_PORT=${miner_api_port}",
       'TIMER=10000',
       ],
     volumes                  => [ '/etc/localtime:/etc/localtime' ],

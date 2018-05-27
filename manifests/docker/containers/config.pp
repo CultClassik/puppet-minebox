@@ -40,6 +40,10 @@ class minebox::docker::containers::config (
         image          => $docker_image,
         command        => $command,
         monitor_net    => $::minebox::gpu_monitoring_network,
+        miner_image    =>
+        monitor_image  =>
+        miner_api_port =>
+        influxdb       =>
       }
     )
 
