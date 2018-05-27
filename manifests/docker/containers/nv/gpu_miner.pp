@@ -42,6 +42,7 @@ define minebox::docker::containers::nv::gpu_miner(
     hostname                 => "${::hostname}-msd",
     env                      => [
       "INFLUX_HOST=influx_mine.diehlabs.lan",
+      "INFLUX_PORT=80",
       "INFLUX_DB=minerstats",
       "INFLUX_USER=monit0r",
       "INFLUX_PASS=monit0r",
