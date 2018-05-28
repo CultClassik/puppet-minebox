@@ -25,9 +25,7 @@ class minebox::cleanup {
       ensure => absent,
       image  => 'servethehome/monero_moneropool:latest',
     }
-    file { "/etc/systemd/system/docker-${cont}.service" :
-      ensure => absent,
-    }
+
   }
 
 }
