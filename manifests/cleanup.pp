@@ -24,6 +24,9 @@ class minebox::cleanup {
     docker::run { $cont :
       ensure => absent,
     }
+    file { "/etc/systemd/system/docker-${cont}.service" :
+      ensure => absent,
+    }
   }
 
 }
