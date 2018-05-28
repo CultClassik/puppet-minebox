@@ -17,7 +17,7 @@ class minebox::amd::config(
     class { '::minebox::docker::containers::config' :
       gpu_type => 'amd',
       gpus     => $amd_conf['gpus'],
-      monitor  => lookup('::minebox::monitor', {merge => 'hash'}),
+      monitor  => lookup('minebox::monitor', {merge => 'hash'}),
       #require  => Class['::minebox::users::screen'],
     }
   }
