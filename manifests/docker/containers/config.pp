@@ -11,7 +11,7 @@
 class minebox::docker::containers::config (
   String $gpu_type,
   Array $gpus,
-  #Hash $monitor,
+  Hash $monitor = lookup('minebox::monitor', {merge => 'hash'}),
 ) {
 
   # replace dashes with underscores in the resource type
@@ -41,7 +41,7 @@ class minebox::docker::containers::config (
         miner_image    => $docker_image,
         api_port       => $gpu['miner']['api_port'],
         command        => $command,
-        monitor        => $::minebox:monitor,
+        monitor        => $monitor,
       }
     )
 
