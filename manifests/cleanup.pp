@@ -15,4 +15,8 @@ class minebox::cleanup {
     before => File['/etc/rc.local']
   }
 
+  docker::run {'xmr-cpu-miner':
+    ensure => absent,
+  }
+
 }
