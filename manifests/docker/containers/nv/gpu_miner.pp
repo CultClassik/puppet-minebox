@@ -8,13 +8,11 @@
 #   minebox::docker::containers::nv::gpu_miner { 'namevar': }
 define minebox::docker::containers::nv::gpu_miner(
   Integer $gpu_id,
-  String $container_name,
   String $miner_image,
+  String $container_name,
   String $command,
-  String $monitor_net,
-  String $monitor_image,
-  String $miner_api_port,
-  Hash $influxdb,
+  String $api_port,
+  Hash $monitor,
 ) {
   require minebox::docker::config
 
@@ -27,7 +25,7 @@ define minebox::docker::containers::nv::gpu_miner(
     extra_parameters         => [
       '--runtime=nvidia',
       '--restart on-failure:10',
-      "--network=${monitor_net}",
+      "--network=${monitor['gpu_network']}",
       ],
     command                  => $command,
     remove_container_on_stop => true,
@@ -35,25 +33,25 @@ define minebox::docker::containers::nv::gpu_miner(
     pull_on_start            => true,
   }
 
-  if $::minebox:monitor['enable'] == true {
+  if $monitor['enable'] == true {
     docker::run { "mstatsd-${gpu_id}" :
       ensure                   => present,
-      image                    => $monitor_image,
+      image                    => $monitor['docker_image'],
       hostname                 => "${::hostname}-msd",
       env                      => [
-        "INFLUX_HOST=${influxdb['host']}",
-        "INFLUX_PORT=${influxdb['port']}",
-        "INFLUX_DB=${influxdb['db']}",
-        "INFLUX_USER=${influxdb['user']}",
-        "INFLUX_PASS=${influxdb['pass']}",
+        "INFLUX_HOST=${monitor['influxdb']['host']}",
+        "INFLUX_PORT=${monitor['influxdb']['port']}",
+        "INFLUX_DB=${monitor['influxdb']['db']}",
+        "INFLUX_USER=${monitor['influxdb']['user']}",
+        "INFLUX_PASS=${monitor['influxdb']['pass']}",
         "MINER_HOST=${container_name}",
-        "MINER_PORT=${miner_api_port}",
+        "MINER_PORT=${api_port}",
         'TIMER=10000',
         ],
       volumes                  => [ '/etc/localtime:/etc/localtime' ],
       extra_parameters         => [
         '--restart on-failure:10',
-        "--network=${monitor_net}",
+        "--network=${monitor['gpu_network']}",
         ],
       remove_container_on_stop => true,
       remove_volume_on_stop    => true,
