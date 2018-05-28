@@ -120,7 +120,6 @@ minebox::accounts:
 
 minebox::monitor:
   enable: false
-  #collectd_network_server_hostname: 'undef'
   docker_image: 'cryptojunkies/mstats-exp:latest'
   gpu_network: minerstats
   api_port:

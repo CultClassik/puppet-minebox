@@ -40,7 +40,6 @@ class minebox::docker::containers::config (
         miner_image    => $docker_image,
         api_port       => $gpu['miner']['api_port'],
         command        => $command,
-        monitor        => { 'test1' => 'val1'},
       }
     )
 
