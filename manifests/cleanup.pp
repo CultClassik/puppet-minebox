@@ -15,8 +15,15 @@ class minebox::cleanup {
     before => File['/etc/rc.local']
   }
 
-  docker::run {'xmr-cpu-miner':
-    ensure => absent,
+  $old_cont = [
+    'xmr-cpu',
+    'xmr-cpu-miner',
+  ]
+
+  $old_cont.each |String $cont| {
+    docker::run { $cont :
+      ensure => absent,
+    }
   }
 
 }
