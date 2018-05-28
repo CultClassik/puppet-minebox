@@ -12,7 +12,7 @@ define minebox::docker::containers::nv::gpu_miner(
   String $container_name,
   String $command,
   String $api_port,
-  Hash $monitor = $::minebox:monitor,
+  Hash $monitor = $::minebox::monitor,
 ) {
   require minebox::docker::config
 
