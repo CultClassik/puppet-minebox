@@ -11,6 +11,7 @@
 class minebox::docker::containers::config (
   String $gpu_type,
   Array $gpus,
+  Hash $monitor,
 ) {
 
   # replace dashes with underscores in the resource type
@@ -39,10 +40,10 @@ class minebox::docker::containers::config (
         container_name => $container_name,
         miner_image    => $docker_image,
         command        => $command,
-        monitor_net    => $::minebox::monitor['gpu_network'],
-        monitor_image  => $::minebox::monitor['docker_image'],
+        monitor_net    => $monitor['gpu_network'],
+        monitor_image  => $monitor['docker_image'],
         miner_api_port => $gpu['miner']['api_port'],
-        influxdb       => $::minebox::monitor['influx'],
+        influxdb       => $monitor['influx'],
       }
     )
 
