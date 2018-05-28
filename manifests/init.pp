@@ -28,7 +28,7 @@ class minebox(
   Array $folders,
   Hash $miners,
   Hash $tools,
-  Hash monitor,
+  Hash $monitor,
   String $grub_options,
 ){
 
