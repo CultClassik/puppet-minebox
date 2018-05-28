@@ -68,7 +68,7 @@ class minebox::nvidia::docker (
     class { 'minebox::docker::containers::config' :
       gpu_type => 'nv',
       gpus     => lookup('minebox::nv_conf.gpus', {merge => 'hash'}),
-      monitor  => lookup('minebox::monitor', {merge => 'hash'}),
+      #monitor  => lookup('minebox::monitor', {merge => 'hash'}),
     }
   }
 

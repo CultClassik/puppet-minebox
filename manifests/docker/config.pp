@@ -19,7 +19,7 @@ class minebox::docker::config(
     #contain minebox::docker::services::eth_proxy
   #}
 
-  docker_network { $minebox::gpu_monitoring_network :
+  docker_network { $::minebox::monitor['gpu_network'] :
     ensure  => 'present',
     driver  => 'bridge',
     options => '--attachable',
