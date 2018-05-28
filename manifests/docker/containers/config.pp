@@ -37,13 +37,12 @@ class minebox::docker::containers::config (
       {
         gpu_id         => $gpu['id'],
         container_name => $container_name,
-        image          => $docker_image,
+        miner_image    => $docker_image,
         command        => $command,
-        monitor_net    => $::minebox::gpu_monitoring_network,
-        miner_image    =>
-        monitor_image  =>
-        miner_api_port =>
-        influxdb       =>
+        monitor_net    => $::minebox::monitor['gpu_network'],
+        monitor_image  => $::minebox::monitor['docker_image'],
+        miner_api_port => $gpu['miner']['api_port'],
+        influxdb       => $::minebox::monitor['influx'],
       }
     )
 

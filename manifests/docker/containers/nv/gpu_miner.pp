@@ -35,29 +35,30 @@ define minebox::docker::containers::nv::gpu_miner(
     pull_on_start            => true,
   }
 
-  # think we need to use a var for this damn miner_port somewhere...and other stuff, this is rough and needs work
-  docker::run { "mstatsd-${gpu_id}" :
-    ensure                   => present,
-    image                    => $monitor_image,
-    hostname                 => "${::hostname}-msd",
-    env                      => [
-      "INFLUX_HOST=${influxdb['host']}",
-      "INFLUX_PORT=${influxdb['port']}",
-      "INFLUX_DB=${influxdb['db']}",
-      "INFLUX_USER=${influxdb['user']}",
-      "INFLUX_PASS=${influxdb['pass']}",
-      "MINER_HOST=${container_name}",
-      "MINER_PORT=${miner_api_port}",
-      'TIMER=10000',
-      ],
-    volumes                  => [ '/etc/localtime:/etc/localtime' ],
-    extra_parameters         => [
-      '--restart on-failure:10',
-      "--network=${monitor_net}",
-      ],
-    remove_container_on_stop => true,
-    remove_volume_on_stop    => true,
-    pull_on_start            => true,
+  if $::minebox:monitor['enable'] == true {
+    docker::run { "mstatsd-${gpu_id}" :
+      ensure                   => present,
+      image                    => $monitor_image,
+      hostname                 => "${::hostname}-msd",
+      env                      => [
+        "INFLUX_HOST=${influxdb['host']}",
+        "INFLUX_PORT=${influxdb['port']}",
+        "INFLUX_DB=${influxdb['db']}",
+        "INFLUX_USER=${influxdb['user']}",
+        "INFLUX_PASS=${influxdb['pass']}",
+        "MINER_HOST=${container_name}",
+        "MINER_PORT=${miner_api_port}",
+        'TIMER=10000',
+        ],
+      volumes                  => [ '/etc/localtime:/etc/localtime' ],
+      extra_parameters         => [
+        '--restart on-failure:10',
+        "--network=${monitor_net}",
+        ],
+      remove_container_on_stop => true,
+      remove_volume_on_stop    => true,
+      pull_on_start            => true,
+    }
   }
 
 }
