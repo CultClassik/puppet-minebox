@@ -22,22 +22,22 @@ class minebox::nvidia::config(
     owner   => 'root',
     group   => 'root',
     content => epp('minebox/nvidia/nvidia-persistenced.epp',
-      #{ 'user_name' => $minebox::miner_user, }
       { 'user_name' => 'root', }
     )
   }
 
-  -> service { 'nvidia-persistenced' :
-    ensure => running,
+  service { 'nvidia-persistenced' :
+    ensure  => running,
+    require => File['/etc/systemd/system/nvidia-persistenced.service'],
   }
 
   # Deploy xorg reconfig script
   file { "${scripts_path}/conf-nv.sh" :
-      ensure => file,
-      owner  => $minebox::miner_user,
-      group  => $minebox::miner_group,
-      mode   => '0774',
-      source => 'puppet:///modules/minebox/conf-nv.sh',
+    ensure => file,
+    owner  => $minebox::miner_user,
+    group  => $minebox::miner_group,
+    mode   => '0774',
+    source => 'puppet:///modules/minebox/conf-nv.sh',
   }
 
   # Update xorg config when cards change.
@@ -75,6 +75,13 @@ class minebox::nvidia::config(
   exec { 'Apply Nvidia OC Settings' :
     command     => "${scripts_path}/nvoc.sh",
     refreshonly => true,
+  }
+
+  cron { 'nvoc':
+    command => 'sleep 2m && bash /minebox/scripts/nvoc.sh >/dev/null 2>&1',
+    user    => 'root',
+    special => 'reboot',
+    require => File["${scripts_path}/nvoc.sh"],
   }
 
 }

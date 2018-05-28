@@ -10,12 +10,6 @@ class minebox::nvidia::base(
   Hash $nv_conf = lookup('minebox::nv_conf', { merge => 'deep' }),
 ){
 
-  #include minebox::nvidia::install
-  #include minebox::nvidia::config
-
-  #Class['::minebox::nvidia::install']
-  #-> Class['::minebox::nvidia::config']
-
   class { '::minebox::nvidia::install' :
     nv_conf => $nv_conf
   }

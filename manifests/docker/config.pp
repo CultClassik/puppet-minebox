@@ -14,15 +14,16 @@ class minebox::docker::config(
 ){
   require docker
 
-  if $swarm_mode == true {
-    contain minebox::docker::services::eth_proxy
-  }
+  # deploy services here, may not keep this section
+  #if $swarm_mode == true {
+    #contain minebox::docker::services::eth_proxy
+  #}
 
-  group { 'docker':
-    after   => Class['docker'],
-    members => [
-      $::minebox::miner_user,
-    ]
+  docker_network { $::minebox::monitor['gpu_network'] :
+    ensure  => 'present',
+    driver  => 'bridge',
+    options => '--attachable',
+    require => Class['docker'],
   }
 
 }

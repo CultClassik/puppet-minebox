@@ -28,17 +28,17 @@ class minebox(
   Array $folders,
   Hash $miners,
   Hash $tools,
+  Hash $monitor,
   String $grub_options,
-  Hash $monitoring,
 ){
 
-  include minebox::users::install
   include minebox::cleanup
+  include minebox::users::base
   include minebox::install
   include minebox::config
   include minebox::tools::base
 
-  Class['::minebox::users::install']
+  Class['::minebox::users::base']
   -> Class['::minebox::install']
   -> Class['::minebox::config']
   -> Class['::minebox::tools::base']
