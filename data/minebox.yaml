@@ -140,35 +140,35 @@ minebox::miner_defaults:
         repo: cryptojunkies
         image: ethminer
         tag: latest-amd
-        api_port: "%{lookup('minebox:monitor.api_port.ethminer')}"
-        command: -RH -U -S us1.ethermine.org:4444 -FS us2.ethermine.org:4444 --farm-recheck 2000 -O %{minebox::accounts.eth}.%{facts.hostname}-WORKER_ID -HWMON --api-port %{minebox:monitor.api_port.ethminer} --opencl --opencl-device GPU_ID
+        api_port: "%{lookup('minebox::monitor.api_port.ethminer')}"
+        command: -RH -U -S us1.ethermine.org:4444 -FS us2.ethermine.org:4444 --farm-recheck 2000 -O %{minebox::accounts.eth}.%{facts.hostname}-WORKER_ID -HWMON --api-port %{minebox::monitor.api_port.ethminer} --opencl --opencl-device GPU_ID
       cm_eth_only:
         repo: cryptojunkies
         image: claymore
         tag: eth-amd-latest
-        api_port: "%{lookup('minebox:monitor.api_port.claymore')}"
-        command: -epool us1.ethermine.org:4444 -epool us2.ethermine.org:4444 -ewal %{minebox::accounts.eth}.%{facts.hostname}-WORKER_ID -epsw x -mode 1 -mport %{minebox:monitor.api_port.claymore} -platform 1 -di GPU_ID
+        api_port: "%{lookup('minebox::monitor.api_port.claymore')}"
+        command: -epool us1.ethermine.org:4444 -epool us2.ethermine.org:4444 -ewal %{minebox::accounts.eth}.%{facts.hostname}-WORKER_ID -epsw x -mode 1 -mport %{minebox::monitor.api_port.claymore} -platform 1 -di GPU_ID
   nv:
     zec:
       flypool:
         repo: cryptojunkies
         image: dstm
         tag: latest
-        api_port: "%{lookup('minebox:monitor.api_port.dstm')}"
-        command: --server us1-zcash.flypool.org --port 3333 --user %{minebox::accounts.zec}.%{facts.hostname}-WORKER_ID --pass x --telemetry 0.0.0.0:%{minebox:monitor.api_port.dstm}
+        api_port: "%{lookup('minebox::monitor.api_port.dstm')}"
+        command: --server us1-zcash.flypool.org --port 3333 --user %{minebox::accounts.zec}.%{facts.hostname}-WORKER_ID --pass x --telemetry 0.0.0.0:%{minebox::monitor.api_port.dstm}
     eth:
       ethminer_stable:
         repo: cryptojunkies
         image: ethminer
         tag: 0.14.0-cuda9.0
-        api_port: "%{lookup('minebox:monitor.api_port.ethminer')}"
-        command: -RH -U -S us1.ethermine.org:4444 -FS us2.ethermine.org:4444 --farm-recheck 2000 -O %{minebox::accounts.eth}.%{facts.hostname}-WORKER_ID -HWMON --api-port %{minebox:monitor.api_port.ethminer}
+        api_port: "%{lookup('minebox::monitor.api_port.ethminer')}"
+        command: -RH -U -S us1.ethermine.org:4444 -FS us2.ethermine.org:4444 --farm-recheck 2000 -O %{minebox::accounts.eth}.%{facts.hostname}-WORKER_ID -HWMON --api-port %{minebox::monitor.api_port.ethminer}
       ethminer_latest:
         repo: cryptojunkies
         image: ethminer
         tag: latest-cuda9.0
-        api_port: "%{lookup('minebox:monitor.api_port.ethminer')}"
-        command: -RH -U -S us1.ethermine.org:4444 -FS us2.ethermine.org:4444 --farm-recheck 2000 -O %{minebox::accounts.eth}.%{facts.hostname}-WORKER_ID -HWMON --api-port %{minebox:monitor.api_port.ethminer}
+        api_port: "%{lookup('minebox::monitor.api_port.ethminer')}"
+        command: -RH -U -S us1.ethermine.org:4444 -FS us2.ethermine.org:4444 --farm-recheck 2000 -O %{minebox::accounts.eth}.%{facts.hostname}-WORKER_ID -HWMON --api-port %{minebox::monitor.api_port.ethminer}
 
 minebox::docker::services::eth_proxy::enable: false
 minebox::docker::services::eth_proxy::debug: false
