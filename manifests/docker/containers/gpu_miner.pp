@@ -14,7 +14,7 @@ define minebox::docker::containers::gpu_miner(
   String $container_name,
   String $command,
   String $api_port,
-  Hash $monitor = $::minebox::monitor,
+  Hash $monitor,
 ) {
   require minebox::docker::config
 
@@ -26,6 +26,8 @@ define minebox::docker::containers::gpu_miner(
       13      => 'd',
       default => $gpu_id,
     }
+  } else {
+    $gpu_id_new = $gpu_id
   }
 
   $extra_params = $gpu_type ? {
