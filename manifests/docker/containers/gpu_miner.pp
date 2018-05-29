@@ -52,6 +52,7 @@ define minebox::docker::containers::gpu_miner(
   }
 
   if $monitor['enable'] == true {
+    notify { "Docker image for monitor: ${$monitor['docker_image']}"}
     docker::run { "mstatsd-${gpu_id_new}" :
       ensure                   => present,
       image                    => $monitor['docker_image'],
