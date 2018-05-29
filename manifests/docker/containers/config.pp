@@ -31,6 +31,11 @@ class minebox::docker::containers::config (
     # generate the container name
     $container_name = "m-${worker_id}"
 
+    $monitor = lookup('minebox::monitor', { merge => 'deep' })
+    notify { "Docker image for monitor:" :
+      message => $monitor['docker_image'],
+    }
+
     ensure_resource(
       $resource_type,
       $container_name,
@@ -41,7 +46,7 @@ class minebox::docker::containers::config (
         miner_image    => $docker_image,
         api_port       => $gpu['miner']['api_port'],
         command        => $command,
-        monitor        => lookup('minebox::monitor', { merge => 'deep' }),
+        monitor        => $monitor,
       }
     )
 
