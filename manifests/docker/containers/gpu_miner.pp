@@ -34,6 +34,7 @@ define minebox::docker::containers::gpu_miner(
   }
 
   $env = $gpu_type ? {
+    'amd'    => [],
     'nvidia' => [ "NVIDIA_VISIBLE_DEVICES=${gpu_id}" ],
   }
 
