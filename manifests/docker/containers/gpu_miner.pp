@@ -32,8 +32,8 @@ define minebox::docker::containers::gpu_miner(
     'nvidia' => [ '--runtime=nvidia', '--restart on-failure:10', "--network=${monitor['gpu_network']}", ],
   }
 
-  $env = $miner_image ? {
-    /(nv)/ => [ "NVIDIA_VISIBLE_DEVICES=${gpu_id}" ],
+  $env = $gpu_type ? {
+    'nvidia' => [ "NVIDIA_VISIBLE_DEVICES=${gpu_id}" ],
   }
 
   $docker_command = regsubst($command, /GPU_ID/, "${gpu_id_new}")
