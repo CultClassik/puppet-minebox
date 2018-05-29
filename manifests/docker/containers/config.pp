@@ -15,7 +15,12 @@ class minebox::docker::containers::config (
 
   # replace dashes with underscores in the resource type
   #$resource_type = regsubst("minebox::docker::containers::${gpu['miner']['image']}::miner", '-', '_', "G")
-  $resource_type = "minebox::docker::containers::gpu_miner"
+  #$resource_type = 'minebox::docker::containers::gpu_miner'
+
+  $monitor = lookup('minebox::monitor', { merge => 'deep' })
+    notify { "Docker image for monitor:" :
+      message => $monitor['docker_image'],
+    }
 
   $gpus.each |Hash $gpu| {
 
@@ -31,13 +36,8 @@ class minebox::docker::containers::config (
     # generate the container name
     $container_name = "m-${worker_id}"
 
-    $monitor = lookup('minebox::monitor', { merge => 'deep' })
-    notify { "Docker image for monitor:" :
-      message => $monitor['docker_image'],
-    }
-
     ensure_resource(
-      $resource_type,
+      'minebox::docker::containers::gpu_miner',
       $container_name,
       {
         gpu_id         => $gpu['id'],
