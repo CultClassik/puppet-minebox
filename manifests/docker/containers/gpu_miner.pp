@@ -32,7 +32,7 @@ define minebox::docker::containers::gpu_miner(
     'nvidia' => [ '--runtime=nvidia', '--restart on-failure:10', "--network=${monitor['gpu_network']}", ],
   }
 
-  $env = $image ? {
+  $env = $miner_image ? {
     /(nv)/ => [ "NVIDIA_VISIBLE_DEVICES=${gpu_id}" ],
   }
 
