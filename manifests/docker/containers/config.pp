@@ -18,9 +18,6 @@ class minebox::docker::containers::config (
   #$resource_type = 'minebox::docker::containers::gpu_miner'
 
   $monitor = lookup('minebox::monitor', { merge => 'deep' })
-    notify { "Docker image for monitor:" :
-      message => $monitor['docker_image'],
-    }
 
   $gpus.each |Hash $gpu| {
 
