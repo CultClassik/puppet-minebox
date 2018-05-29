@@ -17,7 +17,7 @@ define minebox::docker::containers::gpu_miner(
 ) {
   require minebox::docker::config
 
-   if $image =~ /claymore/ {
+   if $miner_image =~ /claymore/ {
     $gpu_id_new = $gpu_id ? {
       10      => 'a',
       11      => 'b',
