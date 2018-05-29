@@ -13,7 +13,7 @@ define minebox::docker::containers::gpu_miner(
   String $container_name,
   String $command,
   String $api_port,
-  Hash $monitor = lookup('minebox::monitor', { merge => 'deep' }),
+  Hash $monitor,
 ) {
   require minebox::docker::config
 
