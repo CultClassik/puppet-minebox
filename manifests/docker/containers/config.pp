@@ -15,7 +15,7 @@ class minebox::docker::containers::config (
 
   # replace dashes with underscores in the resource type
   #$resource_type = regsubst("minebox::docker::containers::${gpu['miner']['image']}::miner", '-', '_', "G")
-  $resource_type = "minebox::docker::containers::${gpu_type}::gpu_miner"
+  $resource_type = "minebox::docker::containers::gpu_miner"
 
   $gpus.each |Hash $gpu| {
 
@@ -36,6 +36,7 @@ class minebox::docker::containers::config (
       $container_name,
       {
         gpu_id         => $gpu['id'],
+        gpu_type       => $gpu_type,
         container_name => $container_name,
         miner_image    => $docker_image,
         api_port       => $gpu['miner']['api_port'],

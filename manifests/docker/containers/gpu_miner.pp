@@ -8,6 +8,7 @@
 #   minebox::docker::containers::gpu_miner { 'namevar': }
 define minebox::docker::containers::gpu_miner(
   Integer $gpu_id,
+  String $gpu_type,
   String $miner_image,
   String $container_name,
   String $command,
@@ -16,7 +17,7 @@ define minebox::docker::containers::gpu_miner(
 ) {
   require minebox::docker::config
 
-   if $image =~ /claymore/ {
+   if $miner_image =~ /claymore/ {
     $gpu_id_new = $gpu_id ? {
       10      => 'a',
       11      => 'b',
@@ -26,6 +27,7 @@ define minebox::docker::containers::gpu_miner(
     }
   }
 
+<<<<<<< HEAD
   $extra_params = $image ? {
     /(amd)/ => [ '--device=/dev/dri', '--restart on-failure:10', "--network=${monitor_net}", ],
     /(nv)/  => [ '--runtime=nvidia', '--restart on-failure:10', "--network=${monitor['gpu_network']}", ],
@@ -33,6 +35,15 @@ define minebox::docker::containers::gpu_miner(
 
   $env = $image ? {
     /(nv)/ => [ "NVIDIA_VISIBLE_DEVICES=${gpu_id}" ],
+=======
+  $extra_params = $gpu_type ? {
+    'amd'    => [ '--device=/dev/dri', '--restart on-failure:10', "--network=${monitor['gpu_network']}", ],
+    'nvidia' => [ '--runtime=nvidia', '--restart on-failure:10', "--network=${monitor['gpu_network']}", ],
+  }
+
+  $env = $gpu_type ? {
+    'nvidia' => [ "NVIDIA_VISIBLE_DEVICES=${gpu_id}" ],
+>>>>>>> dev
   }
 
   $docker_command = regsubst($command, /GPU_ID/, "${gpu_id_new}")

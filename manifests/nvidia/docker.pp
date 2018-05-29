@@ -66,7 +66,7 @@ class minebox::nvidia::docker (
 
   -> if $nv_conf['use_docker'] == true {
     class { 'minebox::docker::containers::config' :
-      gpu_type => 'nv',
+      gpu_type => 'nvidia',
       gpus     => lookup('minebox::nv_conf.gpus', {merge => 'hash'}),
     }
   }
