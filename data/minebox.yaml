@@ -120,7 +120,7 @@ minebox::accounts:
 
 minebox::monitor:
   enable: false
-  docker_image: 'cryptojunkies/mstats-exp:latest'
+  docker_image: 'cryptojunkies/mstats-exp:0.2'
   gpu_network: minerstats
   api_port:
     claymore: '3333'
