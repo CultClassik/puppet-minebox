@@ -17,6 +17,7 @@ class minebox::nvidia::install(
     $nvidia_packages,
     {
       ensure => present,
+      notify => Reboot['after_run'],
     }
   )
 
