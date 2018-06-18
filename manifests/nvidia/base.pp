@@ -10,7 +10,9 @@ class minebox::nvidia::base(
   Hash $nv_conf = lookup('minebox::nv_conf', { merge => 'deep' }),
 ){
 
-  class { '::minebox::nvidia::install' :
+  apt::ppa { 'ppa:graphics-drivers/ppa': }
+
+  -> class { '::minebox::nvidia::install' :
     nv_conf => $nv_conf
   }
 
