@@ -169,7 +169,7 @@ minebox::miner_defaults:
         image: ethminer
         tag: latest-cuda9.0
         api_port: "%{lookup('minebox::monitor.api_port.ethminer')}"
-        command: --R -U --farm-recheck 2000 --HWMON 1 --api-port %{minebox::monitor.api_port.ethminer} -P stratum1+ssl://%{minebox::accounts.eth}.%{facts.hostname}-WORKER_ID@us1.ethermine.org:5555  stratum1+ssl://%{minebox::accounts.eth}.%{facts.hostname}-WORKER_ID@us2.ethermine.org:5555
+        command: -R -U --farm-recheck 2000 --HWMON 1 --api-port %{minebox::monitor.api_port.ethminer} -P stratum1+ssl://%{minebox::accounts.eth}.%{facts.hostname}-WORKER_ID@us1.ethermine.org:5555  stratum1+ssl://%{minebox::accounts.eth}.%{facts.hostname}-WORKER_ID@us2.ethermine.org:5555
 
 minebox::docker::services::eth_proxy::enable: false
 minebox::docker::services::eth_proxy::debug: false
