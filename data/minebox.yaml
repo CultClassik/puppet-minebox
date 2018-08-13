@@ -101,8 +101,8 @@ minebox::nv_conf:
   enable: false
   use_docker: true
   gpu_fan: 0
-  driver: nvidia-390
-  cuda: libcuda1-390
+  driver: nvidia-396
+  cuda: libcuda1-396
   docker_pkg: 'nvidia-docker2'
 
 minebox::amd_conf:
