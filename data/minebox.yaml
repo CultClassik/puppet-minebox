@@ -161,9 +161,9 @@ minebox::miner_defaults:
       ethminer_stable:
         repo: cryptojunkies
         image: ethminer
-        tag: 0.14.0-cuda9.0
+        tag: latest-cuda9.2
         api_port: "%{lookup('minebox::monitor.api_port.ethminer')}"
-        command: -RH -U -S us1.ethermine.org:4444 -FS us2.ethermine.org:4444 --farm-recheck 2000 -O %{minebox::accounts.eth}.%{facts.hostname}-WORKER_ID -HWMON --api-port %{minebox::monitor.api_port.ethminer}
+        command: -R -U --farm-recheck 2000 --HWMON 1 --api-port %{minebox::monitor.api_port.ethminer} -P stratum1+ssl://%{minebox::accounts.eth}.%{facts.hostname}-WORKER_ID@us1.ethermine.org:5555  stratum1+ssl://%{minebox::accounts.eth}.%{facts.hostname}-WORKER_ID@us2.ethermine.org:5555
       ethminer_latest:
         repo: cryptojunkies
         image: ethminer
