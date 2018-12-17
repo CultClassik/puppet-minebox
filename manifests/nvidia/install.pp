@@ -13,12 +13,19 @@ class minebox::nvidia::install(
 
   $nvidia_packages = concat($minebox::packages_xorg, $nv_conf['driver'], $nv_conf['cuda'])
 
-  ensure_packages(
-    $nvidia_packages,
-    {
+  $nvidia_packages.each |String $pkg| {
+    package { $pkg:
       ensure => present,
       notify => Reboot['after_run'],
     }
-  )
+  }
+
+#  ensure_packages(
+#    $nvidia_packages,
+#    {
+#      ensure => present,
+#      notify => Reboot['after_run'],
+#    }
+#  )
 
 }
