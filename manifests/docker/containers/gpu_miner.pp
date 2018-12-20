@@ -53,6 +53,8 @@ define minebox::docker::containers::gpu_miner(
     remove_container_on_stop => true,
     remove_volume_on_stop    => true,
     pull_on_start            => true,
+    health_check_interval    => 60,
+    restart_on_unhealthy     => false,
   }
 
   if $monitor['enable'] == true {
