@@ -52,10 +52,10 @@ class minebox::docker::services::eth_proxy(
     }
 
     -> docker::stack { $service_name :
-      ensure       => present,
-      stack_name   => $service_name,
-      compose_file => $compose_file,
-      require      => File[$compose_file],
+      ensure        => present,
+      stack_name    => $service_name,
+      compose_files => [$compose_file],
+      require       => File[$compose_file],
     }
   }
 
