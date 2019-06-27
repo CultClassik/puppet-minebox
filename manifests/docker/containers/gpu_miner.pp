@@ -8,7 +8,7 @@
 # @example
 #   minebox::docker::containers::gpu_miner { 'namevar': }
 define minebox::docker::containers::gpu_miner(
-  String $gpu_id,
+  Integer $gpu_id,
   String $gpu_type,
   String $miner_image,
   String $container_name,

@@ -56,27 +56,27 @@ minebox::folders:
 minebox::miners:
   amd:
   nv:
-    dstm-equihash:
-      version: 0.5.8
-      source: 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/zm_0.5.8.tar.gz'
-      file: zm_0.5.8.tar.gz
-      creates: zm
-    ewbf-equihash:
-      version: 0.3.4b
-      source: 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/Zec_Miner_0.3.4b_Linux_Bin.tar.gz'
-      file: Zec_Miner_0.3.4b_Linux_Bin.tar.gz
-      creates: miner
+  #  dstm-equihash:
+  #    version: 0.5.8
+  #    source: 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/zm_0.5.8.tar.gz'
+  #    file: zm_0.5.8.tar.gz
+  #    creates: zm
+  #  ewbf-equihash:
+  #    version: 0.3.4b
+  #    source: 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/Zec_Miner_0.3.4b_Linux_Bin.tar.gz'
+  #    file: Zec_Miner_0.3.4b_Linux_Bin.tar.gz
+  #    creates: miner
   hybrid:
-    claymore-ethash:
-      version: 11.7
-      source: 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/claymore_eth_11.7_linux.tar.gz'
-      file: claymore.tar.gz
-      creates: ethdcrminer64
-    claymore-equihash:
-      version: 12.6
-      source: 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/claymore_ZCash_AMD_GPU_Miner_v12.6_LINUX.tar.gz'
-      file: claymore-equi.tar.gz
-      creates: zecminer64
+  #  claymore-ethash:
+  #    version: 11.7
+  #    source: 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/claymore_eth_11.7_linux.tar.gz'
+  #    file: claymore.tar.gz
+  #    creates: ethdcrminer64
+  #  claymore-equihash:
+  #    version: 12.6
+  #    source: 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/claymore_ZCash_AMD_GPU_Miner_v12.6_LINUX.tar.gz'
+  #    file: claymore-equi.tar.gz
+  #    creates: zecminer64
     ethminer:
       version: 0.15.0
       source: 'https://github.com/ethereum-mining/ethminer/releases/download/v0.15.0/ethminer-0.15.0-Linux.tar.gz'
@@ -87,12 +87,12 @@ minebox::tools:
   hybrid:
   nv:
   amd:
-    atiflash:
-      version: 4.25
-      source: 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/atiflash_linux.tar.xz'
-      files: atiflash.tar.xz
-      creates: atiflash
-      create_subdir: false
+    #atiflash:
+    #  version: 4.25
+    #  source: 'https://s3-us-west-1.amazonaws.com/mastermine/minebox/atiflash_linux.tar.xz'
+    #  files: atiflash.tar.xz
+    # creates: atiflash
+    #  create_subdir: false
 
 minebox::docker::config::swarm_mode: false
 
@@ -101,8 +101,8 @@ minebox::nv_conf:
   enable: false
   use_docker: true
   gpu_fan: 0
-  driver: nvidia-396
-  cuda: libcuda1-396
+  driver: nvidia-410
+  cuda: libcuda1-410
   docker_pkg: 'nvidia-docker2'
 
 minebox::amd_conf:
