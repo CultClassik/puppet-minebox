@@ -12,6 +12,7 @@
 #require https://github.com/onpuppet/puppet-monitoring.git
 
 class minebox(
+  String $amd_driver_url,
   String $base_path,
   String $storage_path,
   String $miner_user,
